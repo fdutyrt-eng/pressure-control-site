@@ -70,9 +70,9 @@
         }
 
 
-        /* ========================================
+        /* =========================
            HEADER
-        ======================================== */
+        ========================= */
 
         header {
             position: sticky;
@@ -96,12 +96,8 @@
             justify-content: space-between;
 
             gap: 30px;
-
-            position: relative;
         }
 
-
-        /* ЛОГОТИП */
 
         .logo {
             display: flex;
@@ -114,29 +110,73 @@
         }
 
 
+        /* Схематичная иконка приложения */
+
         .logo-icon {
             width: 42px;
             height: 42px;
 
-            flex-shrink: 0;
-
             border-radius: 13px;
 
-            background: #F4F8FF;
+            background: #fff;
 
             display: flex;
             align-items: center;
             justify-content: center;
 
+            position: relative;
+
+            box-shadow:
+                0 4px 12px rgba(23,43,47,.10);
+
             overflow: hidden;
         }
 
 
-        .logo-icon svg {
-            width: 29px;
-            height: 29px;
+        .logo-icon::before,
+        .logo-icon::after {
 
-            display: block;
+            content: "";
+
+            position: absolute;
+
+            width: 9px;
+            height: 30px;
+
+            background: #4BA6E8;
+
+            border-radius: 5px;
+
+            transform: rotate(45deg);
+        }
+
+
+        .logo-icon::before {
+            left: 13px;
+            top: 6px;
+        }
+
+
+        .logo-icon::after {
+            right: 10px;
+            top: 6px;
+        }
+
+
+        .logo-symbol {
+
+            position: absolute;
+
+            width: 25px;
+            height: 9px;
+
+            background: #4BA6E8;
+
+            border-radius: 5px;
+
+            transform: rotate(-45deg);
+
+            z-index: 2;
         }
 
 
@@ -147,6 +187,7 @@
 
         nav {
             display: flex;
+
             align-items: center;
 
             gap: 25px;
@@ -179,15 +220,6 @@
             font-weight: 700;
 
             font-size: 14px;
-
-            transition: .2s;
-        }
-
-
-        .header-button:hover {
-            background: var(--primary-dark);
-
-            transform: translateY(-1px);
         }
 
 
@@ -211,9 +243,9 @@
         }
 
 
-        /* ========================================
+        /* =========================
            HERO
-        ======================================== */
+        ========================= */
 
         .hero {
             padding: 90px 0 80px;
@@ -235,6 +267,7 @@
 
 
         .eyebrow {
+
             display: inline-flex;
 
             align-items: center;
@@ -258,7 +291,9 @@
 
 
         .hero h1 {
-            font-size: clamp(48px, 7vw, 76px);
+
+            font-size:
+                clamp(48px, 7vw, 76px);
 
             line-height: .98;
 
@@ -274,6 +309,7 @@
 
 
         .hero-description {
+
             max-width: 610px;
 
             color: var(--muted);
@@ -285,6 +321,7 @@
 
 
         .hero-buttons {
+
             display: flex;
 
             flex-wrap: wrap;
@@ -296,10 +333,10 @@
 
 
         .button {
+
             display: inline-flex;
 
             align-items: center;
-
             justify-content: center;
 
             min-height: 52px;
@@ -317,6 +354,7 @@
 
 
         .button-primary {
+
             background: var(--primary);
 
             color: #fff;
@@ -327,6 +365,7 @@
 
 
         .button-primary:hover {
+
             background: var(--primary-dark);
 
             transform: translateY(-2px);
@@ -334,15 +373,18 @@
 
 
         .button-secondary {
+
             background: #fff;
 
-            border: 1px solid var(--border);
+            border:
+                1px solid var(--border);
 
             color: var(--text);
         }
 
 
         .button-secondary:hover {
+
             border-color: var(--primary);
 
             color: var(--primary);
@@ -350,26 +392,27 @@
 
 
         .hero-note {
+
             color: var(--muted);
 
             font-size: 13px;
         }
 
 
-        /* ========================================
+        /* =========================
            PHONE
-        ======================================== */
+        ========================= */
 
         .hero-visual {
+
             display: flex;
 
             justify-content: center;
-
-            position: relative;
         }
 
 
         .phone {
+
             width: 300px;
             height: 590px;
 
@@ -389,6 +432,7 @@
 
 
         .phone-notch {
+
             width: 100px;
             height: 22px;
 
@@ -407,9 +451,11 @@
 
 
         .app-top {
+
             display: flex;
 
-            justify-content: space-between;
+            justify-content:
+                space-between;
 
             align-items: center;
 
@@ -418,6 +464,7 @@
 
 
         .app-title {
+
             font-weight: 800;
 
             font-size: 17px;
@@ -425,6 +472,7 @@
 
 
         .small-circle {
+
             width: 32px;
             height: 32px;
 
@@ -435,6 +483,7 @@
 
 
         .health-card {
+
             background: var(--light);
 
             padding: 18px;
@@ -446,6 +495,7 @@
 
 
         .health-label {
+
             color: var(--muted);
 
             font-size: 12px;
@@ -453,6 +503,7 @@
 
 
         .pressure-value {
+
             font-size: 34px;
 
             font-weight: 800;
@@ -464,6 +515,7 @@
 
 
         .pressure-unit {
+
             font-size: 12px;
 
             color: var(--muted);
@@ -471,6 +523,7 @@
 
 
         .mini-grid {
+
             display: grid;
 
             grid-template-columns:
@@ -483,9 +536,11 @@
 
 
         .mini-card {
+
             background: #F8FAFB;
 
-            border: 1px solid var(--border);
+            border:
+                1px solid var(--border);
 
             padding: 13px;
 
@@ -494,6 +549,7 @@
 
 
         .mini-card strong {
+
             display: block;
 
             font-size: 18px;
@@ -503,15 +559,18 @@
 
 
         .app-section-title {
+
             font-size: 13px;
 
             font-weight: 800;
 
-            margin: 17px 0 10px;
+            margin:
+                17px 0 10px;
         }
 
 
         .app-row {
+
             display: flex;
 
             align-items: center;
@@ -532,6 +591,7 @@
 
 
         .app-icon {
+
             width: 30px;
             height: 30px;
 
@@ -545,12 +605,23 @@
 
             align-items: center;
             justify-content: center;
+
+            flex-shrink: 0;
         }
 
 
-        /* ========================================
-           GENERAL SECTIONS
-        ======================================== */
+        .app-icon svg {
+
+            width: 18px;
+            height: 18px;
+
+            display: block;
+        }
+
+
+        /* =========================
+           GENERAL
+        ========================= */
 
         section {
             padding: 90px 0;
@@ -564,6 +635,7 @@
 
         .advantage-grid,
         .feature-grid {
+
             display: grid;
 
             grid-template-columns:
@@ -574,6 +646,7 @@
 
 
         .advantage {
+
             background: #fff;
 
             border:
@@ -586,15 +659,15 @@
 
 
         .advantage-icon {
+
             font-size: 24px;
 
             margin-bottom: 12px;
-
-            color: var(--primary);
         }
 
 
         .advantage h3 {
+
             font-size: 17px;
 
             margin-bottom: 5px;
@@ -613,11 +686,12 @@
         }
 
 
-        /* ========================================
-           SECTION HEADING
-        ======================================== */
+        /* =========================
+           HEADINGS
+        ========================= */
 
         .section-heading {
+
             max-width: 680px;
 
             margin-bottom: 45px;
@@ -630,6 +704,7 @@
 
 
         .section-heading h2 {
+
             font-size:
                 clamp(32px, 5vw, 48px);
 
@@ -642,15 +717,16 @@
 
 
         .section-heading p {
+
             color: var(--muted);
 
             font-size: 17px;
         }
 
 
-        /* ========================================
+        /* =========================
            FEATURES
-        ======================================== */
+        ========================= */
 
         .features,
         .screenshots,
@@ -662,6 +738,7 @@
 
 
         .feature-card {
+
             border:
                 1px solid var(--border);
 
@@ -676,7 +753,9 @@
 
 
         .feature-card:hover {
-            transform: translateY(-5px);
+
+            transform:
+                translateY(-5px);
 
             box-shadow: var(--shadow);
 
@@ -685,8 +764,9 @@
 
 
         .feature-icon {
-            width: 48px;
-            height: 48px;
+
+            width: 50px;
+            height: 50px;
 
             border-radius: 14px;
 
@@ -699,24 +779,33 @@
             align-items: center;
             justify-content: center;
 
-            font-size: 22px;
-
             margin-bottom: 20px;
         }
 
 
+        .feature-icon svg {
+
+            width: 28px;
+            height: 28px;
+
+            display: block;
+        }
+
+
         .feature-card h3 {
+
             font-size: 18px;
 
             margin-bottom: 8px;
         }
 
 
-        /* ========================================
+        /* =========================
            STEPS
-        ======================================== */
+        ========================= */
 
         .steps {
+
             display: grid;
 
             grid-template-columns:
@@ -727,6 +816,7 @@
 
 
         .step {
+
             padding: 28px;
 
             background: #fff;
@@ -739,6 +829,7 @@
 
 
         .step-number {
+
             font-size: 13px;
 
             font-weight: 800;
@@ -754,87 +845,148 @@
         }
 
 
-        /* ========================================
+        /* =========================
            SCREENSHOTS
-        ======================================== */
+        ========================= */
 
         .screenshots {
-            background: #fff;
+            overflow: hidden;
         }
 
 
-        /*
-            Фотографии идут строго одна за другой.
-
-            Они не превращаются в маленькие карточки.
-            Изображение сохраняет свои пропорции.
-        */
-
         .screenshots-list {
-            width: 100%;
 
             display: flex;
 
             flex-direction: column;
 
-            align-items: center;
-
-            gap: 80px;
+            gap: 90px;
         }
 
 
-        .app-screenshot {
-            width: 100%;
+        .screenshot-item {
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(300px, 520px)
+                minmax(280px, 1fr);
+
+            align-items: center;
+
+            gap: 70px;
+
+            min-height: 560px;
+        }
+
+
+        .screenshot-item:nth-child(even) {
+
+            grid-template-columns:
+                minmax(280px, 1fr)
+                minmax(300px, 520px);
+        }
+
+
+        .screenshot-item:nth-child(even)
+        .screenshot-image {
+
+            order: 2;
+        }
+
+
+        .screenshot-item:nth-child(even)
+        .screenshot-text {
+
+            order: 1;
+        }
+
+
+        .screenshot-image {
 
             display: flex;
 
+            align-items: center;
             justify-content: center;
 
-            align-items: center;
+            width: 100%;
+
+            min-width: 0;
         }
 
 
-        .app-screenshot img {
+        /*
+            Здесь нет отдельной рамки,
+            карточки или декоративного блока.
+
+            Показывается само изображение
+            телефона из PNG.
+        */
+
+        .screenshot-image img {
+
             display: block;
 
             width: auto;
 
             height: auto;
 
-            /*
-                Большой размер на компьютере.
-            */
+            max-width: 100%;
 
-            max-width: 430px;
-
-            /*
-                Не обрезаем изображение.
-            */
-
-            max-height: none;
+            max-height: 780px;
 
             object-fit: contain;
 
-            border-radius: 28px;
+            object-position: center;
 
-            box-shadow:
-                0 20px 50px rgba(23,43,47,.14);
+            margin: auto;
         }
 
 
-        /*
-            Если изображение уже содержит рамку телефона,
-            она полностью сохраняется.
-        */
+        .screenshot-text {
 
-        .app-screenshot img[src$=".png"] {
-            background: transparent;
+            max-width: 430px;
         }
 
 
-        /* ========================================
+        .screenshot-number {
+
+            color: var(--primary);
+
+            font-weight: 800;
+
+            font-size: 13px;
+
+            margin-bottom: 12px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .08em;
+        }
+
+
+        .screenshot-text h3 {
+
+            font-size:
+                clamp(28px,4vw,42px);
+
+            line-height: 1.1;
+
+            margin-bottom: 15px;
+        }
+
+
+        .screenshot-text p {
+
+            color: var(--muted);
+
+            font-size: 16px;
+        }
+
+
+        /* =========================
            DOWNLOAD
-        ======================================== */
+        ========================= */
 
         .download {
             background: var(--light);
@@ -842,6 +994,7 @@
 
 
         .download-box {
+
             display: grid;
 
             grid-template-columns:
@@ -863,8 +1016,9 @@
 
 
         .download-box h2 {
+
             font-size:
-                clamp(30px, 5vw, 46px);
+                clamp(30px,5vw,46px);
 
             line-height: 1.1;
 
@@ -873,6 +1027,7 @@
 
 
         .download-box p {
+
             color: var(--muted);
 
             margin-bottom: 25px;
@@ -882,6 +1037,7 @@
 
 
         .version {
+
             display: block;
 
             margin-top: 13px;
@@ -892,37 +1048,33 @@
         }
 
 
+        /* QR-КОД */
+
         .qr {
+
             width: 190px;
             height: 190px;
 
-            border:
-                1px dashed #A9CECF;
-
             border-radius: 20px;
 
-            background: var(--light);
+            background: #fff;
 
-            display: flex;
+            display: block;
 
-            align-items: center;
-            justify-content: center;
-
-            text-align: center;
-
-            color: var(--primary);
-
-            font-size: 13px;
+            object-fit: contain;
 
             margin: auto;
+
+            border: 0;
         }
 
 
-        /* ========================================
+        /* =========================
            EMULATOR
-        ======================================== */
+        ========================= */
 
         .emulator-box {
+
             border:
                 1px solid var(--border);
 
@@ -942,6 +1094,7 @@
 
 
         .emulator-label {
+
             color: var(--primary);
 
             font-weight: 800;
@@ -953,6 +1106,7 @@
 
 
         .emulator-box h2 {
+
             font-size: 34px;
 
             margin-bottom: 12px;
@@ -960,6 +1114,7 @@
 
 
         .emulator-box p {
+
             color: var(--muted);
 
             max-width: 650px;
@@ -969,6 +1124,7 @@
 
 
         .emulator-info {
+
             margin-top: 18px;
 
             font-size: 13px;
@@ -977,26 +1133,29 @@
         }
 
 
-        /* ========================================
+        /* =========================
            INSTRUCTION
-        ======================================== */
+        ========================= */
 
         .instruction {
+
             background: var(--background);
         }
 
 
         .instruction-grid {
+
             display: grid;
 
             grid-template-columns:
-                repeat(3, 1fr);
+                repeat(3,1fr);
 
             gap: 18px;
         }
 
 
         .instruction-card {
+
             background: #fff;
 
             padding: 28px;
@@ -1009,6 +1168,7 @@
 
 
         .instruction-number {
+
             width: 38px;
             height: 38px;
 
@@ -1034,11 +1194,12 @@
         }
 
 
-        /* ========================================
+        /* =========================
            INFO
-        ======================================== */
+        ========================= */
 
         .info-grid {
+
             display: grid;
 
             grid-template-columns:
@@ -1049,6 +1210,7 @@
 
 
         .info-card {
+
             padding: 30px;
 
             border:
@@ -1064,6 +1226,7 @@
 
 
         .disclaimer {
+
             border-left:
                 4px solid var(--warning);
 
@@ -1071,11 +1234,12 @@
         }
 
 
-        /* ========================================
+        /* =========================
            FOOTER
-        ======================================== */
+        ========================= */
 
         footer {
+
             background: #172B2F;
 
             color: #fff;
@@ -1085,6 +1249,7 @@
 
 
         .footer-grid {
+
             display: flex;
 
             justify-content: space-between;
@@ -1096,6 +1261,7 @@
 
 
         .footer-logo {
+
             display: flex;
 
             align-items: center;
@@ -1106,12 +1272,8 @@
         }
 
 
-        .footer-logo .logo-icon {
-            background: #F4F8FF;
-        }
-
-
         .footer-description {
+
             color: #B6C5C7;
 
             font-size: 14px;
@@ -1123,6 +1285,7 @@
 
 
         .footer-links {
+
             display: flex;
 
             flex-wrap: wrap;
@@ -1132,18 +1295,15 @@
 
 
         .footer-links a {
+
             color: #D7E2E3;
 
             font-size: 14px;
         }
 
 
-        .footer-links a:hover {
-            color: #fff;
-        }
-
-
         .copyright {
+
             border-top:
                 1px solid rgba(255,255,255,.1);
 
@@ -1155,13 +1315,14 @@
         }
 
 
-        /* ========================================
-           MOBILE / TABLET
-        ======================================== */
+        /* =========================
+           TABLET
+        ========================= */
 
         @media(max-width:900px) {
 
             nav {
+
                 display: none;
 
                 position: absolute;
@@ -1179,19 +1340,24 @@
                 border-bottom:
                     1px solid var(--border);
 
-                box-shadow:
-                    0 15px 30px rgba(23,43,47,.08);
-
                 flex-direction: column;
 
-                align-items: flex-start;
+                align-items: stretch;
 
-                gap: 18px;
+                gap: 0;
+
+                box-shadow:
+                    0 15px 30px rgba(23,43,47,.08);
             }
 
 
             nav.open {
                 display: flex;
+            }
+
+
+            nav a {
+                padding: 13px 10px;
             }
 
 
@@ -1206,6 +1372,7 @@
 
 
             .hero-grid {
+
                 grid-template-columns: 1fr;
 
                 text-align: center;
@@ -1213,8 +1380,7 @@
 
 
             .hero-description {
-                margin:
-                    auto auto 30px;
+                margin: auto auto 30px;
             }
 
 
@@ -1232,12 +1398,54 @@
 
 
             .steps {
+
                 grid-template-columns:
                     repeat(2,1fr);
             }
 
 
+            .screenshot-item,
+            .screenshot-item:nth-child(even) {
+
+                grid-template-columns: 1fr;
+
+                gap: 35px;
+
+                min-height: 0;
+            }
+
+
+            .screenshot-item:nth-child(even)
+            .screenshot-image,
+
+            .screenshot-item:nth-child(even)
+            .screenshot-text {
+
+                order: initial;
+            }
+
+
+            .screenshot-text {
+
+                max-width: 600px;
+
+                text-align: center;
+
+                margin: auto;
+            }
+
+
+            .screenshot-image img {
+
+                max-height: 780px;
+
+                max-width:
+                    min(100%, 520px);
+            }
+
+
             .download-box {
+
                 grid-template-columns: 1fr;
 
                 text-align: center;
@@ -1245,6 +1453,7 @@
 
 
             .emulator-box {
+
                 grid-template-columns: 1fr;
             }
 
@@ -1257,31 +1466,21 @@
 
 
             .footer-grid {
+
                 flex-direction: column;
             }
 
-
-            /*
-                На планшете телефон остаётся крупным.
-            */
-
-            .app-screenshot img {
-                max-width: 460px;
-
-                width: auto;
-
-                height: auto;
-            }
         }
 
 
-        /* ========================================
-           SMALL MOBILE
-        ======================================== */
+        /* =========================
+           MOBILE
+        ========================= */
 
         @media(max-width:600px) {
 
             .container {
+
                 width:
                     min(100% - 28px,1120px);
             }
@@ -1298,11 +1497,13 @@
 
 
             .hero {
+
                 padding: 60px 0;
             }
 
 
             .hero h1 {
+
                 font-size: 48px;
 
                 letter-spacing: -2px;
@@ -1310,21 +1511,25 @@
 
 
             .hero-description {
+
                 font-size: 16px;
             }
 
 
             .hero-buttons {
+
                 flex-direction: column;
             }
 
 
             .button {
+
                 width: 100%;
             }
 
 
             section {
+
                 padding: 65px 0;
             }
 
@@ -1337,45 +1542,44 @@
             }
 
 
-            /*
-                Фотографии на телефоне.
-
-                Они занимают почти всю ширину,
-                но сохраняют исходные пропорции.
-            */
-
             .screenshots-list {
-                gap: 45px;
+
+                gap: 70px;
             }
 
 
-            .app-screenshot {
-                width: 100%;
+            .screenshot-item,
+            .screenshot-item:nth-child(even) {
+
+                gap: 25px;
             }
 
 
-            .app-screenshot img {
+            .screenshot-image img {
 
-                width: 100%;
+                width: auto;
 
-                max-width: 390px;
+                max-width: 100%;
 
-                height: auto;
+                max-height: none;
+            }
 
-                object-fit: contain;
 
-                border-radius: 24px;
+            .screenshot-text h3 {
+                font-size: 30px;
             }
 
 
             .download-box,
             .emulator-box {
 
-                padding: 28px 20px;
+                padding:
+                    28px 20px;
             }
 
 
             .phone {
+
                 transform: scale(.9);
 
                 transform-origin: center;
@@ -1385,27 +1589,25 @@
 
 
             .footer-links {
+
                 flex-direction: column;
 
                 gap: 10px;
             }
+
         }
 
 
-        /* ========================================
+        /* =========================
            VERY SMALL PHONES
-        ======================================== */
+        ========================= */
 
         @media(max-width:380px) {
-
-            .app-screenshot img {
-                max-width: 340px;
-            }
-
 
             .hero h1 {
                 font-size: 42px;
             }
+
         }
 
     </style>
@@ -1416,66 +1618,23 @@
 <body>
 
 
-<!-- ==========================================
+<!-- =========================
      HEADER
-========================================== -->
+========================= -->
 
 <header>
 
     <div class="container header-inner">
 
 
-        <a href="#top" class="logo">
+        <a
+            href="#top"
+            class="logo"
+            aria-label="Давление под контролем"
+        >
 
-
-            <!-- Схематичная иконка приложения -->
-
-            <span class="logo-icon">
-
-                <svg
-                    viewBox="0 0 40 40"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                >
-
-                    <path
-                        d="M9 27 L18 18 L12 12"
-                        fill="none"
-                        stroke="#4BA3E3"
-                        stroke-width="5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    />
-
-                    <path
-                        d="M18 18 L27 9"
-                        fill="none"
-                        stroke="#4BA3E3"
-                        stroke-width="5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    />
-
-                    <path
-                        d="M22 31 L31 22 L25 16"
-                        fill="none"
-                        stroke="#4BA3E3"
-                        stroke-width="5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    />
-
-                    <path
-                        d="M25 16 L18 9"
-                        fill="none"
-                        stroke="#4BA3E3"
-                        stroke-width="5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    />
-
-                </svg>
-
+            <span class="logo-icon" aria-hidden="true">
+                <span class="logo-symbol"></span>
             </span>
 
 
@@ -1483,7 +1642,6 @@
                 Давление<br>
                 под контролем
             </span>
-
 
         </a>
 
@@ -1535,9 +1693,9 @@
 <main id="top">
 
 
-<!-- ==========================================
+<!-- =========================
      HERO
-========================================== -->
+========================= -->
 
 <section class="hero">
 
@@ -1549,30 +1707,21 @@
 
 
             <div class="eyebrow">
-
                 ● Цифровой помощник для ежедневного
                 самоконтроля
-
             </div>
 
 
             <h1>
-
                 Давление<br>
-
-                <span>
-                    под контролем
-                </span>
-
+                <span>под контролем</span>
             </h1>
 
 
             <p class="hero-description">
-
                 Удобное приложение для ведения дневника
                 давления, лекарств, питания, физической
                 активности и других показателей здоровья.
-
             </p>
 
 
@@ -1599,16 +1748,12 @@
 
 
             <div class="hero-note">
-
                 Android · тестовая версия
-
             </div>
 
 
         </div>
 
-
-        <!-- PHONE -->
 
         <div class="hero-visual">
 
@@ -1635,27 +1780,22 @@
 
                     <div class="health-card">
 
-
                         <div class="health-label">
                             Артериальное давление
                         </div>
-
 
                         <div class="pressure-value">
                             120 / 80
                         </div>
 
-
                         <div class="pressure-unit">
                             мм рт. ст.
                         </div>
-
 
                     </div>
 
 
                     <div class="mini-grid">
-
 
                         <div class="mini-card">
 
@@ -1682,7 +1822,6 @@
 
                         </div>
 
-
                     </div>
 
 
@@ -1694,41 +1833,7 @@
                     <div class="app-row">
 
                         <div class="app-icon">
-
-                            <svg
-                                viewBox="0 0 40 40"
-                                width="20"
-                                height="20"
-                            >
-
-                                <path
-                                    d="M9 27 L18 18 L12 12"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="4"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-
-                                <path
-                                    d="M18 18 L27 9"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="4"
-                                    stroke-linecap="round"
-                                />
-
-                                <path
-                                    d="M22 31 L31 22 L25 16"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="4"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-
-                            </svg>
-
+                            ♥
                         </div>
 
                         <span>
@@ -1741,7 +1846,33 @@
                     <div class="app-row">
 
                         <div class="app-icon">
-                            +
+
+                            <svg
+                                viewBox="0 0 64 64"
+                                aria-hidden="true"
+                            >
+
+                                <g transform="rotate(-45 32 32)">
+
+                                    <rect
+                                        x="10"
+                                        y="22"
+                                        width="44"
+                                        height="20"
+                                        rx="10"
+                                        fill="currentColor"
+                                    />
+
+                                    <path
+                                        d="M32 22v20"
+                                        stroke="white"
+                                        stroke-width="3"
+                                    />
+
+                                </g>
+
+                            </svg>
+
                         </div>
 
                         <span>
@@ -1783,15 +1914,14 @@
 
         </div>
 
-
     </div>
 
 </section>
 
 
-<!-- ==========================================
+<!-- =========================
      ADVANTAGES
-========================================== -->
+========================= -->
 
 <section class="advantages">
 
@@ -1804,114 +1934,68 @@
 
             <div class="advantage">
 
-
                 <div class="advantage-icon">
-
-                    <svg
-                        viewBox="0 0 40 40"
-                        width="28"
-                        height="28"
-                    >
-
-                        <path
-                            d="M9 27 L18 18 L12 12"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="4"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                        />
-
-                        <path
-                            d="M18 18 L27 9"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="4"
-                            stroke-linecap="round"
-                        />
-
-                        <path
-                            d="M22 31 L31 22 L25 16"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="4"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                        />
-
-                    </svg>
-
+                    ♥
                 </div>
-
 
                 <h3>
                     Один дневник
                 </h3>
 
-
                 <p>
-                    Давление, лекарства, питание и активность
-                    в одном месте.
+                    Давление, лекарства, питание
+                    и активность в одном месте.
                 </p>
-
 
             </div>
 
 
             <div class="advantage">
-
 
                 <div class="advantage-icon">
                     ✦
                 </div>
 
-
                 <h3>
                     AI-помощник
                 </h3>
 
-
                 <p>
-                    Распознавание, структурирование и анализ
-                    введённых данных.
+                    Распознавание, структурирование
+                    и анализ введённых данных.
                 </p>
-
 
             </div>
 
 
             <div class="advantage">
 
-
                 <div class="advantage-icon">
                     ⌁
                 </div>
-
 
                 <h3>
                     Всё под рукой
                 </h3>
 
-
                 <p>
-                    Быстрый доступ к дневникам и ежедневной сводке.
+                    Быстрый доступ к дневникам
+                    и ежедневной сводке.
                 </p>
-
 
             </div>
 
 
         </div>
 
-
     </div>
 
 </section>
 
 
-<!-- ==========================================
+<!-- =========================
      FEATURES
-========================================== -->
+========================= -->
 
 <section
     class="features"
@@ -1947,32 +2031,30 @@
         <div class="feature-grid">
 
 
-            <div class="feature-card">
+            <!-- ДАВЛЕНИЕ -->
 
+            <div class="feature-card">
 
                 <div class="feature-icon">
 
                     <svg
-                        viewBox="0 0 40 40"
-                        width="25"
-                        height="25"
+                        viewBox="0 0 48 48"
+                        fill="none"
                     >
 
                         <path
-                            d="M9 27 L18 18 L12 12"
-                            fill="none"
+                            d="
+                                M24 39
+                                S8 29.5 8 18.5
+                                C8 13.25 11.7 10 16.2 10
+                                C19.25 10 21.75 11.65 24 14.35
+                                C26.25 11.65 28.75 10 31.8 10
+                                C36.3 10 40 13.25 40 18.5
+                                C40 29.5 24 39 24 39Z
+                            "
                             stroke="currentColor"
-                            stroke-width="4"
-                            stroke-linecap="round"
+                            stroke-width="3"
                             stroke-linejoin="round"
-                        />
-
-                        <path
-                            d="M18 18 L27 9"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="4"
-                            stroke-linecap="round"
                         />
 
                     </svg>
@@ -1990,15 +2072,43 @@
                     и пульса и сохраняйте историю.
                 </p>
 
-
             </div>
 
 
+            <!-- ЛЕКАРСТВА -->
+
             <div class="feature-card">
 
-
                 <div class="feature-icon">
-                    ＋
+
+                    <svg
+                        viewBox="0 0 64 64"
+                        aria-hidden="true"
+                    >
+
+                        <g
+                            transform="rotate(-45 32 32)"
+                        >
+
+                            <rect
+                                x="10"
+                                y="22"
+                                width="44"
+                                height="20"
+                                rx="10"
+                                fill="currentColor"
+                            />
+
+                            <path
+                                d="M32 22v20"
+                                stroke="white"
+                                stroke-width="3"
+                            />
+
+                        </g>
+
+                    </svg>
+
                 </div>
 
 
@@ -2008,19 +2118,62 @@
 
 
                 <p>
-                    Отмечайте приём препаратов и настраивайте
-                    напоминания.
+                    Отмечайте приём препаратов
+                    и настраивайте напоминания.
                 </p>
-
 
             </div>
 
 
+            <!-- ПИТАНИЕ -->
+
             <div class="feature-card">
 
-
                 <div class="feature-icon">
-                    ◌
+
+                    <svg
+                        viewBox="0 0 48 48"
+                        fill="none"
+                    >
+
+                        <circle
+                            cx="24"
+                            cy="26"
+                            r="12"
+                            stroke="currentColor"
+                            stroke-width="3"
+                        />
+
+                        <path
+                            d="M12 26h24"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            opacity=".35"
+                        />
+
+                        <path
+                            d="M24 14v24"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            opacity=".35"
+                        />
+
+                        <path
+                            d="M36 9v30"
+                            stroke="currentColor"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                        />
+
+                        <path
+                            d="M33 9v9M36 9v9M39 9v9"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                        />
+
+                    </svg>
+
                 </div>
 
 
@@ -2034,15 +2187,69 @@
                     информацию о приёмах пищи.
                 </p>
 
-
             </div>
 
 
+            <!-- ФИЗИЧЕСКАЯ АКТИВНОСТЬ -->
+
             <div class="feature-card">
 
-
                 <div class="feature-icon">
-                    ⌁
+
+                    <!-- ГАНТЕЛЬ -->
+
+                    <svg
+                        viewBox="0 0 64 64"
+                        aria-hidden="true"
+                    >
+
+                        <rect
+                            x="7"
+                            y="22"
+                            width="7"
+                            height="20"
+                            rx="3"
+                            fill="currentColor"
+                        />
+
+                        <rect
+                            x="14"
+                            y="18"
+                            width="7"
+                            height="28"
+                            rx="3"
+                            fill="currentColor"
+                        />
+
+                        <rect
+                            x="21"
+                            y="27"
+                            width="22"
+                            height="10"
+                            rx="5"
+                            fill="currentColor"
+                        />
+
+                        <rect
+                            x="43"
+                            y="18"
+                            width="7"
+                            height="28"
+                            rx="3"
+                            fill="currentColor"
+                        />
+
+                        <rect
+                            x="50"
+                            y="22"
+                            width="7"
+                            height="20"
+                            rx="3"
+                            fill="currentColor"
+                        />
+
+                    </svg>
+
                 </div>
 
 
@@ -2056,15 +2263,47 @@
                     и выбранные цели.
                 </p>
 
-
             </div>
 
 
+            <!-- ЛАБОРАТОРНЫЕ ПОКАЗАТЕЛИ -->
+
             <div class="feature-card">
 
-
                 <div class="feature-icon">
-                    □
+
+                    <!-- КОЛБА -->
+
+                    <svg
+                        viewBox="0 0 48 48"
+                        fill="none"
+                    >
+
+                        <path
+                            d="
+                                M19 8h10
+                                M22 8v12
+                                L12 37
+                                a3 3 0 0 0 2.6 4.5
+                                h18.8
+                                A3 3 0 0 0 36 37
+                                L26 20V8
+                            "
+                            stroke="currentColor"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+
+                        <path
+                            d="M16 32h16"
+                            stroke="currentColor"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                        />
+
+                    </svg>
+
                 </div>
 
 
@@ -2078,15 +2317,53 @@
                     за изменениями.
                 </p>
 
-
             </div>
 
 
+            <!-- AI -->
+
             <div class="feature-card">
 
-
                 <div class="feature-icon">
-                    ✦
+
+                    <svg
+                        viewBox="0 0 48 48"
+                        fill="none"
+                    >
+
+                        <rect
+                            x="9"
+                            y="9"
+                            width="30"
+                            height="30"
+                            rx="8"
+                            stroke="currentColor"
+                            stroke-width="3"
+                        />
+
+                        <path
+                            d="M17 24h14M24 17v14"
+                            stroke="currentColor"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                        />
+
+                        <circle
+                            cx="17"
+                            cy="17"
+                            r="2"
+                            fill="currentColor"
+                        />
+
+                        <circle
+                            cx="31"
+                            cy="31"
+                            r="2"
+                            fill="currentColor"
+                        />
+
+                    </svg>
+
                 </div>
 
 
@@ -2100,21 +2377,19 @@
                     и формировать ежедневную сводку.
                 </p>
 
-
             </div>
 
 
         </div>
-
 
     </div>
 
 </section>
 
 
-<!-- ==========================================
+<!-- =========================
      HOW IT WORKS
-========================================== -->
+========================= -->
 
 <section id="how">
 
@@ -2221,15 +2496,14 @@
 
         </div>
 
-
     </div>
 
 </section>
 
 
-<!-- ==========================================
+<!-- =========================
      SCREENSHOTS
-========================================== -->
+========================= -->
 
 <section
     class="screenshots"
@@ -2254,106 +2528,225 @@
 
 
             <p>
-                Основные экраны приложения
-                «Давление под контролем».
+                Пять экранов идут последовательно.
+                Фото показываются крупно, без дополнительных
+                рамок и карточек.
             </p>
 
 
         </div>
 
 
-        <!--
-            ВАЖНО:
-
-            Здесь фотографии идут ОДНА ЗА ДРУГОЙ.
-
-            01 — регистрация
-            02 — главный экран
-            03 — давление
-            04 — питание
-            05 — активность
-        -->
-
-
         <div class="screenshots-list">
 
 
-            <!-- 01. ЭКРАН РЕГИСТРАЦИИ -->
+            <!-- ЭКРАН РЕГИСТРАЦИИ -->
 
-            <div class="app-screenshot">
-
-                <img
-                    src="screenshots/registration.png"
-                    alt="Экран регистрации приложения"
-                    loading="lazy"
-                >
-
-            </div>
+            <article class="screenshot-item">
 
 
-            <!-- 02. ГЛАВНЫЙ ЭКРАН -->
+                <div class="screenshot-image">
 
-            <div class="app-screenshot">
+                    <img
+                        src="registration.png"
+                        alt="Экран регистрации приложения"
+                        loading="lazy"
+                    >
 
-                <img
-                    src="screenshots/main.png"
-                    alt="Главный экран приложения"
-                    loading="lazy"
-                >
-
-            </div>
+                </div>
 
 
-            <!-- 03. ДНЕВНИК ДАВЛЕНИЯ -->
+                <div class="screenshot-text">
 
-            <div class="app-screenshot">
-
-                <img
-                    src="screenshots/pressure.png"
-                    alt="Дневник давления"
-                    loading="lazy"
-                >
-
-            </div>
+                    <div class="screenshot-number">
+                        Экран регистрации
+                    </div>
 
 
-            <!-- 04. ДНЕВНИК ПИТАНИЯ -->
-
-            <div class="app-screenshot">
-
-                <img
-                    src="screenshots/food.png"
-                    alt="Дневник питания"
-                    loading="lazy"
-                >
-
-            </div>
+                    <h3>
+                        Быстрый вход в приложение
+                    </h3>
 
 
-            <!-- 05. ДНЕВНИК АКТИВНОСТИ -->
+                    <p>
+                        Первый экран приложения для регистрации
+                        и начала работы с дневником здоровья.
+                    </p>
 
-            <div class="app-screenshot">
+                </div>
 
-                <img
-                    src="screenshots/activity.png"
-                    alt="Дневник активности"
-                    loading="lazy"
-                >
 
-            </div>
+            </article>
+
+
+            <!-- ГЛАВНЫЙ ЭКРАН -->
+
+            <article class="screenshot-item">
+
+
+                <div class="screenshot-image">
+
+                    <img
+                        src="main.png"
+                        alt="Главный экран приложения"
+                        loading="lazy"
+                    >
+
+                </div>
+
+
+                <div class="screenshot-text">
+
+                    <div class="screenshot-number">
+                        Главный экран
+                    </div>
+
+
+                    <h3>
+                        Всё важное на одном экране
+                    </h3>
+
+
+                    <p>
+                        Основная информация о самочувствии,
+                        показателях и дневниках доступна
+                        сразу после входа.
+                    </p>
+
+                </div>
+
+
+            </article>
+
+
+            <!-- ДНЕВНИК ДАВЛЕНИЯ -->
+
+            <article class="screenshot-item">
+
+
+                <div class="screenshot-image">
+
+                    <img
+                        src="pressure.png"
+                        alt="Дневник давления"
+                        loading="lazy"
+                    >
+
+                </div>
+
+
+                <div class="screenshot-text">
+
+                    <div class="screenshot-number">
+                        Дневник давления
+                    </div>
+
+
+                    <h3>
+                        Давление и пульс
+                    </h3>
+
+
+                    <p>
+                        Записывайте показатели давления
+                        и пульса и сохраняйте историю измерений.
+                    </p>
+
+                </div>
+
+
+            </article>
+
+
+            <!-- ДНЕВНИК ПИТАНИЯ -->
+
+            <article class="screenshot-item">
+
+
+                <div class="screenshot-image">
+
+                    <img
+                        src="food.png"
+                        alt="Дневник питания"
+                        loading="lazy"
+                    >
+
+                </div>
+
+
+                <div class="screenshot-text">
+
+                    <div class="screenshot-number">
+                        Дневник питания
+                    </div>
+
+
+                    <h3>
+                        Питание в течение дня
+                    </h3>
+
+
+                    <p>
+                        Добавляйте приёмы пищи
+                        и сохраняйте информацию
+                        о ежедневном питании.
+                    </p>
+
+                </div>
+
+
+            </article>
+
+
+            <!-- ДНЕВНИК АКТИВНОСТИ -->
+
+            <article class="screenshot-item">
+
+
+                <div class="screenshot-image">
+
+                    <img
+                        src="activity.png"
+                        alt="Дневник активности"
+                        loading="lazy"
+                    >
+
+                </div>
+
+
+                <div class="screenshot-text">
+
+                    <div class="screenshot-number">
+                        Дневник активности
+                    </div>
+
+
+                    <h3>
+                        Физическая активность
+                    </h3>
+
+
+                    <p>
+                        Отслеживайте движение, шаги,
+                        расстояние и другие показатели активности.
+                    </p>
+
+                </div>
+
+
+            </article>
 
 
         </div>
-
 
     </div>
 
 </section>
 
 
-<!-- ==========================================
+<!-- =========================
      DOWNLOAD
-========================================== -->
+========================= -->
 
 <section
     class="download"
@@ -2406,30 +2799,26 @@
 
             <div>
 
-
-                <div class="qr">
-
-                    QR-код
-                    <br>
-                    появится здесь
-
-                </div>
-
+                <img
+                    class="qr"
+                    src="qr.png"
+                    alt="QR-код для скачивания приложения"
+                    loading="lazy"
+                >
 
             </div>
 
 
         </div>
 
-
     </div>
 
 </section>
 
 
-<!-- ==========================================
+<!-- =========================
      EMULATOR
-========================================== -->
+========================= -->
 
 <section class="emulator">
 
@@ -2479,15 +2868,14 @@
 
         </div>
 
-
     </div>
 
 </section>
 
 
-<!-- ==========================================
+<!-- =========================
      INSTRUCTION
-========================================== -->
+========================= -->
 
 <section class="instruction">
 
@@ -2532,7 +2920,6 @@
                     и дождитесь завершения загрузки.
                 </p>
 
-
             </div>
 
 
@@ -2554,7 +2941,6 @@
                     Android может запросить разрешение
                     на установку из неизвестного источника.
                 </p>
-
 
             </div>
 
@@ -2578,21 +2964,19 @@
                     и начните тестирование.
                 </p>
 
-
             </div>
 
 
         </div>
-
 
     </div>
 
 </section>
 
 
-<!-- ==========================================
+<!-- =========================
      INFO
-========================================== -->
+========================= -->
 
 <section class="info">
 
@@ -2604,7 +2988,6 @@
 
 
             <div class="info-card">
-
 
                 <h3>
                     Конфиденциальность
@@ -2618,12 +3001,10 @@
                     на сервер обработки AI-запросов.
                 </p>
 
-
             </div>
 
 
             <div class="info-card disclaimer">
-
 
                 <h3>
                     Важно
@@ -2636,12 +3017,10 @@
                     врача, медицинскую диагностику или назначенное лечение.
                 </p>
 
-
             </div>
 
 
         </div>
-
 
     </div>
 
@@ -2651,12 +3030,11 @@
 </main>
 
 
-<!-- ==========================================
+<!-- =========================
      FOOTER
-========================================== -->
+========================= -->
 
 <footer>
-
 
     <div class="container">
 
@@ -2669,55 +3047,8 @@
 
                 <div class="footer-logo">
 
-
                     <span class="logo-icon">
-
-
-                        <svg
-                            viewBox="0 0 40 40"
-                            xmlns="http://www.w3.org/2000/svg"
-                            aria-hidden="true"
-                        >
-
-                            <path
-                                d="M9 27 L18 18 L12 12"
-                                fill="none"
-                                stroke="#4BA3E3"
-                                stroke-width="5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            />
-
-                            <path
-                                d="M18 18 L27 9"
-                                fill="none"
-                                stroke="#4BA3E3"
-                                stroke-width="5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            />
-
-                            <path
-                                d="M22 31 L31 22 L25 16"
-                                fill="none"
-                                stroke="#4BA3E3"
-                                stroke-width="5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            />
-
-                            <path
-                                d="M25 16 L18 9"
-                                fill="none"
-                                stroke="#4BA3E3"
-                                stroke-width="5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            />
-
-                        </svg>
-
-
+                        <span class="logo-symbol"></span>
                     </span>
 
 
@@ -2725,15 +3056,11 @@
                         Давление под контролем
                     </span>
 
-
                 </div>
 
 
                 <div class="footer-description">
-
-                    Цифровой помощник для ежедневного
-                    самоконтроля.
-
+                    Цифровой помощник для ежедневного самоконтроля.
                 </div>
 
 
@@ -2770,9 +3097,7 @@
 
 
         <div class="copyright">
-
             © 2026 «Давление под контролем»
-
         </div>
 
 
@@ -2781,9 +3106,9 @@
 </footer>
 
 
-<!-- ==========================================
-     MOBILE MENU
-========================================== -->
+<!-- =========================
+     JAVASCRIPT
+========================= -->
 
 <script>
 
@@ -2806,23 +3131,17 @@
 
         if (button) {
 
-            const isOpen =
-                nav.classList.contains("open");
-
             button.setAttribute(
                 "aria-expanded",
-                isOpen ? "true" : "false"
+                nav.classList.contains("open")
+                    ? "true"
+                    : "false"
             );
 
         }
 
     }
 
-
-    /*
-        Закрываем мобильное меню
-        после нажатия на пункт.
-    */
 
     document
         .querySelectorAll("#mainNav a")
@@ -2833,10 +3152,14 @@
                 function() {
 
                     const nav =
-                        document.getElementById("mainNav");
+                        document.getElementById(
+                            "mainNav"
+                        );
 
                     const button =
-                        document.querySelector(".menu-button");
+                        document.querySelector(
+                            ".menu-button"
+                        );
 
 
                     if (nav) {
