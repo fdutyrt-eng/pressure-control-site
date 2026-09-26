@@ -100,20 +100,21 @@ header {
   white-space: nowrap;
 }
 
+/* ТОЛЬКО ТВОЯ app-icon.png */
 .logo-icon {
   width: 44px;
   height: 44px;
   border-radius: 12px;
   overflow: hidden;
   flex: 0 0 44px;
-  background: var(--light);
+  background: transparent;
 }
 
 .logo-icon img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
 }
 
 nav {
@@ -500,7 +501,14 @@ section {
   background: transparent;
   border: none;
   box-shadow: none;
+  min-width: 0;
 }
+
+/*
+  ВАЖНО:
+  Это реальные изображения из репозитория.
+  Никаких дополнительных рамок/телефонов поверх них нет.
+*/
 
 .screen-image-wrap img {
   display: block;
@@ -950,11 +958,17 @@ footer {
   <div class="container header-inner">
 
     <a href="#top" class="logo">
+
+      <!-- ТОЛЬКО app-icon.png -->
       <span class="logo-icon">
-        <img src="app-icon.png" alt="Иконка приложения">
+        <img
+          src="./app-icon.png"
+          alt="Иконка приложения"
+        >
       </span>
 
       <span>Давление под контролем</span>
+
     </a>
 
     <nav id="mainNav">
@@ -1032,7 +1046,7 @@ footer {
       <div class="hero-card">
 
         <img
-          src="main.png"
+          src="./main.png"
           alt="Главный экран приложения «Давление под контролем»"
         >
 
@@ -1164,8 +1178,6 @@ footer {
     <div class="features-grid">
 
 
-      <!-- Давление -->
-
       <article class="feature-card">
 
         <div class="feature-icon">
@@ -1188,8 +1200,6 @@ footer {
 
       </article>
 
-
-      <!-- Лекарства -->
 
       <article class="feature-card">
 
@@ -1221,8 +1231,6 @@ footer {
       </article>
 
 
-      <!-- Питание -->
-
       <article class="feature-card">
 
         <div class="feature-icon">
@@ -1251,8 +1259,6 @@ footer {
       </article>
 
 
-      <!-- Физическая активность -->
-
       <article class="feature-card">
 
         <div class="feature-icon">
@@ -1280,8 +1286,6 @@ footer {
       </article>
 
 
-      <!-- Лабораторные показатели -->
-
       <article class="feature-card">
 
         <div class="feature-icon">
@@ -1305,8 +1309,6 @@ footer {
 
       </article>
 
-
-      <!-- AI -->
 
       <article class="feature-card">
 
@@ -1364,7 +1366,6 @@ footer {
 
 
     <div class="steps">
-
 
       <article class="step">
 
@@ -1456,16 +1457,16 @@ footer {
     <div class="screenshots-list">
 
 
-      <!-- 1. Регистрация -->
+      <!-- ЭКРАН РЕГИСТРАЦИИ -->
 
       <article class="screen-item">
 
         <div class="screen-image-wrap">
 
           <img
-            src="registration.png"
-            alt="Экран регистрации приложения"
-            loading="lazy"
+            src="./registration.png"
+            alt="Экран регистрации"
+            loading="eager"
           >
 
         </div>
@@ -1490,16 +1491,16 @@ footer {
       </article>
 
 
-      <!-- 2. Главный экран -->
+      <!-- ГЛАВНЫЙ ЭКРАН -->
 
       <article class="screen-item">
 
         <div class="screen-image-wrap">
 
           <img
-            src="main.png"
+            src="./main.png"
             alt="Главный экран приложения"
-            loading="lazy"
+            loading="eager"
           >
 
         </div>
@@ -1524,16 +1525,16 @@ footer {
       </article>
 
 
-      <!-- 3. Давление -->
+      <!-- ДНЕВНИК ДАВЛЕНИЯ -->
 
       <article class="screen-item">
 
         <div class="screen-image-wrap">
 
           <img
-            src="pressure.png"
-            alt="Дневник артериального давления"
-            loading="lazy"
+            src="./pressure.png"
+            alt="Дневник давления"
+            loading="eager"
           >
 
         </div>
@@ -1559,16 +1560,16 @@ footer {
       </article>
 
 
-      <!-- 4. Питание -->
+      <!-- ДНЕВНИК ПИТАНИЯ -->
 
       <article class="screen-item">
 
         <div class="screen-image-wrap">
 
           <img
-            src="food.png"
+            src="./food.png"
             alt="Дневник питания"
-            loading="lazy"
+            loading="eager"
           >
 
         </div>
@@ -1593,16 +1594,16 @@ footer {
       </article>
 
 
-      <!-- 5. Активность -->
+      <!-- ДНЕВНИК АКТИВНОСТИ -->
 
       <article class="screen-item">
 
         <div class="screen-image-wrap">
 
           <img
-            src="activity.png"
-            alt="Дневник физической активности"
-            loading="lazy"
+            src="./activity.png"
+            alt="Дневник активности"
+            loading="eager"
           >
 
         </div>
@@ -1661,7 +1662,7 @@ footer {
       <div class="download-buttons">
 
         <a
-          href="app.apk"
+          href="./app.apk"
           class="button button-primary"
           download
         >
@@ -1680,7 +1681,7 @@ footer {
     <div class="qr">
 
       <img
-        src="qr.png"
+        src="./qr.png"
         alt="QR-код для скачивания приложения"
       >
 
@@ -1718,7 +1719,7 @@ footer {
       <div>
 
         <a
-          href="computer-file.exe"
+          href="./computer-file.exe"
           class="button button-primary"
           download
         >
@@ -1760,7 +1761,6 @@ footer {
 
 
     <div class="instruction-grid">
-
 
       <article class="instruction-card">
 
@@ -1824,7 +1824,6 @@ footer {
 
       </article>
 
-
     </div>
 
   </div>
@@ -1882,10 +1881,11 @@ footer {
 
     <div class="footer-logo">
 
+      <!-- ТА ЖЕ app-icon.png -->
       <span class="logo-icon">
 
         <img
-          src="app-icon.png"
+          src="./app-icon.png"
           alt="Иконка приложения"
         >
 
@@ -1914,19 +1914,13 @@ function toggleMenu() {
   const nav = document.getElementById("mainNav");
 
   if (nav.style.display === "flex") {
-
     nav.style.display = "none";
-
   } else {
-
     nav.style.display = "flex";
-
   }
 
 }
 
-
-/* Закрываем мобильное меню после перехода по ссылке */
 
 document.querySelectorAll("#mainNav a").forEach(function(link) {
 
@@ -1941,20 +1935,14 @@ document.querySelectorAll("#mainNav a").forEach(function(link) {
 });
 
 
-/* Возвращаем обычное состояние меню при увеличении окна */
-
 window.addEventListener("resize", function() {
 
   const nav = document.getElementById("mainNav");
 
   if (window.innerWidth > 760) {
-
     nav.style.display = "flex";
-
   } else {
-
     nav.style.display = "none";
-
   }
 
 });
