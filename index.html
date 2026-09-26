@@ -1,1 +1,1186 @@
+CSS
+
+
+========================= */
 
+    footer {
+        background: #172B2F;
+        color: white;
+        padding: 50px 0 25px;
+    }
+
+    .footer-grid {
+        display: flex;
+        justify-content: space-between;
+        gap: 40px;
+        padding-bottom: 35px;
+    }
+
+    .footer-logo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 800;
+    }
+
+    .footer-logo .brand-mark {
+        color: white;
+    }
+
+    .footer-logo .brand-heart {
+        color: white;
+    }
+
+    .footer-logo .ecg-line path {
+        stroke: white;
+    }
+
+    .footer-description {
+        color: #B6C5C7;
+        font-size: 14px;
+        margin-top: 12px;
+        max-width: 400px;
+    }
+
+    .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+    }
+
+    .footer-links a {
+        color: #D7E2E3;
+        font-size: 14px;
+    }
+
+    .copyright {
+        border-top: 1px solid rgba(255,255,255,0.1);
+        padding-top: 22px;
+        color: #9EB0B2;
+        font-size: 13px;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 900px) {
+
+        nav {
+            display: none;
+        }
+
+        .header-button {
+            display: none;
+        }
+
+        .menu-button {
+            display: block;
+        }
+
+        .hero-grid {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+
+        .hero-description {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            justify-content: center;
+        }
+
+        .advantage-grid,
+        .feature-grid,
+        .diary-grid,
+        .input-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .steps {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .screenshots-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .download-box {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+
+        .emulator-box {
+            grid-template-columns: 1fr;
+        }
+
+        .instruction-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .info-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .footer-grid {
+            flex-direction: column;
+        }
+    }
+
+    @media (max-width: 600px) {
+
+        .container {
+            width: min(100% - 28px, 1120px);
+        }
+
+        .header-inner {
+            height: 68px;
+        }
+
+        .hero {
+            padding: 60px 0;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            letter-spacing: -2px;
+        }
+
+        .hero-description {
+            font-size: 16px;
+        }
+
+        .hero-buttons {
+            flex-direction: column;
+        }
+
+        .button {
+            width: 100%;
+        }
+
+        section {
+            padding: 65px 0;
+        }
+
+        .advantage-grid,
+        .feature-grid,
+        .diary-grid,
+        .input-grid,
+        .steps {
+            grid-template-columns: 1fr;
+        }
+
+        .screenshots-grid {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 10px;
+        }
+
+        .screenshot-placeholder {
+            min-width: 70%;
+            scroll-snap-align: start;
+        }
+
+        .download-box {
+            padding: 28px 20px;
+        }
+
+        .emulator-box {
+            padding: 28px 20px;
+        }
+
+        .phone {
+            transform: scale(0.9);
+            transform-origin: center;
+            margin: -25px 0;
+        }
+
+        .footer-links {
+            flex-direction: column;
+            gap: 10px;
+        }
+    }
+</style>
+Markup
+
+
+<div class="container header-inner">
+
+    <a href="#top" class="logo">
+
+        <span class="brand-mark">
+            <span class="brand-heart">♥</span>
+
+            <svg class="ecg-line" viewBox="0 0 50 24">
+                <path d="M1 13 H10 L14 13 L17 5 L21 20 L25 13 H32 L36 13 L40 9 L43 13 H49"/>
+            </svg>
+        </span>
+
+        <span class="logo-text">
+Markup
+
+
+Давление<br>
+            под контролем
+        </span>
+
+    </a>
+
+    <nav>
+        <a href="#features">Возможности</a>
+        <a href="#diaries">Дневники</a>
+        <a href="#how">Как работает</a>
+        <a href="#screenshots">Скриншоты</a>
+        <a href="#download">Скачать</a>
+    </nav>
+
+    <a href="#download" class="header-button">
+        Скачать приложение
+    </a>
+
+    <button class="menu-button" onclick="toggleMenu()" aria-label="Открыть меню">
+        ☰
+    </button>
+
+</div>
+Markup
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="container hero-grid">
+
+        <div>
+
+            <div class="eyebrow">
+                ● Цифровой помощник для ежедневного самоконтроля
+            </div>
+
+            <h1>
+                Давление<br>
+                <span>под контролем</span>
+            </h1>
+
+            <p class="hero-description">
+                Приложение для удобного ведения дневников
+                давления, питания, физической активности,
+                лекарств и других показателей здоровья.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#download" class="button button-primary">
+                    Скачать приложение
+                </a>
+
+                <a href="#features" class="button button-secondary">
+                    Посмотреть возможности
+                </a>
+
+            </div>
+
+            <div class="hero-note">
+                Android · тестовая версия
+            </div>
+
+        </div>
+
+
+        <div class="hero-visual">
+
+            <div class="phone">
+
+                <div class="phone-notch"></div>
+
+                <div class="phone-screen">
+
+                    <div class="app-top">
+
+                        <div class="app-title">
+                            Сегодня
+                        </div>
+
+                        <div class="small-circle"></div>
+
+                    </div>
+
+                    <div class="health-card">
+
+                        <div class="health-label">
+                            Артериальное давление
+                        </div>
+
+                        <div class="pressure-value">
+                            120 / 80
+                        </div>
+
+                        <div class="pressure-unit">
+                            мм рт. ст.
+                        </div>
+
+                    </div>
+
+                    <div class="mini-grid">
+
+                        <div class="mini-card">
+                            <span class="health-label">Пульс</span>
+                            <strong>72</strong>
+                        </div>
+
+                        <div class="mini-card">
+                            <span class="health-label">Активность</span>
+                            <strong>6 420</strong>
+                        </div>
+
+                    </div>
+
+                    <div class="app-section-title">
+                        Дневники
+                    </div>
+
+                    <div class="app-row">
+                        <div class="app-icon">♥</div>
+                        <span>Давление</span>
+                    </div>
+
+                    <div class="app-row">
+                        <div class="app-icon">◌</div>
+                        <span>Питание</span>
+                    </div>
+
+                    <div class="app-row">
+                        <div class="app-icon">⌁</div>
+                        <span>Активность</span>
+                    </div>
+
+                    <div class="app-row">
+                        <div class="app-icon">✦</div>
+                        <span>AI-помощник</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ADVANTAGES -->
+
+<section class="advantages">
+
+    <div class="container">
+
+        <div class="advantage-grid">
+
+            <div class="advantage">
+
+                <div class="advantage-icon">♥</div>
+
+                <h3>Три дневника</h3>
+
+                <p>
+                    Давление, питание и активность
+                    ведутся отдельно и удобно.
+                </p>
+Markup
+
+
+</div>
+
+
+            <div class="advantage">
+
+                <div class="advantage-icon">✦</div>
+
+                <h3>AI-помощник</h3>
+
+                <p>
+                    Распознавание, структурирование
+                    и анализ введённых данных.
+                </p>
+
+            </div>
+
+
+            <div class="advantage">
+
+                <div class="advantage-icon">＋</div>
+
+                <h3>Три способа ввода</h3>
+
+                <p>
+                    Вводите данные вручную,
+                    голосом или с помощью фотографии.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FEATURES -->
+
+<section class="features" id="features">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div class="eyebrow">
+                Возможности
+            </div>
+
+            <h2>
+                Всё необходимое -
+                в одном приложении
+            </h2>
+
+            <p>
+                Систематизируйте ежедневные данные о здоровье
+                и наблюдайте за их изменениями.
+            </p>
+
+        </div>
+
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+
+                <div class="feature-icon">♥</div>
+
+                <h3>Давление и пульс</h3>
+
+                <p>
+                    Записывайте показатели артериального
+                    давления и пульса и сохраняйте историю.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">＋</div>
+
+                <h3>Лекарства</h3>
+
+                <p>
+                    Отмечайте приём препаратов
+                    и настраивайте напоминания.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">◌</div>
+
+                <h3>Питание</h3>
+
+                <p>
+                    Ведите дневник питания, добавляйте
+                    фотографии и сохраняйте записи.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">⌁</div>
+
+                <h3>Физическая активность</h3>
+
+                <p>
+                    Отслеживайте активность, шаги,
+                    расстояние и выбранные цели.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">□</div>
+
+                <h3>Лабораторные показатели</h3>
+
+                <p>
+                    Храните результаты анализов
+                    и наблюдайте за изменениями.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">✦</div>
+
+                <h3>AI-помощник</h3>
+
+                <p>
+                    Помогает распознавать, структурировать
+                    и анализировать введённые данные.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DIARIES -->
+
+<section class="diaries" id="diaries">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div class="eyebrow">
+                Дневники
+            </div>
+
+            <h2>
+                Три основных дневника
+            </h2>
+
+            <p>
+                Каждый дневник отвечает за отдельную
+                часть ежедневного самоконтроля.
+            </p>
+
+        </div>
+
+
+        <div class="diary-grid">
+
+            <div class="diary-card">
+
+                <div class="diary-number">
+                    01 · ДАВЛЕНИЕ
+                </div>
+
+                <h3>
+                    Дневник давления
+                </h3>
+
+                <p>
+                    Записывайте верхнее и нижнее давление,
+                    пульс, дату, время и дополнительные комментарии.
+                </p>
+
+                <div class="diary-tags">
+                    <span class="diary-tag">Давление</span>
+                    <span class="diary-tag">Пульс</span>
+                    <span class="diary-tag">История</span>
+                </div>
+Markup
+
+
+</div>
+
+
+            <div class="diary-card">
+
+                <div class="diary-number">
+                    02 · ПИТАНИЕ
+                </div>
+
+                <h3>
+                    Дневник питания
+                </h3>
+
+                <p>
+                    Добавляйте информацию о приёмах пищи,
+                    фотографии еды и другие данные.
+                </p>
+
+                <div class="diary-tags">
+                    <span class="diary-tag">Фото</span>
+                    <span class="diary-tag">Еда</span>
+                    <span class="diary-tag">История</span>
+                </div>
+
+            </div>
+
+
+            <div class="diary-card">
+
+                <div class="diary-number">
+                    03 · АКТИВНОСТЬ
+                </div>
+
+                <h3>
+                    Дневник активности
+                </h3>
+
+                <p>
+                    Отслеживайте шаги, время активности,
+                    расстояние и выполнение выбранной цели.
+                </p>
+
+                <div class="diary-tags">
+                    <span class="diary-tag">Шаги</span>
+                    <span class="diary-tag">Минуты</span>
+                    <span class="diary-tag">Километры</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- INPUT METHODS -->
+
+<section class="input-methods">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div class="eyebrow">
+                Ввод данных
+            </div>
+
+            <h2>
+                Выбирайте удобный способ
+            </h2>
+
+            <p>
+                Основные данные можно добавлять тем способом,
+                который удобнее в конкретный момент.
+            </p>
+
+        </div>
+
+
+        <div class="input-grid">
+
+            <div class="input-card">
+
+                <div class="input-card-icon">
+                    ✎
+                </div>
+
+                <h3>
+                    Вручную
+                </h3>
+
+                <p>
+                    Введите показатели самостоятельно
+                    и проверьте их перед сохранением.
+                </p>
+
+            </div>
+
+
+            <div class="input-card">
+
+                <div class="input-card-icon">
+                    ♫
+                </div>
+
+                <h3>
+                    Голосом
+                </h3>
+
+                <p>
+                    Продиктуйте данные, после чего
+                    приложение предложит сохранить результат.
+                </p>
+
+            </div>
+
+
+            <div class="input-card">
+
+                <div class="input-card-icon">
+                    ▣
+                </div>
+
+                <h3>
+                    С помощью фотографии
+                </h3>
+
+                <p>
+                    Используйте фотографию поддерживаемых данных,
+                    а распознанную информацию проверьте перед сохранением.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- HOW IT WORKS -->
+
+<section id="how">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div class="eyebrow">
+                Как работает
+            </div>
+
+            <h2>
+                От записи до понятной сводки
+            </h2>
+
+            <p>
+                Простая последовательность для ежедневного
+                самоконтроля.
+            </p>
+
+        </div>
+
+
+        <div class="steps">
+
+            <div class="step">
+
+                <div class="step-number">
+                    01
+                </div>
+
+                <h3>
+                    Ввод данных
+                </h3>
+
+                <p>
+                    Добавляйте показатели вручную,
+                    голосом или с помощью фотографии.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    02
+                </div>
+
+                <h3>
+                    Дневник
+                </h3>
+
+                <p>
+                    Информация сохраняется
+Markup
+
+
+в соответствующих разделах.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    03
+                </div>
+
+                <h3>
+                    Анализ
+                </h3>
+
+                <p>
+                    AI помогает структурировать
+                    и анализировать введённую информацию.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    04
+                </div>
+
+                <h3>
+                    Ежедневная сводка
+                </h3>
+
+                <p>
+                    Пользователь получает понятное
+                    представление о данных за день.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SCREENSHOTS -->
+
+<section class="screenshots" id="screenshots">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div class="eyebrow">
+                Интерфейс
+            </div>
+
+            <h2>
+                Посмотрите приложение изнутри
+            </h2>
+
+            <p>
+                Здесь позже появятся реальные скриншоты
+                приложения.
+            </p>
+
+        </div>
+
+
+        <div class="screenshots-grid">
+
+            <div class="screenshot-placeholder">
+                Главный экран
+            </div>
+
+            <div class="screenshot-placeholder">
+                Дневник давления
+            </div>
+
+            <div class="screenshot-placeholder">
+                Дневник питания
+            </div>
+
+            <div class="screenshot-placeholder">
+                Дневник активности
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DOWNLOAD -->
+
+<section class="download" id="download">
+
+    <div class="container">
+
+        <div class="download-box">
+
+            <div>
+
+                <div class="eyebrow">
+                    Android · тестовая версия
+                </div>
+
+                <h2>
+                    Давление под контролем -
+                    всегда под рукой
+                </h2>
+
+                <p>
+                    Скачайте тестовую версию приложения
+                    и попробуйте основные функции.
+                </p>
+
+                <a
+                    href="app.apk"
+                    class="button button-primary"
+                    download
+                >
+                    ↓ Скачать APK
+                </a>
+
+                <span class="version">
+                    Версия 1.0 · DavleniePodKontrolem.apk
+                </span>
+
+            </div>
+
+
+            <div class="qr">
+                QR-код<br>
+                появится здесь
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- EMULATOR -->
+
+<section class="emulator">
+
+    <div class="container">
+
+        <div class="emulator-box">
+
+            <div>
+
+                <div class="emulator-label">
+                    Для тестировщиков
+                </div>
+
+                <h2>
+                    Тестирование на компьютере
+                </h2>
+
+                <p>
+                    Если у вас нет Android-смартфона,
+                    приложение можно протестировать
+                    на компьютере с помощью Android-эмулятора.
+                </p>
+
+                <a
+                    href="computer-file.exe"
+                    class="button button-secondary"
+                    download
+                >
+                    ↓ Скачать для Windows
+                </a>
+
+                <div class="emulator-info">
+                    Windows · тестовая версия
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- INSTRUCTION -->
+
+<section class="instruction">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div class="eyebrow">
+                Инструкция
+            </div>
+
+            <h2>
+                Как начать тестирование
+            </h2>
+
+        </div>
+
+
+        <div class="instruction-grid">
+Markup
+
+
+<div class="instruction-card">
+
+                <div class="instruction-number">
+                    01
+                </div>
+
+                <h3>
+                    Скачайте APK
+                </h3>
+
+                <p>
+                    Нажмите кнопку скачивания
+                    и дождитесь завершения загрузки.
+                </p>
+
+            </div>
+
+
+            <div class="instruction-card">
+
+                <div class="instruction-number">
+                    02
+                </div>
+
+                <h3>
+                    Установите приложение
+                </h3>
+
+                <p>
+                    Откройте скачанный файл.
+                    Android может запросить разрешение
+                    на установку из неизвестного источника.
+                </p>
+
+            </div>
+
+
+            <div class="instruction-card">
+
+                <div class="instruction-number">
+                    03
+                </div>
+
+                <h3>
+                    Начните тестирование
+                </h3>
+
+                <p>
+                    После установки откройте приложение
+                    и попробуйте основные функции.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- INFO -->
+
+<section class="info">
+
+    <div class="container">
+
+        <div class="info-grid">
+
+            <div class="info-card">
+
+                <h3>
+                    Конфиденциальность
+                </h3>
+
+                <p>
+                    Основные данные дневника хранятся локально
+                    на устройстве пользователя. Для работы отдельных
+                    AI-функций необходимые данные могут передаваться
+                    на сервер обработки AI-запросов.
+                </p>
+
+            </div>
+
+
+            <div class="info-card disclaimer">
+
+                <h3>
+                    Важно
+                </h3>
+
+                <p>
+                    Приложение предназначено для ведения и анализа
+                    данных самоконтроля. Оно не заменяет консультацию
+                    врача, медицинскую диагностику или назначенное лечение.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+Markup
+
+
+<div class="container">
+
+    <div class="footer-grid">
+
+        <div>
+
+            <div class="footer-logo">
+
+                <span class="brand-mark">
+                    <span class="brand-heart">♥</span>
+
+                    <svg class="ecg-line" viewBox="0 0 50 24">
+                        <path d="M1 13 H10 L14 13 L17 5 L21 20 L25 13 H32 L36 13 L40 9 L43 13 H49"/>
+                    </svg>
+                </span>
+
+                <span>
+                    Давление под контролем
+                </span>
+
+            </div>
+
+            <div class="footer-description">
+                Цифровой помощник для ежедневного самоконтроля.
+            </div>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <a href="#features">
+                Возможности
+            </a>
+
+            <a href="#diaries">
+                Дневники
+            </a>
+
+            <a href="#how">
+                Как работает
+            </a>
+
+            <a href="#screenshots">
+                Скриншоты
+            </a>
+
+            <a href="#download">
+                Скачать
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="copyright">
+        © 2026 «Давление под контролем»
+    </div>
+
+</div>
