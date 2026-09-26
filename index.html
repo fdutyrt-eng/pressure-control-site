@@ -1,1697 +1,987 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Давление под контролем — цифровой помощник</title>
-
-    <meta
-        name="description"
-        content="Давление под контролем — цифровой помощник для ежедневного самоконтроля: давление, лекарства, питание, активность и другие показатели здоровья."
-    >
-
-    <meta
-        name="theme-color"
-        content="#167C80"
-    >
-
-    <style>
-
-        :root {
-            --primary: #167C80;
-            --primary-dark: #116568;
-            --light: #EAF7F7;
-            --background: #F8FAFB;
-            --white: #FFFFFF;
-            --text: #172B2F;
-            --muted: #66777B;
-            --warning: #D95C5C;
-            --border: #E3ECEE;
-            --shadow: 0 20px 60px rgba(23,43,47,.08);
-        }
-
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-
-        body {
-            font-family: Inter, Arial, sans-serif;
-            background: var(--background);
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-
-        .container {
-            width: min(1120px, calc(100% - 40px));
-            margin: auto;
-        }
-
-
-        /* =========================
-           HEADER
-        ========================= */
-
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-
-            background: rgba(255,255,255,.94);
-
-            backdrop-filter: blur(14px);
-
-            border-bottom:
-                1px solid rgba(227,236,238,.8);
-        }
-
-
-        .header-inner {
-            height: 76px;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            gap: 30px;
-        }
-
-
-        .logo {
-            display: flex;
-            align-items: center;
-
-            gap: 11px;
-
-            font-weight: 800;
-            line-height: 1.1;
-        }
-
-
-        /* Схематичная иконка приложения */
-
-        .logo-icon {
-            width: 42px;
-            height: 42px;
-
-            border-radius: 13px;
-
-            background: #fff;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            position: relative;
-
-            box-shadow:
-                0 4px 12px rgba(23,43,47,.10);
-
-            overflow: hidden;
-        }
-
-
-        .logo-icon::before,
-        .logo-icon::after {
-
-            content: "";
-
-            position: absolute;
-
-            width: 9px;
-            height: 30px;
-
-            background: #4BA6E8;
-
-            border-radius: 5px;
-
-            transform: rotate(45deg);
-        }
-
-
-        .logo-icon::before {
-            left: 13px;
-            top: 6px;
-        }
-
-
-        .logo-icon::after {
-            right: 10px;
-            top: 6px;
-        }
-
-
-        .logo-symbol {
-
-            position: absolute;
-
-            width: 25px;
-            height: 9px;
-
-            background: #4BA6E8;
-
-            border-radius: 5px;
-
-            transform: rotate(-45deg);
-
-            z-index: 2;
-        }
-
-
-        .logo-text {
-            font-size: 15px;
-        }
-
-
-        nav {
-            display: flex;
-
-            align-items: center;
-
-            gap: 25px;
-        }
-
-
-        nav a {
-            font-size: 14px;
-
-            color: var(--muted);
-
-            transition: .2s;
-        }
-
-
-        nav a:hover {
-            color: var(--primary);
-        }
-
-
-        .header-button {
-            background: var(--primary);
-
-            color: #fff;
-
-            padding: 11px 18px;
-
-            border-radius: 10px;
-
-            font-weight: 700;
-
-            font-size: 14px;
-        }
-
-
-        .menu-button {
-            display: none;
-
-            border: 0;
-
-            background: var(--light);
-
-            color: var(--primary);
-
-            width: 44px;
-            height: 44px;
-
-            border-radius: 12px;
-
-            font-size: 22px;
-
-            cursor: pointer;
-        }
-
-
-        /* =========================
-           HERO
-        ========================= */
-
-        .hero {
-            padding: 90px 0 80px;
-
-            overflow: hidden;
-        }
-
-
-        .hero-grid {
-            display: grid;
-
-            grid-template-columns:
-                1.05fr .95fr;
-
-            align-items: center;
-
-            gap: 70px;
-        }
-
-
-        .eyebrow {
-
-            display: inline-flex;
-
-            align-items: center;
-
-            gap: 8px;
-
-            padding: 8px 13px;
-
-            background: var(--light);
-
-            color: var(--primary);
-
-            border-radius: 30px;
-
-            font-size: 13px;
-
-            font-weight: 700;
-
-            margin-bottom: 20px;
-        }
-
-
-        .hero h1 {
-
-            font-size:
-                clamp(48px, 7vw, 76px);
-
-            line-height: .98;
-
-            letter-spacing: -3px;
-
-            margin-bottom: 25px;
-        }
-
-
-        .hero h1 span {
-            color: var(--primary);
-        }
-
-
-        .hero-description {
-
-            max-width: 610px;
-
-            color: var(--muted);
-
-            font-size: 18px;
-
-            margin-bottom: 30px;
-        }
-
-
-        .hero-buttons {
-
-            display: flex;
-
-            flex-wrap: wrap;
-
-            gap: 13px;
-
-            margin-bottom: 20px;
-        }
-
-
-        .button {
-
-            display: inline-flex;
-
-            align-items: center;
-            justify-content: center;
-
-            min-height: 52px;
-
-            padding: 0 22px;
-
-            border-radius: 12px;
-
-            font-weight: 800;
-
-            transition: .2s;
-
-            cursor: pointer;
-        }
-
-
-        .button-primary {
-
-            background: var(--primary);
-
-            color: #fff;
-
-            box-shadow:
-                0 10px 25px rgba(22,124,128,.2);
-        }
-
-
-        .button-primary:hover {
-
-            background: var(--primary-dark);
-
-            transform: translateY(-2px);
-        }
-
-
-        .button-secondary {
-
-            background: #fff;
-
-            border:
-                1px solid var(--border);
-
-            color: var(--text);
-        }
-
-
-        .button-secondary:hover {
-
-            border-color: var(--primary);
-
-            color: var(--primary);
-        }
-
-
-        .hero-note {
-
-            color: var(--muted);
-
-            font-size: 13px;
-        }
-
-
-        /* =========================
-           PHONE
-        ========================= */
-
-        .hero-visual {
-
-            display: flex;
-
-            justify-content: center;
-        }
-
-
-        .phone {
-
-            width: 300px;
-            height: 590px;
-
-            border: 10px solid #172B2F;
-
-            border-radius: 42px;
-
-            background: #fff;
-
-            box-shadow:
-                0 35px 70px rgba(23,43,47,.2);
-
-            overflow: hidden;
-
-            position: relative;
-        }
-
-
-        .phone-notch {
-
-            width: 100px;
-            height: 22px;
-
-            background: #172B2F;
-
-            border-radius:
-                0 0 15px 15px;
-
-            margin: auto;
-        }
-
-
-        .phone-screen {
-            padding: 22px 17px;
-        }
-
-
-        .app-top {
-
-            display: flex;
-
-            justify-content:
-                space-between;
-
-            align-items: center;
-
-            margin-bottom: 20px;
-        }
-
-
-        .app-title {
-
-            font-weight: 800;
-
-            font-size: 17px;
-        }
-
-
-        .small-circle {
-
-            width: 32px;
-            height: 32px;
-
-            border-radius: 50%;
-
-            background: var(--light);
-        }
-
-
-        .health-card {
-
-            background: var(--light);
-
-            padding: 18px;
-
-            border-radius: 18px;
-
-            margin-bottom: 14px;
-        }
-
-
-        .health-label {
-
-            color: var(--muted);
-
-            font-size: 12px;
-        }
-
-
-        .pressure-value {
-
-            font-size: 34px;
-
-            font-weight: 800;
-
-            color: var(--primary);
-
-            margin-top: 3px;
-        }
-
-
-        .pressure-unit {
-
-            font-size: 12px;
-
-            color: var(--muted);
-        }
-
-
-        .mini-grid {
-
-            display: grid;
-
-            grid-template-columns:
-                1fr 1fr;
-
-            gap: 10px;
-
-            margin-bottom: 14px;
-        }
-
-
-        .mini-card {
-
-            background: #F8FAFB;
-
-            border:
-                1px solid var(--border);
-
-            padding: 13px;
-
-            border-radius: 15px;
-        }
-
-
-        .mini-card strong {
-
-            display: block;
-
-            font-size: 18px;
-
-            margin-top: 5px;
-        }
-
-
-        .app-section-title {
-
-            font-size: 13px;
-
-            font-weight: 800;
-
-            margin:
-                17px 0 10px;
-        }
-
-
-        .app-row {
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 10px;
-
-            padding: 12px;
-
-            border:
-                1px solid var(--border);
-
-            border-radius: 13px;
-
-            margin-bottom: 8px;
-
-            font-size: 12px;
-        }
-
-
-        .app-icon {
-
-            width: 30px;
-            height: 30px;
-
-            border-radius: 9px;
-
-            background: var(--light);
-
-            color: var(--primary);
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            flex-shrink: 0;
-        }
-
-
-        .app-icon svg {
-
-            width: 18px;
-            height: 18px;
-
-            display: block;
-        }
-
-
-        /* =========================
-           GENERAL
-        ========================= */
-
-        section {
-            padding: 90px 0;
-        }
-
-
-        .advantages {
-            padding-bottom: 80px;
-        }
-
-
-        .advantage-grid,
-        .feature-grid {
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
-            gap: 16px;
-        }
-
-
-        .advantage {
-
-            background: #fff;
-
-            border:
-                1px solid var(--border);
-
-            padding: 25px;
-
-            border-radius: 18px;
-        }
-
-
-        .advantage-icon {
-
-            font-size: 24px;
-
-            margin-bottom: 12px;
-        }
-
-
-        .advantage h3 {
-
-            font-size: 17px;
-
-            margin-bottom: 5px;
-        }
-
-
-        .advantage p,
-        .feature-card p,
-        .step p,
-        .instruction-card p,
-        .info-card p {
-
-            color: var(--muted);
-
-            font-size: 14px;
-        }
-
-
-        /* =========================
-           HEADINGS
-        ========================= */
-
-        .section-heading {
-
-            max-width: 680px;
-
-            margin-bottom: 45px;
-        }
-
-
-        .section-heading .eyebrow {
-            margin-bottom: 13px;
-        }
-
-
-        .section-heading h2 {
-
-            font-size:
-                clamp(32px, 5vw, 48px);
-
-            line-height: 1.1;
-
-            letter-spacing: -1.5px;
-
-            margin-bottom: 15px;
-        }
-
-
-        .section-heading p {
-
-            color: var(--muted);
-
-            font-size: 17px;
-        }
-
-
-        /* =========================
-           FEATURES
-        ========================= */
-
-        .features,
-        .screenshots,
-        .emulator,
-        .info {
-
-            background: #fff;
-        }
-
-
-        .feature-card {
-
-            border:
-                1px solid var(--border);
-
-            border-radius: 20px;
-
-            padding: 30px;
-
-            background: #fff;
-
-            transition: .25s;
-        }
-
-
-        .feature-card:hover {
-
-            transform:
-                translateY(-5px);
-
-            box-shadow: var(--shadow);
-
-            border-color: #CBE3E4;
-        }
-
-
-        .feature-icon {
-
-            width: 50px;
-            height: 50px;
-
-            border-radius: 14px;
-
-            background: var(--light);
-
-            color: var(--primary);
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            margin-bottom: 20px;
-        }
-
-
-        .feature-icon svg {
-
-            width: 28px;
-            height: 28px;
-
-            display: block;
-        }
-
-
-        .feature-card h3 {
-
-            font-size: 18px;
-
-            margin-bottom: 8px;
-        }
-
-
-        /* =========================
-           STEPS
-        ========================= */
-
-        .steps {
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(4, 1fr);
-
-            gap: 20px;
-        }
-
-
-        .step {
-
-            padding: 28px;
-
-            background: #fff;
-
-            border:
-                1px solid var(--border);
-
-            border-radius: 20px;
-        }
-
-
-        .step-number {
-
-            font-size: 13px;
-
-            font-weight: 800;
-
-            color: var(--primary);
-
-            margin-bottom: 25px;
-        }
-
-
-        .step h3 {
-            margin-bottom: 9px;
-        }
-
-
-        /* =========================
-           SCREENSHOTS
-        ========================= */
-
-        .screenshots {
-            overflow: hidden;
-        }
-
-
-        .screenshots-list {
-
-            display: flex;
-
-            flex-direction: column;
-
-            gap: 90px;
-        }
-
-
-        .screenshot-item {
-
-            display: grid;
-
-            grid-template-columns:
-                minmax(300px, 520px)
-                minmax(280px, 1fr);
-
-            align-items: center;
-
-            gap: 70px;
-
-            min-height: 560px;
-        }
-
-
-        .screenshot-item:nth-child(even) {
-
-            grid-template-columns:
-                minmax(280px, 1fr)
-                minmax(300px, 520px);
-        }
-
-
-        .screenshot-item:nth-child(even)
-        .screenshot-image {
-
-            order: 2;
-        }
-
-
-        .screenshot-item:nth-child(even)
-        .screenshot-text {
-
-            order: 1;
-        }
-
-
-        .screenshot-image {
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            width: 100%;
-
-            min-width: 0;
-        }
-
-
-        /*
-            Здесь нет отдельной рамки,
-            карточки или декоративного блока.
-
-            Показывается само изображение
-            телефона из PNG.
-        */
-
-        .screenshot-image img {
-
-            display: block;
-
-            width: auto;
-
-            height: auto;
-
-            max-width: 100%;
-
-            max-height: 780px;
-
-            object-fit: contain;
-
-            object-position: center;
-
-            margin: auto;
-        }
-
-
-        .screenshot-text {
-
-            max-width: 430px;
-        }
-
-
-        .screenshot-number {
-
-            color: var(--primary);
-
-            font-weight: 800;
-
-            font-size: 13px;
-
-            margin-bottom: 12px;
-
-            text-transform: uppercase;
-
-            letter-spacing: .08em;
-        }
-
-
-        .screenshot-text h3 {
-
-            font-size:
-                clamp(28px,4vw,42px);
-
-            line-height: 1.1;
-
-            margin-bottom: 15px;
-        }
-
-
-        .screenshot-text p {
-
-            color: var(--muted);
-
-            font-size: 16px;
-        }
-
-
-        /* =========================
-           DOWNLOAD
-        ========================= */
-
-        .download {
-            background: var(--light);
-        }
-
-
-        .download-box {
-
-            display: grid;
-
-            grid-template-columns:
-                1fr 230px;
-
-            gap: 50px;
-
-            align-items: center;
-
-            background: #fff;
-
-            border-radius: 28px;
-
-            padding: 45px;
-
-            border:
-                1px solid #D7EBEC;
-        }
-
-
-        .download-box h2 {
-
-            font-size:
-                clamp(30px,5vw,46px);
-
-            line-height: 1.1;
-
-            margin-bottom: 15px;
-        }
-
-
-        .download-box p {
-
-            color: var(--muted);
-
-            margin-bottom: 25px;
-
-            max-width: 600px;
-        }
-
-
-        .version {
-
-            display: block;
-
-            margin-top: 13px;
-
-            color: var(--muted);
-
-            font-size: 13px;
-        }
-
-
-        /* QR-КОД */
-
-        .qr {
-
-            width: 190px;
-            height: 190px;
-
-            border-radius: 20px;
-
-            background: #fff;
-
-            display: block;
-
-            object-fit: contain;
-
-            margin: auto;
-
-            border: 0;
-        }
-
-
-        /* =========================
-           EMULATOR
-        ========================= */
-
-        .emulator-box {
-
-            border:
-                1px solid var(--border);
-
-            border-radius: 25px;
-
-            padding: 40px;
-
-            display: grid;
-
-            grid-template-columns:
-                1fr auto;
-
-            gap: 40px;
-
-            align-items: center;
-        }
-
-
-        .emulator-label {
-
-            color: var(--primary);
-
-            font-weight: 800;
-
-            font-size: 13px;
-
-            margin-bottom: 10px;
-        }
-
-
-        .emulator-box h2 {
-
-            font-size: 34px;
-
-            margin-bottom: 12px;
-        }
-
-
-        .emulator-box p {
-
-            color: var(--muted);
-
-            max-width: 650px;
-
-            margin-bottom: 20px;
-        }
-
-
-        .emulator-info {
-
-            margin-top: 18px;
-
-            font-size: 13px;
-
-            color: var(--muted);
-        }
-
-
-        /* =========================
-           INSTRUCTION
-        ========================= */
-
-        .instruction {
-
-            background: var(--background);
-        }
-
-
-        .instruction-grid {
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(3,1fr);
-
-            gap: 18px;
-        }
-
-
-        .instruction-card {
-
-            background: #fff;
-
-            padding: 28px;
-
-            border-radius: 20px;
-
-            border:
-                1px solid var(--border);
-        }
-
-
-        .instruction-number {
-
-            width: 38px;
-            height: 38px;
-
-            border-radius: 50%;
-
-            background: var(--light);
-
-            color: var(--primary);
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            font-weight: 800;
-
-            margin-bottom: 18px;
-        }
-
-
-        .instruction-card h3 {
-            margin-bottom: 8px;
-        }
-
-
-        /* =========================
-           INFO
-        ========================= */
-
-        .info-grid {
-
-            display: grid;
-
-            grid-template-columns:
-                1fr 1fr;
-
-            gap: 18px;
-        }
-
-
-        .info-card {
-
-            padding: 30px;
-
-            border:
-                1px solid var(--border);
-
-            border-radius: 20px;
-        }
-
-
-        .info-card h3 {
-            margin-bottom: 10px;
-        }
-
-
-        .disclaimer {
-
-            border-left:
-                4px solid var(--warning);
-
-            background: #FFF8F8;
-        }
-
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        footer {
-
-            background: #172B2F;
-
-            color: #fff;
-
-            padding: 50px 0 25px;
-        }
-
-
-        .footer-grid {
-
-            display: flex;
-
-            justify-content: space-between;
-
-            gap: 40px;
-
-            padding-bottom: 35px;
-        }
-
-
-        .footer-logo {
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 10px;
-
-            font-weight: 800;
-        }
-
-
-        .footer-description {
-
-            color: #B6C5C7;
-
-            font-size: 14px;
-
-            margin-top: 12px;
-
-            max-width: 400px;
-        }
-
-
-        .footer-links {
-
-            display: flex;
-
-            flex-wrap: wrap;
-
-            gap: 18px;
-        }
-
-
-        .footer-links a {
-
-            color: #D7E2E3;
-
-            font-size: 14px;
-        }
-
-
-        .copyright {
-
-            border-top:
-                1px solid rgba(255,255,255,.1);
-
-            padding-top: 22px;
-
-            color: #9EB0B2;
-
-            font-size: 13px;
-        }
-
-
-        /* =========================
-           TABLET
-        ========================= */
-
-        @media(max-width:900px) {
-
-            nav {
-
-                display: none;
-
-                position: absolute;
-
-                top: 76px;
-
-                left: 0;
-
-                right: 0;
-
-                background: #fff;
-
-                padding: 20px;
-
-                border-bottom:
-                    1px solid var(--border);
-
-                flex-direction: column;
-
-                align-items: stretch;
-
-                gap: 0;
-
-                box-shadow:
-                    0 15px 30px rgba(23,43,47,.08);
-            }
-
-
-            nav.open {
-                display: flex;
-            }
-
-
-            nav a {
-                padding: 13px 10px;
-            }
-
-
-            .header-button {
-                display: none;
-            }
-
-
-            .menu-button {
-                display: block;
-            }
-
-
-            .hero-grid {
-
-                grid-template-columns: 1fr;
-
-                text-align: center;
-            }
-
-
-            .hero-description {
-                margin: auto auto 30px;
-            }
-
-
-            .hero-buttons {
-                justify-content: center;
-            }
-
-
-            .advantage-grid,
-            .feature-grid {
-
-                grid-template-columns:
-                    repeat(2,1fr);
-            }
-
-
-            .steps {
-
-                grid-template-columns:
-                    repeat(2,1fr);
-            }
-
-
-            .screenshot-item,
-            .screenshot-item:nth-child(even) {
-
-                grid-template-columns: 1fr;
-
-                gap: 35px;
-
-                min-height: 0;
-            }
-
-
-            .screenshot-item:nth-child(even)
-            .screenshot-image,
-
-            .screenshot-item:nth-child(even)
-            .screenshot-text {
-
-                order: initial;
-            }
-
-
-            .screenshot-text {
-
-                max-width: 600px;
-
-                text-align: center;
-
-                margin: auto;
-            }
-
-
-            .screenshot-image img {
-
-                max-height: 780px;
-
-                max-width:
-                    min(100%, 520px);
-            }
-
-
-            .download-box {
-
-                grid-template-columns: 1fr;
-
-                text-align: center;
-            }
-
-
-            .emulator-box {
-
-                grid-template-columns: 1fr;
-            }
-
-
-            .instruction-grid,
-            .info-grid {
-
-                grid-template-columns: 1fr;
-            }
-
-
-            .footer-grid {
-
-                flex-direction: column;
-            }
-
-        }
-
-
-        /* =========================
-           MOBILE
-        ========================= */
-
-        @media(max-width:600px) {
-
-            .container {
-
-                width:
-                    min(100% - 28px,1120px);
-            }
-
-
-            .header-inner {
-                height: 68px;
-            }
-
-
-            nav {
-                top: 68px;
-            }
-
-
-            .hero {
-
-                padding: 60px 0;
-            }
-
-
-            .hero h1 {
-
-                font-size: 48px;
-
-                letter-spacing: -2px;
-            }
-
-
-            .hero-description {
-
-                font-size: 16px;
-            }
-
-
-            .hero-buttons {
-
-                flex-direction: column;
-            }
-
-
-            .button {
-
-                width: 100%;
-            }
-
-
-            section {
-
-                padding: 65px 0;
-            }
-
-
-            .advantage-grid,
-            .feature-grid,
-            .steps {
-
-                grid-template-columns: 1fr;
-            }
-
-
-            .screenshots-list {
-
-                gap: 70px;
-            }
-
-
-            .screenshot-item,
-            .screenshot-item:nth-child(even) {
-
-                gap: 25px;
-            }
-
-
-            .screenshot-image img {
-
-                width: auto;
-
-                max-width: 100%;
-
-                max-height: none;
-            }
-
-
-            .screenshot-text h3 {
-                font-size: 30px;
-            }
-
-
-            .download-box,
-            .emulator-box {
-
-                padding:
-                    28px 20px;
-            }
-
-
-            .phone {
-
-                transform: scale(.9);
-
-                transform-origin: center;
-
-                margin: -25px 0;
-            }
-
-
-            .footer-links {
-
-                flex-direction: column;
-
-                gap: 10px;
-            }
-
-        }
-
-
-        /* =========================
-           VERY SMALL PHONES
-        ========================= */
-
-        @media(max-width:380px) {
-
-            .hero h1 {
-                font-size: 42px;
-            }
-
-        }
-
-    </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Давление под контролем — цифровой помощник</title>
+
+<meta
+  name="description"
+  content="Давление под контролем — приложение для ведения дневника давления, лекарств, питания, активности и лабораторных показателей."
+>
+
+<meta name="theme-color" content="#167C80">
+
+<style>
+:root {
+  --primary: #167C80;
+  --primary-dark: #116568;
+  --light: #EAF7F7;
+  --background: #F8FAFB;
+  --white: #FFFFFF;
+  --text: #172B2F;
+  --muted: #66777B;
+  --warning: #D95C5C;
+  --border: #E3ECEE;
+  --shadow: 0 20px 60px rgba(23,43,47,.08);
+  --radius: 24px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
+  background: var(--background);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+.container {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255,255,255,.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 800;
+  font-size: 17px;
+  white-space: nowrap;
+}
+
+.logo-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  overflow: hidden;
+  flex: 0 0 44px;
+  background: var(--light);
+}
+
+.logo-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+nav a {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+  transition: .2s ease;
+}
+
+nav a:hover {
+  color: var(--primary);
+}
+
+.header-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  transition: .2s ease;
+}
+
+.header-button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+.menu-button {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: white;
+  cursor: pointer;
+  font-size: 22px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+  padding: 90px 0 100px;
+  background:
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(22,124,128,.10),
+      transparent 35%
+    );
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  align-items: center;
+  gap: 80px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 13px;
+  border-radius: 999px;
+  background: var(--light);
+  color: var(--primary-dark);
+  font-size: 13px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: clamp(42px, 6vw, 72px);
+  line-height: 1.04;
+  letter-spacing: -2px;
+  margin-bottom: 24px;
+  max-width: 760px;
+}
+
+.hero h1 span {
+  color: var(--primary);
+}
+
+.hero-description {
+  max-width: 650px;
+  color: var(--muted);
+  font-size: 19px;
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 23px;
+  border-radius: 14px;
+  font-weight: 800;
+  font-size: 15px;
+  transition: .2s ease;
+}
+
+.button-primary {
+  color: white;
+  background: var(--primary);
+}
+
+.button-primary:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.button-secondary {
+  color: var(--text);
+  background: white;
+  border: 1px solid var(--border);
+}
+
+.button-secondary:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.hero-note {
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Hero image */
+
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-card {
+  width: min(100%, 430px);
+  background: white;
+  border-radius: 34px;
+  padding: 30px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.hero-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 26px;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+section {
+  padding: 100px 0;
+}
+
+.section-heading {
+  max-width: 720px;
+  margin: 0 auto 55px;
+  text-align: center;
+}
+
+.section-heading .eyebrow {
+  margin-bottom: 14px;
+}
+
+.section-heading h2 {
+  font-size: clamp(32px, 4vw, 50px);
+  line-height: 1.1;
+  letter-spacing: -1.3px;
+  margin-bottom: 18px;
+}
+
+.section-heading p {
+  color: var(--muted);
+  font-size: 17px;
+}
+
+/* =========================
+   ADVANTAGES
+========================= */
+
+.advantages {
+  background: white;
+}
+
+.advantages-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.advantage-card {
+  padding: 30px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: white;
+}
+
+.advantage-number {
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
+  background: var(--light);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  margin-bottom: 22px;
+}
+
+.advantage-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.advantage-card p {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+/* =========================
+   FEATURES
+========================= */
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.feature-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: 0 10px 35px rgba(23,43,47,.035);
+  transition: .2s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.feature-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  background: var(--light);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.feature-icon svg {
+  width: 28px;
+  height: 28px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.feature-card h3 {
+  font-size: 20px;
+  margin-bottom: 9px;
+}
+
+.feature-card p {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+/* =========================
+   HOW IT WORKS
+========================= */
+
+.how {
+  background: white;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.step {
+  text-align: center;
+  padding: 25px;
+}
+
+.step-number {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  background: var(--primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 19px;
+}
+
+.step h3 {
+  margin-bottom: 9px;
+  font-size: 20px;
+}
+
+.step p {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+/* =========================
+   SCREENSHOTS
+========================= */
+
+.screenshots {
+  background: var(--background);
+}
+
+.screenshots-list {
+  display: flex;
+  flex-direction: column;
+  gap: 90px;
+}
+
+.screen-item {
+  display: grid;
+  grid-template-columns: minmax(340px, 650px) minmax(260px, 1fr);
+  align-items: center;
+  gap: 65px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.screen-item:nth-child(even) {
+  grid-template-columns: minmax(260px, 1fr) minmax(340px, 650px);
+}
+
+.screen-item:nth-child(even) .screen-image-wrap {
+  order: 2;
+}
+
+.screen-item:nth-child(even) .screen-caption {
+  order: 1;
+}
+
+.screen-image-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.screen-image-wrap img {
+  display: block;
+  width: min(100%, 620px);
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+.screen-caption {
+  padding: 10px 0;
+}
+
+.screen-caption .screen-label {
+  display: inline-block;
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: var(--light);
+  color: var(--primary-dark);
+  font-size: 12px;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.screen-caption h3 {
+  font-size: 31px;
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+
+.screen-caption p {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* =========================
+   DOWNLOAD
+========================= */
+
+.download {
+  background: var(--primary);
+  color: white;
+}
+
+.download-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 60px;
+}
+
+.download .eyebrow {
+  background: rgba(255,255,255,.14);
+  color: white;
+}
+
+.download h2 {
+  font-size: clamp(34px, 5vw, 56px);
+  line-height: 1.08;
+  margin-bottom: 20px;
+  letter-spacing: -1.5px;
+}
+
+.download p {
+  max-width: 650px;
+  color: rgba(255,255,255,.82);
+  font-size: 17px;
+  margin-bottom: 26px;
+}
+
+.download-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.download .button-primary {
+  background: white;
+  color: var(--primary-dark);
+}
+
+.download .button-primary:hover {
+  background: #f2ffff;
+}
+
+.download .button-secondary {
+  background: transparent;
+  color: white;
+  border-color: rgba(255,255,255,.35);
+}
+
+.qr {
+  background: white;
+  padding: 16px;
+  border-radius: 22px;
+  width: 190px;
+}
+
+.qr img {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+}
+
+.version {
+  margin-top: 16px;
+  font-size: 13px;
+  color: rgba(255,255,255,.68);
+}
+
+/* =========================
+   EMULATOR
+========================= */
+
+.emulator {
+  background: white;
+}
+
+.emulator-box {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 40px;
+  padding: 45px;
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  background: var(--background);
+}
+
+.emulator-box h2 {
+  font-size: 34px;
+  margin-bottom: 12px;
+}
+
+.emulator-box p {
+  color: var(--muted);
+  max-width: 680px;
+}
+
+/* =========================
+   INSTRUCTION
+========================= */
+
+.instruction {
+  background: var(--background);
+}
+
+.instruction-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+.instruction-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 28px;
+}
+
+.instruction-card h3 {
+  margin-bottom: 12px;
+  font-size: 20px;
+}
+
+.instruction-card p {
+  color: var(--muted);
+}
+
+/* =========================
+   PRIVACY
+========================= */
+
+.privacy {
+  background: white;
+}
+
+.privacy-box {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.privacy-box h2 {
+  font-size: 34px;
+  margin-bottom: 20px;
+}
+
+.privacy-box p {
+  color: var(--muted);
+  margin-bottom: 15px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+  background: #10282B;
+  color: white;
+  padding: 45px 0;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 800;
+}
+
+.footer-logo .logo-icon {
+  width: 42px;
+  height: 42px;
+  flex-basis: 42px;
+}
+
+.footer-copy {
+  color: rgba(255,255,255,.6);
+  font-size: 13px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 1000px) {
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .hero-content {
+    text-align: center;
+  }
+
+  .hero-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-visual {
+    order: -1;
+  }
+
+  .advantages-grid,
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .screen-item,
+  .screen-item:nth-child(even) {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    text-align: center;
+  }
+
+  .screen-item:nth-child(even) .screen-image-wrap,
+  .screen-item:nth-child(even) .screen-caption {
+    order: initial;
+  }
+
+  .screen-image-wrap img {
+    width: min(100%, 620px);
+  }
+
+  .download-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .download p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .download-buttons {
+    justify-content: center;
+  }
+
+  .qr {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 760px) {
+
+  .container {
+    width: min(100% - 28px, 1180px);
+  }
+
+  header {
+    position: relative;
+  }
+
+  .header-inner {
+    min-height: 68px;
+  }
+
+  .menu-button {
+    display: block;
+  }
+
+  nav {
+    display: none;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  nav a {
+    padding: 13px 5px;
+  }
+
+  .header-button {
+    display: none;
+  }
+
+  .logo {
+    font-size: 15px;
+  }
+
+  .logo-icon {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+  }
+
+  section {
+    padding: 70px 0;
+  }
+
+  .hero {
+    padding: 65px 0 75px;
+  }
+
+  .hero h1 {
+    font-size: clamp(38px, 12vw, 58px);
+    letter-spacing: -1.5px;
+  }
+
+  .hero-description {
+    font-size: 17px;
+  }
+
+  .advantages-grid,
+  .features-grid,
+  .steps,
+  .instruction-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading {
+    margin-bottom: 40px;
+  }
+
+  .section-heading h2 {
+    font-size: 35px;
+  }
+
+  .screenshots-list {
+    gap: 65px;
+  }
+
+  .screen-image-wrap img {
+    width: min(100%, 560px);
+  }
+
+  .screen-caption h3 {
+    font-size: 28px;
+  }
+
+  .emulator-box {
+    grid-template-columns: 1fr;
+    padding: 30px 24px;
+    text-align: center;
+  }
+
+  .emulator-box .button {
+    width: 100%;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .hero-buttons,
+  .download-buttons {
+    flex-direction: column;
+  }
+
+  .hero-buttons .button,
+  .download-buttons .button {
+    width: 100%;
+  }
+
+  .hero-card {
+    padding: 18px;
+    border-radius: 25px;
+  }
+
+  .feature-card,
+  .advantage-card,
+  .instruction-card {
+    padding: 23px;
+  }
+
+  .screen-image-wrap img {
+    width: 100%;
+  }
+}
+</style>
 </head>
 
-
 <body>
-
 
 <!-- =========================
      HEADER
 ========================= -->
 
 <header>
+  <div class="container header-inner">
 
-    <div class="container header-inner">
+    <a href="#top" class="logo">
+      <span class="logo-icon">
+        <img src="app-icon.png" alt="Иконка приложения">
+      </span>
 
+      <span>Давление под контролем</span>
+    </a>
 
-        <a
-            href="#top"
-            class="logo"
-            aria-label="Давление под контролем"
-        >
+    <nav id="mainNav">
+      <a href="#advantages">Преимущества</a>
+      <a href="#features">Возможности</a>
+      <a href="#screenshots">Интерфейс</a>
+      <a href="#download">Скачать</a>
+    </nav>
 
-            <span class="logo-icon" aria-hidden="true">
-                <span class="logo-symbol"></span>
-            </span>
+    <a href="#download" class="header-button">
+      Скачать приложение
+    </a>
 
+    <button
+      class="menu-button"
+      type="button"
+      onclick="toggleMenu()"
+      aria-label="Открыть меню"
+    >
+      ☰
+    </button>
 
-            <span class="logo-text">
-                Давление<br>
-                под контролем
-            </span>
-
-        </a>
-
-
-        <nav id="mainNav">
-
-            <a href="#features">
-                Возможности
-            </a>
-
-            <a href="#how">
-                Как работает
-            </a>
-
-            <a href="#screenshots">
-                Скриншоты
-            </a>
-
-            <a href="#download">
-                Скачать
-            </a>
-
-        </nav>
-
-
-        <a
-            href="#download"
-            class="header-button"
-        >
-            Скачать приложение
-        </a>
-
-
-        <button
-            class="menu-button"
-            onclick="toggleMenu()"
-            aria-label="Открыть меню"
-            aria-expanded="false"
-        >
-            ☰
-        </button>
-
-
-    </div>
-
+  </div>
 </header>
 
 
 <main id="top">
-
 
 <!-- =========================
      HERO
@@ -1699,222 +989,58 @@
 
 <section class="hero">
 
+  <div class="container hero-grid">
 
-    <div class="container hero-grid">
+    <div class="hero-content">
 
+      <div class="eyebrow">
+        Цифровой помощник
+      </div>
 
-        <div>
+      <h1>
+        Давление
+        <span>под контролем</span>
+      </h1>
 
+      <p class="hero-description">
+        Удобное приложение для ежедневного контроля давления,
+        пульса, лекарств, питания, физической активности
+        и других важных показателей здоровья.
+      </p>
 
-            <div class="eyebrow">
-                ● Цифровой помощник для ежедневного
-                самоконтроля
-            </div>
+      <div class="hero-buttons">
 
+        <a href="#download" class="button button-primary">
+          Скачать приложение
+        </a>
 
-            <h1>
-                Давление<br>
-                <span>под контролем</span>
-            </h1>
+        <a href="#screenshots" class="button button-secondary">
+          Посмотреть интерфейс
+        </a>
 
+      </div>
 
-            <p class="hero-description">
-                Удобное приложение для ведения дневника
-                давления, лекарств, питания, физической
-                активности и других показателей здоровья.
-            </p>
-
-
-            <div class="hero-buttons">
-
-
-                <a
-                    href="#download"
-                    class="button button-primary"
-                >
-                    Скачать приложение
-                </a>
-
-
-                <a
-                    href="#features"
-                    class="button button-secondary"
-                >
-                    Посмотреть возможности
-                </a>
-
-
-            </div>
-
-
-            <div class="hero-note">
-                Android · тестовая версия
-            </div>
-
-
-        </div>
-
-
-        <div class="hero-visual">
-
-
-            <div class="phone">
-
-
-                <div class="phone-notch"></div>
-
-
-                <div class="phone-screen">
-
-
-                    <div class="app-top">
-
-                        <div class="app-title">
-                            Сегодня
-                        </div>
-
-                        <div class="small-circle"></div>
-
-                    </div>
-
-
-                    <div class="health-card">
-
-                        <div class="health-label">
-                            Артериальное давление
-                        </div>
-
-                        <div class="pressure-value">
-                            120 / 80
-                        </div>
-
-                        <div class="pressure-unit">
-                            мм рт. ст.
-                        </div>
-
-                    </div>
-
-
-                    <div class="mini-grid">
-
-                        <div class="mini-card">
-
-                            <span class="health-label">
-                                Пульс
-                            </span>
-
-                            <strong>
-                                72
-                            </strong>
-
-                        </div>
-
-
-                        <div class="mini-card">
-
-                            <span class="health-label">
-                                Активность
-                            </span>
-
-                            <strong>
-                                6 420
-                            </strong>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="app-section-title">
-                        Дневник
-                    </div>
-
-
-                    <div class="app-row">
-
-                        <div class="app-icon">
-                            ♥
-                        </div>
-
-                        <span>
-                            Давление и пульс
-                        </span>
-
-                    </div>
-
-
-                    <div class="app-row">
-
-                        <div class="app-icon">
-
-                            <svg
-                                viewBox="0 0 64 64"
-                                aria-hidden="true"
-                            >
-
-                                <g transform="rotate(-45 32 32)">
-
-                                    <rect
-                                        x="10"
-                                        y="22"
-                                        width="44"
-                                        height="20"
-                                        rx="10"
-                                        fill="currentColor"
-                                    />
-
-                                    <path
-                                        d="M32 22v20"
-                                        stroke="white"
-                                        stroke-width="3"
-                                    />
-
-                                </g>
-
-                            </svg>
-
-                        </div>
-
-                        <span>
-                            Лекарства
-                        </span>
-
-                    </div>
-
-
-                    <div class="app-row">
-
-                        <div class="app-icon">
-                            ⌁
-                        </div>
-
-                        <span>
-                            Питание
-                        </span>
-
-                    </div>
-
-
-                    <div class="app-row">
-
-                        <div class="app-icon">
-                            ✦
-                        </div>
-
-                        <span>
-                            AI-помощник
-                        </span>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-        </div>
+      <p class="hero-note">
+        Для Android • APK
+      </p>
 
     </div>
+
+
+    <div class="hero-visual">
+
+      <div class="hero-card">
+
+        <img
+          src="main.png"
+          alt="Главный экран приложения «Давление под контролем»"
+        >
+
+      </div>
+
+    </div>
+
+  </div>
 
 </section>
 
@@ -1923,72 +1049,88 @@
      ADVANTAGES
 ========================= -->
 
-<section class="advantages">
+<section class="advantages" id="advantages">
 
+  <div class="container">
 
-    <div class="container">
+    <div class="section-heading">
 
+      <div class="eyebrow">
+        Почему приложение
+      </div>
 
-        <div class="advantage-grid">
+      <h2>
+        Всё важное — в одном месте
+      </h2>
 
-
-            <div class="advantage">
-
-                <div class="advantage-icon">
-                    ♥
-                </div>
-
-                <h3>
-                    Один дневник
-                </h3>
-
-                <p>
-                    Давление, лекарства, питание
-                    и активность в одном месте.
-                </p>
-
-            </div>
-
-
-            <div class="advantage">
-
-                <div class="advantage-icon">
-                    ✦
-                </div>
-
-                <h3>
-                    AI-помощник
-                </h3>
-
-                <p>
-                    Распознавание, структурирование
-                    и анализ введённых данных.
-                </p>
-
-            </div>
-
-
-            <div class="advantage">
-
-                <div class="advantage-icon">
-                    ⌁
-                </div>
-
-                <h3>
-                    Всё под рукой
-                </h3>
-
-                <p>
-                    Быстрый доступ к дневникам
-                    и ежедневной сводке.
-                </p>
-
-            </div>
-
-
-        </div>
+      <p>
+        Приложение помогает системно фиксировать
+        показатели и события, связанные с вашим здоровьем.
+      </p>
 
     </div>
+
+
+    <div class="advantages-grid">
+
+      <article class="advantage-card">
+
+        <div class="advantage-number">
+          01
+        </div>
+
+        <h3>
+          Удобный дневник
+        </h3>
+
+        <p>
+          Записывайте измерения давления и пульса,
+          чтобы сохранять историю наблюдений.
+        </p>
+
+      </article>
+
+
+      <article class="advantage-card">
+
+        <div class="advantage-number">
+          02
+        </div>
+
+        <h3>
+          Полная картина
+        </h3>
+
+        <p>
+          В одном приложении можно вести записи
+          о лекарствах, питании, активности
+          и лабораторных показателях.
+        </p>
+
+      </article>
+
+
+      <article class="advantage-card">
+
+        <div class="advantage-number">
+          03
+        </div>
+
+        <h3>
+          Всё под рукой
+        </h3>
+
+        <p>
+          Информация организована так, чтобы
+          нужные данные было удобно найти
+          в любой момент.
+        </p>
+
+      </article>
+
+    </div>
+
+  </div>
 
 </section>
 
@@ -1997,392 +1139,200 @@
      FEATURES
 ========================= -->
 
-<section
-    class="features"
-    id="features"
->
+<section class="features" id="features">
 
+  <div class="container">
 
-    <div class="container">
+    <div class="section-heading">
 
+      <div class="eyebrow">
+        Возможности
+      </div>
 
-        <div class="section-heading">
+      <h2>
+        Что можно контролировать
+      </h2>
 
-
-            <div class="eyebrow">
-                Возможности
-            </div>
-
-
-            <h2>
-                Всё необходимое — в одном приложении
-            </h2>
-
-
-            <p>
-                Систематизируйте ежедневные данные о здоровье
-                и наблюдайте за их изменениями.
-            </p>
-
-
-        </div>
-
-
-        <div class="feature-grid">
-
-
-            <!-- ДАВЛЕНИЕ -->
-
-            <div class="feature-card">
-
-                <div class="feature-icon">
-
-                    <svg
-                        viewBox="0 0 48 48"
-                        fill="none"
-                    >
-
-                        <path
-                            d="
-                                M24 39
-                                S8 29.5 8 18.5
-                                C8 13.25 11.7 10 16.2 10
-                                C19.25 10 21.75 11.65 24 14.35
-                                C26.25 11.65 28.75 10 31.8 10
-                                C36.3 10 40 13.25 40 18.5
-                                C40 29.5 24 39 24 39Z
-                            "
-                            stroke="currentColor"
-                            stroke-width="3"
-                            stroke-linejoin="round"
-                        />
-
-                    </svg>
-
-                </div>
-
-
-                <h3>
-                    Давление и пульс
-                </h3>
-
-
-                <p>
-                    Записывайте показатели артериального давления
-                    и пульса и сохраняйте историю.
-                </p>
-
-            </div>
-
-
-            <!-- ЛЕКАРСТВА -->
-
-            <div class="feature-card">
-
-                <div class="feature-icon">
-
-                    <svg
-                        viewBox="0 0 64 64"
-                        aria-hidden="true"
-                    >
-
-                        <g
-                            transform="rotate(-45 32 32)"
-                        >
-
-                            <rect
-                                x="10"
-                                y="22"
-                                width="44"
-                                height="20"
-                                rx="10"
-                                fill="currentColor"
-                            />
-
-                            <path
-                                d="M32 22v20"
-                                stroke="white"
-                                stroke-width="3"
-                            />
-
-                        </g>
-
-                    </svg>
-
-                </div>
-
-
-                <h3>
-                    Лекарства
-                </h3>
-
-
-                <p>
-                    Отмечайте приём препаратов
-                    и настраивайте напоминания.
-                </p>
-
-            </div>
-
-
-            <!-- ПИТАНИЕ -->
-
-            <div class="feature-card">
-
-                <div class="feature-icon">
-
-                    <svg
-                        viewBox="0 0 48 48"
-                        fill="none"
-                    >
-
-                        <circle
-                            cx="24"
-                            cy="26"
-                            r="12"
-                            stroke="currentColor"
-                            stroke-width="3"
-                        />
-
-                        <path
-                            d="M12 26h24"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            opacity=".35"
-                        />
-
-                        <path
-                            d="M24 14v24"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            opacity=".35"
-                        />
-
-                        <path
-                            d="M36 9v30"
-                            stroke="currentColor"
-                            stroke-width="3"
-                            stroke-linecap="round"
-                        />
-
-                        <path
-                            d="M33 9v9M36 9v9M39 9v9"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                        />
-
-                    </svg>
-
-                </div>
-
-
-                <h3>
-                    Питание
-                </h3>
-
-
-                <p>
-                    Ведите дневник питания и сохраняйте
-                    информацию о приёмах пищи.
-                </p>
-
-            </div>
-
-
-            <!-- ФИЗИЧЕСКАЯ АКТИВНОСТЬ -->
-
-            <div class="feature-card">
-
-                <div class="feature-icon">
-
-                    <!-- ГАНТЕЛЬ -->
-
-                    <svg
-                        viewBox="0 0 64 64"
-                        aria-hidden="true"
-                    >
-
-                        <rect
-                            x="7"
-                            y="22"
-                            width="7"
-                            height="20"
-                            rx="3"
-                            fill="currentColor"
-                        />
-
-                        <rect
-                            x="14"
-                            y="18"
-                            width="7"
-                            height="28"
-                            rx="3"
-                            fill="currentColor"
-                        />
-
-                        <rect
-                            x="21"
-                            y="27"
-                            width="22"
-                            height="10"
-                            rx="5"
-                            fill="currentColor"
-                        />
-
-                        <rect
-                            x="43"
-                            y="18"
-                            width="7"
-                            height="28"
-                            rx="3"
-                            fill="currentColor"
-                        />
-
-                        <rect
-                            x="50"
-                            y="22"
-                            width="7"
-                            height="20"
-                            rx="3"
-                            fill="currentColor"
-                        />
-
-                    </svg>
-
-                </div>
-
-
-                <h3>
-                    Физическая активность
-                </h3>
-
-
-                <p>
-                    Отслеживайте активность, шаги, расстояние
-                    и выбранные цели.
-                </p>
-
-            </div>
-
-
-            <!-- ЛАБОРАТОРНЫЕ ПОКАЗАТЕЛИ -->
-
-            <div class="feature-card">
-
-                <div class="feature-icon">
-
-                    <!-- КОЛБА -->
-
-                    <svg
-                        viewBox="0 0 48 48"
-                        fill="none"
-                    >
-
-                        <path
-                            d="
-                                M19 8h10
-                                M22 8v12
-                                L12 37
-                                a3 3 0 0 0 2.6 4.5
-                                h18.8
-                                A3 3 0 0 0 36 37
-                                L26 20V8
-                            "
-                            stroke="currentColor"
-                            stroke-width="3"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                        />
-
-                        <path
-                            d="M16 32h16"
-                            stroke="currentColor"
-                            stroke-width="3"
-                            stroke-linecap="round"
-                        />
-
-                    </svg>
-
-                </div>
-
-
-                <h3>
-                    Лабораторные показатели
-                </h3>
-
-
-                <p>
-                    Храните результаты анализов и наблюдайте
-                    за изменениями.
-                </p>
-
-            </div>
-
-
-            <!-- AI -->
-
-            <div class="feature-card">
-
-                <div class="feature-icon">
-
-                    <svg
-                        viewBox="0 0 48 48"
-                        fill="none"
-                    >
-
-                        <rect
-                            x="9"
-                            y="9"
-                            width="30"
-                            height="30"
-                            rx="8"
-                            stroke="currentColor"
-                            stroke-width="3"
-                        />
-
-                        <path
-                            d="M17 24h14M24 17v14"
-                            stroke="currentColor"
-                            stroke-width="3"
-                            stroke-linecap="round"
-                        />
-
-                        <circle
-                            cx="17"
-                            cy="17"
-                            r="2"
-                            fill="currentColor"
-                        />
-
-                        <circle
-                            cx="31"
-                            cy="31"
-                            r="2"
-                            fill="currentColor"
-                        />
-
-                    </svg>
-
-                </div>
-
-
-                <h3>
-                    AI-помощник
-                </h3>
-
-
-                <p>
-                    Помогает структурировать введённые данные
-                    и формировать ежедневную сводку.
-                </p>
-
-            </div>
-
-
-        </div>
+      <p>
+        Основные разделы приложения для ежедневного
+        наблюдения и ведения записей.
+      </p>
 
     </div>
+
+
+    <div class="features-grid">
+
+
+      <!-- Давление -->
+
+      <article class="feature-card">
+
+        <div class="feature-icon">
+
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.8 8.8c0 5.4-8.8 11-8.8 11s-8.8-5.6-8.8-11A4.8 4.8 0 0 1 8 4c1.5 0 2.9.7 4 1.9A5.1 5.1 0 0 1 16 4a4.8 4.8 0 0 1 4.8 4.8Z"/>
+            <path d="M7.5 12h2l1-2 1.5 4 1-2h2.5"/>
+          </svg>
+
+        </div>
+
+        <h3>
+          Давление и пульс
+        </h3>
+
+        <p>
+          Фиксируйте показатели артериального давления
+          и пульса и сохраняйте историю измерений.
+        </p>
+
+      </article>
+
+
+      <!-- Лекарства -->
+
+      <article class="feature-card">
+
+        <div class="feature-icon">
+
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect
+              x="3"
+              y="8"
+              width="18"
+              height="8"
+              rx="4"
+              transform="rotate(-35 12 12)"
+            />
+            <path d="M9 5.8l9 12.4"/>
+          </svg>
+
+        </div>
+
+        <h3>
+          Лекарства
+        </h3>
+
+        <p>
+          Ведите список принимаемых препаратов
+          и фиксируйте необходимую информацию.
+        </p>
+
+      </article>
+
+
+      <!-- Питание -->
+
+      <article class="feature-card">
+
+        <div class="feature-icon">
+
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="13" r="7"/>
+            <path d="M5 13h14"/>
+            <path d="M8 4v5"/>
+            <path d="M6 4v5"/>
+            <path d="M10 4v5"/>
+            <path d="M18 4v7"/>
+            <path d="M18 4c-1.2 1.2-1.8 2.6-1.8 4.2"/>
+          </svg>
+
+        </div>
+
+        <h3>
+          Питание
+        </h3>
+
+        <p>
+          Записывайте информацию о питании
+          и формируйте собственный дневник.
+        </p>
+
+      </article>
+
+
+      <!-- Физическая активность -->
+
+      <article class="feature-card">
+
+        <div class="feature-icon">
+
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="16.5" cy="4.5" r="2"/>
+            <path d="M13 8l3 2 2 4"/>
+            <path d="M13 8l-3 4 3 3"/>
+            <path d="M13 15l-4 5"/>
+            <path d="M16 14l4 5"/>
+            <path d="M10 12l-4-1"/>
+          </svg>
+
+        </div>
+
+        <h3>
+          Физическая активность
+        </h3>
+
+        <p>
+          Фиксируйте физическую активность
+          и следите за регулярностью занятий.
+        </p>
+
+      </article>
+
+
+      <!-- Лабораторные показатели -->
+
+      <article class="feature-card">
+
+        <div class="feature-icon">
+
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M9 3h6"/>
+            <path d="M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4A2 2 0 0 0 19 18l-5-9V3"/>
+            <path d="M8 15h8"/>
+          </svg>
+
+        </div>
+
+        <h3>
+          Лабораторные показатели
+        </h3>
+
+        <p>
+          Храните результаты лабораторных исследований
+          и другую важную информацию.
+        </p>
+
+      </article>
+
+
+      <!-- AI -->
+
+      <article class="feature-card">
+
+        <div class="feature-icon">
+
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3l1.4 5.6L19 10l-5.6 1.4L12 17l-1.4-5.6L5 10l5.6-1.4L12 3Z"/>
+            <path d="M19 16l.7 2.3L22 19l-2.3.7L19 22l-.7-2.3L16 19l2.3-.7L19 16Z"/>
+          </svg>
+
+        </div>
+
+        <h3>
+          AI-помощник
+        </h3>
+
+        <p>
+          Используйте интеллектуальные возможности
+          приложения для работы с информацией.
+        </p>
+
+      </article>
+
+    </div>
+
+  </div>
 
 </section>
 
@@ -2391,112 +1341,89 @@
      HOW IT WORKS
 ========================= -->
 
-<section id="how">
+<section class="how">
 
+  <div class="container">
 
-    <div class="container">
+    <div class="section-heading">
 
+      <div class="eyebrow">
+        Как это работает
+      </div>
 
-        <div class="section-heading">
+      <h2>
+        Начать пользоваться просто
+      </h2>
 
-
-            <div class="eyebrow">
-                Как работает
-            </div>
-
-
-            <h2>
-                От записи до понятной сводки
-            </h2>
-
-
-            <p>
-                Простая последовательность для ежедневного
-                самоконтроля.
-            </p>
-
-
-        </div>
-
-
-        <div class="steps">
-
-
-            <div class="step">
-
-                <div class="step-number">
-                    01
-                </div>
-
-                <h3>
-                    Ввод данных
-                </h3>
-
-                <p>
-                    Добавляйте показатели вручную, голосом
-                    или с помощью фотографии.
-                </p>
-
-            </div>
-
-
-            <div class="step">
-
-                <div class="step-number">
-                    02
-                </div>
-
-                <h3>
-                    Дневник
-                </h3>
-
-                <p>
-                    Информация сохраняется в соответствующих
-                    разделах.
-                </p>
-
-            </div>
-
-
-            <div class="step">
-
-                <div class="step-number">
-                    03
-                </div>
-
-                <h3>
-                    Анализ
-                </h3>
-
-                <p>
-                    AI помогает структурировать и анализировать
-                    введённую информацию.
-                </p>
-
-            </div>
-
-
-            <div class="step">
-
-                <div class="step-number">
-                    04
-                </div>
-
-                <h3>
-                    Ежедневная сводка
-                </h3>
-
-                <p>
-                    Получайте понятное представление о данных
-                    за день.
-                </p>
-
-            </div>
-
-
-        </div>
+      <p>
+        Несколько простых шагов — и основные
+        показатели будут собраны в одном месте.
+      </p>
 
     </div>
+
+
+    <div class="steps">
+
+
+      <article class="step">
+
+        <div class="step-number">
+          1
+        </div>
+
+        <h3>
+          Установите приложение
+        </h3>
+
+        <p>
+          Скачайте APK-файл и установите
+          приложение на Android-устройство.
+        </p>
+
+      </article>
+
+
+      <article class="step">
+
+        <div class="step-number">
+          2
+        </div>
+
+        <h3>
+          Вносите данные
+        </h3>
+
+        <p>
+          Добавляйте измерения давления,
+          питание, активность, лекарства
+          и другие записи.
+        </p>
+
+      </article>
+
+
+      <article class="step">
+
+        <div class="step-number">
+          3
+        </div>
+
+        <h3>
+          Следите за историей
+        </h3>
+
+        <p>
+          Используйте накопленные записи
+          для наблюдения за изменениями
+          показателей.
+        </p>
+
+      </article>
+
+    </div>
+
+  </div>
 
 </section>
 
@@ -2505,241 +1432,204 @@
      SCREENSHOTS
 ========================= -->
 
-<section
-    class="screenshots"
-    id="screenshots"
->
+<section class="screenshots" id="screenshots">
 
+  <div class="container">
 
-    <div class="container">
+    <div class="section-heading">
 
+      <div class="eyebrow">
+        Интерфейс
+      </div>
 
-        <div class="section-heading">
+      <h2>
+        Посмотрите приложение изнутри
+      </h2>
 
-
-            <div class="eyebrow">
-                Интерфейс
-            </div>
-
-
-            <h2>
-                Посмотрите приложение изнутри
-            </h2>
-
-
-            <p>
-                Пять экранов идут последовательно.
-                Фото показываются крупно, без дополнительных
-                рамок и карточек.
-            </p>
-
-
-        </div>
-
-
-        <div class="screenshots-list">
-
-
-            <!-- ЭКРАН РЕГИСТРАЦИИ -->
-
-            <article class="screenshot-item">
-
-
-                <div class="screenshot-image">
-
-                    <img
-                        src="registration.png"
-                        alt="Экран регистрации приложения"
-                        loading="lazy"
-                    >
-
-                </div>
-
-
-                <div class="screenshot-text">
-
-                    <div class="screenshot-number">
-                        Экран регистрации
-                    </div>
-
-
-                    <h3>
-                        Быстрый вход в приложение
-                    </h3>
-
-
-                    <p>
-                        Первый экран приложения для регистрации
-                        и начала работы с дневником здоровья.
-                    </p>
-
-                </div>
-
-
-            </article>
-
-
-            <!-- ГЛАВНЫЙ ЭКРАН -->
-
-            <article class="screenshot-item">
-
-
-                <div class="screenshot-image">
-
-                    <img
-                        src="main.png"
-                        alt="Главный экран приложения"
-                        loading="lazy"
-                    >
-
-                </div>
-
-
-                <div class="screenshot-text">
-
-                    <div class="screenshot-number">
-                        Главный экран
-                    </div>
-
-
-                    <h3>
-                        Всё важное на одном экране
-                    </h3>
-
-
-                    <p>
-                        Основная информация о самочувствии,
-                        показателях и дневниках доступна
-                        сразу после входа.
-                    </p>
-
-                </div>
-
-
-            </article>
-
-
-            <!-- ДНЕВНИК ДАВЛЕНИЯ -->
-
-            <article class="screenshot-item">
-
-
-                <div class="screenshot-image">
-
-                    <img
-                        src="pressure.png"
-                        alt="Дневник давления"
-                        loading="lazy"
-                    >
-
-                </div>
-
-
-                <div class="screenshot-text">
-
-                    <div class="screenshot-number">
-                        Дневник давления
-                    </div>
-
-
-                    <h3>
-                        Давление и пульс
-                    </h3>
-
-
-                    <p>
-                        Записывайте показатели давления
-                        и пульса и сохраняйте историю измерений.
-                    </p>
-
-                </div>
-
-
-            </article>
-
-
-            <!-- ДНЕВНИК ПИТАНИЯ -->
-
-            <article class="screenshot-item">
-
-
-                <div class="screenshot-image">
-
-                    <img
-                        src="food.png"
-                        alt="Дневник питания"
-                        loading="lazy"
-                    >
-
-                </div>
-
-
-                <div class="screenshot-text">
-
-                    <div class="screenshot-number">
-                        Дневник питания
-                    </div>
-
-
-                    <h3>
-                        Питание в течение дня
-                    </h3>
-
-
-                    <p>
-                        Добавляйте приёмы пищи
-                        и сохраняйте информацию
-                        о ежедневном питании.
-                    </p>
-
-                </div>
-
-
-            </article>
-
-
-            <!-- ДНЕВНИК АКТИВНОСТИ -->
-
-            <article class="screenshot-item">
-
-
-                <div class="screenshot-image">
-
-                    <img
-                        src="activity.png"
-                        alt="Дневник активности"
-                        loading="lazy"
-                    >
-
-                </div>
-
-
-                <div class="screenshot-text">
-
-                    <div class="screenshot-number">
-                        Дневник активности
-                    </div>
-
-
-                    <h3>
-                        Физическая активность
-                    </h3>
-
-
-                    <p>
-                        Отслеживайте движение, шаги,
-                        расстояние и другие показатели активности.
-                    </p>
-
-                </div>
-
-
-            </article>
-
-
-        </div>
+      <p>
+        Основные экраны приложения — один за другим.
+      </p>
 
     </div>
+
+
+    <div class="screenshots-list">
+
+
+      <!-- 1. Регистрация -->
+
+      <article class="screen-item">
+
+        <div class="screen-image-wrap">
+
+          <img
+            src="registration.png"
+            alt="Экран регистрации приложения"
+            loading="lazy"
+          >
+
+        </div>
+
+        <div class="screen-caption">
+
+          <div class="screen-label">
+            Начало работы
+          </div>
+
+          <h3>
+            Экран регистрации
+          </h3>
+
+          <p>
+            Первый экран приложения для регистрации
+            и начала работы.
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <!-- 2. Главный экран -->
+
+      <article class="screen-item">
+
+        <div class="screen-image-wrap">
+
+          <img
+            src="main.png"
+            alt="Главный экран приложения"
+            loading="lazy"
+          >
+
+        </div>
+
+        <div class="screen-caption">
+
+          <div class="screen-label">
+            Главный экран
+          </div>
+
+          <h3>
+            Главный экран
+          </h3>
+
+          <p>
+            Основная информация и быстрый доступ
+            к ключевым разделам приложения.
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <!-- 3. Давление -->
+
+      <article class="screen-item">
+
+        <div class="screen-image-wrap">
+
+          <img
+            src="pressure.png"
+            alt="Дневник артериального давления"
+            loading="lazy"
+          >
+
+        </div>
+
+        <div class="screen-caption">
+
+          <div class="screen-label">
+            Дневник
+          </div>
+
+          <h3>
+            Дневник давления
+          </h3>
+
+          <p>
+            Экран для внесения и просмотра
+            показателей артериального давления
+            и пульса.
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <!-- 4. Питание -->
+
+      <article class="screen-item">
+
+        <div class="screen-image-wrap">
+
+          <img
+            src="food.png"
+            alt="Дневник питания"
+            loading="lazy"
+          >
+
+        </div>
+
+        <div class="screen-caption">
+
+          <div class="screen-label">
+            Питание
+          </div>
+
+          <h3>
+            Дневник питания
+          </h3>
+
+          <p>
+            Раздел для ведения записей
+            о питании в течение дня.
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <!-- 5. Активность -->
+
+      <article class="screen-item">
+
+        <div class="screen-image-wrap">
+
+          <img
+            src="activity.png"
+            alt="Дневник физической активности"
+            loading="lazy"
+          >
+
+        </div>
+
+        <div class="screen-caption">
+
+          <div class="screen-label">
+            Активность
+          </div>
+
+          <h3>
+            Дневник активности
+          </h3>
+
+          <p>
+            Раздел для фиксации физической
+            активности и занятий.
+          </p>
+
+        </div>
+
+      </article>
+
+
+    </div>
+
+  </div>
 
 </section>
 
@@ -2748,70 +1638,55 @@
      DOWNLOAD
 ========================= -->
 
-<section
-    class="download"
-    id="download"
->
+<section class="download" id="download">
 
+  <div class="container download-grid">
 
-    <div class="container">
+    <div>
 
+      <div class="eyebrow">
+        Скачать приложение
+      </div>
 
-        <div class="download-box">
+      <h2>
+        Давление под контролем
+      </h2>
 
+      <p>
+        Установите приложение на Android
+        и начните вести собственный дневник
+        показателей и наблюдений.
+      </p>
 
-            <div>
+      <div class="download-buttons">
 
+        <a
+          href="app.apk"
+          class="button button-primary"
+          download
+        >
+          Скачать APK
+        </a>
 
-                <div class="eyebrow">
-                    Android · тестовая версия
-                </div>
+      </div>
 
-
-                <h2>
-                    Давление под контролем —
-                    всегда под рукой
-                </h2>
-
-
-                <p>
-                    Скачайте тестовую версию приложения
-                    и попробуйте основные функции.
-                </p>
-
-
-                <a
-                    href="app.apk"
-                    class="button button-primary"
-                    download
-                >
-                    ↓ Скачать APK
-                </a>
-
-
-                <span class="version">
-                    Версия 1.0 · DavleniePodKontrolem.apk
-                </span>
-
-
-            </div>
-
-
-            <div>
-
-                <img
-                    class="qr"
-                    src="qr.png"
-                    alt="QR-код для скачивания приложения"
-                    loading="lazy"
-                >
-
-            </div>
-
-
-        </div>
+      <div class="version">
+        Версия приложения доступна в формате APK
+      </div>
 
     </div>
+
+
+    <div class="qr">
+
+      <img
+        src="qr.png"
+        alt="QR-код для скачивания приложения"
+      >
+
+    </div>
+
+  </div>
 
 </section>
 
@@ -2822,53 +1697,39 @@
 
 <section class="emulator">
 
+  <div class="container">
 
-    <div class="container">
+    <div class="emulator-box">
 
+      <div>
 
-        <div class="emulator-box">
+        <h2>
+          Версия для компьютера
+        </h2>
 
+        <p>
+          Если вам необходимо использовать приложение
+          на компьютере, можно воспользоваться
+          подготовленной версией.
+        </p>
 
-            <div>
+      </div>
 
+      <div>
 
-                <div class="emulator-label">
-                    Для тестировщиков
-                </div>
+        <a
+          href="computer-file.exe"
+          class="button button-primary"
+          download
+        >
+          Скачать для компьютера
+        </a>
 
-
-                <h2>
-                    Тестирование на компьютере
-                </h2>
-
-
-                <p>
-                    Если у вас нет Android-смартфона,
-                    приложение можно протестировать
-                    на компьютере с помощью Android-эмулятора.
-                </p>
-
-
-                <a
-                    href="computer-file.exe"
-                    class="button button-secondary"
-                    download
-                >
-                    ↓ Скачать для Windows
-                </a>
-
-
-                <div class="emulator-info">
-                    Windows · тестовая версия
-                </div>
-
-
-            </div>
-
-
-        </div>
+      </div>
 
     </div>
+
+  </div>
 
 </section>
 
@@ -2879,153 +1740,134 @@
 
 <section class="instruction">
 
+  <div class="container">
 
-    <div class="container">
+    <div class="section-heading">
 
+      <div class="eyebrow">
+        Инструкция
+      </div>
 
-        <div class="section-heading">
+      <h2>
+        Как начать работу
+      </h2>
 
-
-            <div class="eyebrow">
-                Инструкция
-            </div>
-
-
-            <h2>
-                Как начать тестирование
-            </h2>
-
-
-        </div>
-
-
-        <div class="instruction-grid">
-
-
-            <div class="instruction-card">
-
-
-                <div class="instruction-number">
-                    01
-                </div>
-
-
-                <h3>
-                    Скачайте приложение
-                </h3>
-
-
-                <p>
-                    Нажмите кнопку скачивания APK
-                    и дождитесь завершения загрузки.
-                </p>
-
-            </div>
-
-
-            <div class="instruction-card">
-
-
-                <div class="instruction-number">
-                    02
-                </div>
-
-
-                <h3>
-                    Установите APK
-                </h3>
-
-
-                <p>
-                    Откройте скачанный файл.
-                    Android может запросить разрешение
-                    на установку из неизвестного источника.
-                </p>
-
-            </div>
-
-
-            <div class="instruction-card">
-
-
-                <div class="instruction-number">
-                    03
-                </div>
-
-
-                <h3>
-                    Запустите приложение
-                </h3>
-
-
-                <p>
-                    После установки откройте
-                    «Давление под контролем»
-                    и начните тестирование.
-                </p>
-
-            </div>
-
-
-        </div>
+      <p>
+        Основные шаги для установки и использования приложения.
+      </p>
 
     </div>
+
+
+    <div class="instruction-grid">
+
+
+      <article class="instruction-card">
+
+        <h3>
+          Установка APK
+        </h3>
+
+        <p>
+          Скачайте файл приложения, откройте его
+          на Android-устройстве и выполните установку.
+          Если система запросит разрешение,
+          разрешите установку приложения из используемого
+          источника.
+        </p>
+
+      </article>
+
+
+      <article class="instruction-card">
+
+        <h3>
+          Первый запуск
+        </h3>
+
+        <p>
+          Откройте приложение и пройдите регистрацию.
+          После этого вы сможете перейти к основным
+          разделам и добавлять необходимые данные.
+        </p>
+
+      </article>
+
+
+      <article class="instruction-card">
+
+        <h3>
+          Ведение дневника
+        </h3>
+
+        <p>
+          Регулярно добавляйте новые измерения,
+          записи о питании, активности и лекарствах,
+          чтобы история оставалась актуальной.
+        </p>
+
+      </article>
+
+
+      <article class="instruction-card">
+
+        <h3>
+          Работа с данными
+        </h3>
+
+        <p>
+          Используйте сохранённую информацию
+          для наблюдения за динамикой показателей
+          и подготовки данных к обсуждению
+          со специалистом.
+        </p>
+
+      </article>
+
+
+    </div>
+
+  </div>
 
 </section>
 
 
 <!-- =========================
-     INFO
+     PRIVACY
 ========================= -->
 
-<section class="info">
+<section class="privacy">
 
+  <div class="container">
 
-    <div class="container">
+    <div class="privacy-box">
 
+      <h2>
+        Важная информация
+      </h2>
 
-        <div class="info-grid">
+      <p>
+        Приложение предназначено для ведения записей
+        и наблюдения за показателями здоровья.
+      </p>
 
+      <p>
+        Информация в приложении не заменяет консультацию
+        врача, медицинское обследование или назначенное
+        специалистом лечение.
+      </p>
 
-            <div class="info-card">
-
-                <h3>
-                    Конфиденциальность
-                </h3>
-
-
-                <p>
-                    Основные данные дневника хранятся локально
-                    на устройстве пользователя. Для работы отдельных
-                    AI-функций необходимые данные могут передаваться
-                    на сервер обработки AI-запросов.
-                </p>
-
-            </div>
-
-
-            <div class="info-card disclaimer">
-
-                <h3>
-                    Важно
-                </h3>
-
-
-                <p>
-                    Приложение предназначено для ведения и анализа
-                    данных самоконтроля. Оно не заменяет консультацию
-                    врача, медицинскую диагностику или назначенное лечение.
-                </p>
-
-            </div>
-
-
-        </div>
+      <p>
+        При наличии вопросов о состоянии здоровья,
+        результатах измерений или при ухудшении самочувствия
+        необходимо обратиться к медицинскому специалисту.
+      </p>
 
     </div>
 
-</section>
+  </div>
 
+</section>
 
 </main>
 
@@ -3036,154 +1878,88 @@
 
 <footer>
 
-    <div class="container">
+  <div class="container footer-inner">
 
+    <div class="footer-logo">
 
-        <div class="footer-grid">
+      <span class="logo-icon">
 
+        <img
+          src="app-icon.png"
+          alt="Иконка приложения"
+        >
 
-            <div>
+      </span>
 
-
-                <div class="footer-logo">
-
-                    <span class="logo-icon">
-                        <span class="logo-symbol"></span>
-                    </span>
-
-
-                    <span>
-                        Давление под контролем
-                    </span>
-
-                </div>
-
-
-                <div class="footer-description">
-                    Цифровой помощник для ежедневного самоконтроля.
-                </div>
-
-
-            </div>
-
-
-            <div class="footer-links">
-
-
-                <a href="#features">
-                    Возможности
-                </a>
-
-
-                <a href="#how">
-                    Как работает
-                </a>
-
-
-                <a href="#screenshots">
-                    Скриншоты
-                </a>
-
-
-                <a href="#download">
-                    Скачать
-                </a>
-
-
-            </div>
-
-
-        </div>
-
-
-        <div class="copyright">
-            © 2026 «Давление под контролем»
-        </div>
-
+      <span>
+        Давление под контролем
+      </span>
 
     </div>
+
+
+    <div class="footer-copy">
+      © 2026 Давление под контролем
+    </div>
+
+  </div>
 
 </footer>
 
 
-<!-- =========================
-     JAVASCRIPT
-========================= -->
-
 <script>
 
-    function toggleMenu() {
+function toggleMenu() {
 
-        const nav =
-            document.getElementById("mainNav");
+  const nav = document.getElementById("mainNav");
 
-        const button =
-            document.querySelector(".menu-button");
+  if (nav.style.display === "flex") {
+
+    nav.style.display = "none";
+
+  } else {
+
+    nav.style.display = "flex";
+
+  }
+
+}
 
 
-        if (!nav) {
-            return;
-        }
+/* Закрываем мобильное меню после перехода по ссылке */
 
+document.querySelectorAll("#mainNav a").forEach(function(link) {
 
-        nav.classList.toggle("open");
+  link.addEventListener("click", function() {
 
-
-        if (button) {
-
-            button.setAttribute(
-                "aria-expanded",
-                nav.classList.contains("open")
-                    ? "true"
-                    : "false"
-            );
-
-        }
-
+    if (window.innerWidth <= 760) {
+      document.getElementById("mainNav").style.display = "none";
     }
 
+  });
 
-    document
-        .querySelectorAll("#mainNav a")
-        .forEach(function(link) {
-
-            link.addEventListener(
-                "click",
-                function() {
-
-                    const nav =
-                        document.getElementById(
-                            "mainNav"
-                        );
-
-                    const button =
-                        document.querySelector(
-                            ".menu-button"
-                        );
+});
 
 
-                    if (nav) {
-                        nav.classList.remove("open");
-                    }
+/* Возвращаем обычное состояние меню при увеличении окна */
 
+window.addEventListener("resize", function() {
 
-                    if (button) {
+  const nav = document.getElementById("mainNav");
 
-                        button.setAttribute(
-                            "aria-expanded",
-                            "false"
-                        );
+  if (window.innerWidth > 760) {
 
-                    }
+    nav.style.display = "flex";
 
-                }
-            );
+  } else {
 
-        });
+    nav.style.display = "none";
+
+  }
+
+});
 
 </script>
 
-
 </body>
-
 </html>
