@@ -56,6 +56,15 @@ img {
   max-width: 100%;
 }
 
+.screen-image-wrap {
+  min-width: 0;
+}
+
+.screen-image-wrap img,
+.hero-card img {
+  min-height: 1px;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -100,7 +109,6 @@ header {
   white-space: nowrap;
 }
 
-/* ТОЛЬКО ТВОЯ app-icon.png */
 .logo-icon {
   width: 44px;
   height: 44px;
@@ -501,14 +509,7 @@ section {
   background: transparent;
   border: none;
   box-shadow: none;
-  min-width: 0;
 }
-
-/*
-  ВАЖНО:
-  Это реальные изображения из репозитория.
-  Никаких дополнительных рамок/телефонов поверх них нет.
-*/
 
 .screen-image-wrap img {
   display: block;
@@ -773,16 +774,10 @@ footer {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .screen-item,
-  .screen-item:nth-child(even) {
+  .screen-item {
     grid-template-columns: 1fr;
     gap: 35px;
     text-align: center;
-  }
-
-  .screen-item:nth-child(even) .screen-image-wrap,
-  .screen-item:nth-child(even) .screen-caption {
-    order: initial;
   }
 
   .screen-image-wrap img {
@@ -958,17 +953,11 @@ footer {
   <div class="container header-inner">
 
     <a href="#top" class="logo">
-
-      <!-- ТОЛЬКО app-icon.png -->
       <span class="logo-icon">
-        <img
-          src="./app-icon.png"
-          alt="Иконка приложения"
-        >
+        <img src="./app-icon.png" alt="Иконка приложения">
       </span>
 
       <span>Давление под контролем</span>
-
     </a>
 
     <nav id="mainNav">
@@ -1178,6 +1167,8 @@ footer {
     <div class="features-grid">
 
 
+      <!-- Давление -->
+
       <article class="feature-card">
 
         <div class="feature-icon">
@@ -1201,20 +1192,15 @@ footer {
       </article>
 
 
+      <!-- Лекарства -->
+
       <article class="feature-card">
 
         <div class="feature-icon">
 
           <svg viewBox="0 0 24 24" aria-hidden="true">
-            <rect
-              x="3"
-              y="8"
-              width="18"
-              height="8"
-              rx="4"
-              transform="rotate(-35 12 12)"
-            />
-            <path d="M9 5.8l9 12.4"/>
+            <rect x="4" y="8" width="16" height="8" rx="4"/>
+            <path d="M12 8v8"/>
           </svg>
 
         </div>
@@ -1231,18 +1217,22 @@ footer {
       </article>
 
 
+      <!-- Питание -->
+
       <article class="feature-card">
 
         <div class="feature-icon">
 
           <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="13" r="7"/>
-            <path d="M5 13h14"/>
-            <path d="M8 4v5"/>
-            <path d="M6 4v5"/>
-            <path d="M10 4v5"/>
-            <path d="M18 4v7"/>
-            <path d="M18 4c-1.2 1.2-1.8 2.6-1.8 4.2"/>
+            <circle cx="12" cy="14" r="6"/>
+            <path d="M6 14h12"/>
+            <path d="M8 8h8"/>
+            <path d="M5 4v5"/>
+            <path d="M7 4v5"/>
+            <path d="M9 4v5"/>
+            <path d="M7 9v3"/>
+            <path d="M19 4v8"/>
+            <path d="M19 4c-1.5 1.5-2 3-2 5"/>
           </svg>
 
         </div>
@@ -1259,17 +1249,20 @@ footer {
       </article>
 
 
+      <!-- Физическая активность -->
+
       <article class="feature-card">
 
         <div class="feature-icon">
 
           <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="16.5" cy="4.5" r="2"/>
-            <path d="M13 8l3 2 2 4"/>
-            <path d="M13 8l-3 4 3 3"/>
-            <path d="M13 15l-4 5"/>
-            <path d="M16 14l4 5"/>
-            <path d="M10 12l-4-1"/>
+            <path d="M4 9v6"/>
+            <path d="M7 7v10"/>
+            <path d="M9 9h6"/>
+            <path d="M15 7v10"/>
+            <path d="M18 9v6"/>
+            <path d="M2 10v4"/>
+            <path d="M22 10v4"/>
           </svg>
 
         </div>
@@ -1285,6 +1278,8 @@ footer {
 
       </article>
 
+
+      <!-- Лабораторные показатели -->
 
       <article class="feature-card">
 
@@ -1309,6 +1304,8 @@ footer {
 
       </article>
 
+
+      <!-- AI -->
 
       <article class="feature-card">
 
@@ -1366,6 +1363,7 @@ footer {
 
 
     <div class="steps">
+
 
       <article class="step">
 
@@ -1457,7 +1455,7 @@ footer {
     <div class="screenshots-list">
 
 
-      <!-- ЭКРАН РЕГИСТРАЦИИ -->
+      <!-- 1. Регистрация -->
 
       <article class="screen-item">
 
@@ -1465,7 +1463,7 @@ footer {
 
           <img
             src="./registration.png"
-            alt="Экран регистрации"
+            alt="Экран регистрации приложения"
             loading="eager"
           >
 
@@ -1491,7 +1489,7 @@ footer {
       </article>
 
 
-      <!-- ГЛАВНЫЙ ЭКРАН -->
+      <!-- 2. Главный экран -->
 
       <article class="screen-item">
 
@@ -1525,7 +1523,7 @@ footer {
       </article>
 
 
-      <!-- ДНЕВНИК ДАВЛЕНИЯ -->
+      <!-- 3. Давление -->
 
       <article class="screen-item">
 
@@ -1533,7 +1531,7 @@ footer {
 
           <img
             src="./pressure.png"
-            alt="Дневник давления"
+            alt="Дневник артериального давления"
             loading="eager"
           >
 
@@ -1560,7 +1558,7 @@ footer {
       </article>
 
 
-      <!-- ДНЕВНИК ПИТАНИЯ -->
+      <!-- 4. Питание -->
 
       <article class="screen-item">
 
@@ -1594,7 +1592,7 @@ footer {
       </article>
 
 
-      <!-- ДНЕВНИК АКТИВНОСТИ -->
+      <!-- 5. Активность -->
 
       <article class="screen-item">
 
@@ -1602,7 +1600,7 @@ footer {
 
           <img
             src="./activity.png"
-            alt="Дневник активности"
+            alt="Дневник физической активности"
             loading="eager"
           >
 
@@ -1762,6 +1760,7 @@ footer {
 
     <div class="instruction-grid">
 
+
       <article class="instruction-card">
 
         <h3>
@@ -1824,6 +1823,7 @@ footer {
 
       </article>
 
+
     </div>
 
   </div>
@@ -1881,7 +1881,6 @@ footer {
 
     <div class="footer-logo">
 
-      <!-- ТА ЖЕ app-icon.png -->
       <span class="logo-icon">
 
         <img
@@ -1914,13 +1913,19 @@ function toggleMenu() {
   const nav = document.getElementById("mainNav");
 
   if (nav.style.display === "flex") {
+
     nav.style.display = "none";
+
   } else {
+
     nav.style.display = "flex";
+
   }
 
 }
 
+
+/* Закрываем мобильное меню после перехода по ссылке */
 
 document.querySelectorAll("#mainNav a").forEach(function(link) {
 
@@ -1935,14 +1940,20 @@ document.querySelectorAll("#mainNav a").forEach(function(link) {
 });
 
 
+/* Возвращаем обычное состояние меню при увеличении окна */
+
 window.addEventListener("resize", function() {
 
   const nav = document.getElementById("mainNav");
 
   if (window.innerWidth > 760) {
+
     nav.style.display = "flex";
+
   } else {
+
     nav.style.display = "none";
+
   }
 
 });
