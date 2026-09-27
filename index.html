@@ -404,14 +404,10 @@ section {
   margin-bottom: 20px;
 }
 
-.feature-icon svg {
-  width: 28px;
-  height: 28px;
-  stroke: currentColor;
-  fill: none;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.feature-emoji {
+  font-size: 29px;
+  line-height: 1;
+  display: block;
 }
 
 .feature-card h3 {
@@ -490,19 +486,9 @@ section {
   margin: 0 auto;
 }
 
-.screen-item:nth-child(even) {
-  grid-template-columns: minmax(260px, 1fr) minmax(340px, 650px);
-}
-
-.screen-item:nth-child(even) .screen-image-wrap {
-  order: 2;
-}
-
-.screen-item:nth-child(even) .screen-caption {
-  order: 1;
-}
 
 .screen-image-wrap {
+  min-width: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -513,6 +499,8 @@ section {
 
 .screen-image-wrap img {
   display: block;
+  min-width: 1px;
+  min-height: 1px;
   width: min(100%, 620px);
   height: auto;
   max-height: none;
@@ -1035,7 +1023,7 @@ footer {
       <div class="hero-card">
 
         <img
-          src="./main.png"
+          src="./Screenshots/main.png"
           alt="Главный экран приложения «Давление под контролем»"
         >
 
@@ -1171,14 +1159,7 @@ footer {
 
       <article class="feature-card">
 
-        <div class="feature-icon">
-
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M20.8 8.8c0 5.4-8.8 11-8.8 11s-8.8-5.6-8.8-11A4.8 4.8 0 0 1 8 4c1.5 0 2.9.7 4 1.9A5.1 5.1 0 0 1 16 4a4.8 4.8 0 0 1 4.8 4.8Z"/>
-            <path d="M7.5 12h2l1-2 1.5 4 1-2h2.5"/>
-          </svg>
-
-        </div>
+        <div class="feature-icon" aria-hidden="true"><span class="feature-emoji">💓</span></div>
 
         <h3>
           Давление и пульс
@@ -1196,14 +1177,7 @@ footer {
 
       <article class="feature-card">
 
-        <div class="feature-icon">
-
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <rect x="4" y="8" width="16" height="8" rx="4"/>
-            <path d="M12 8v8"/>
-          </svg>
-
-        </div>
+        <div class="feature-icon" aria-hidden="true"><span class="feature-emoji">💊</span></div>
 
         <h3>
           Лекарства
@@ -1221,21 +1195,7 @@ footer {
 
       <article class="feature-card">
 
-        <div class="feature-icon">
-
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="14" r="6"/>
-            <path d="M6 14h12"/>
-            <path d="M8 8h8"/>
-            <path d="M5 4v5"/>
-            <path d="M7 4v5"/>
-            <path d="M9 4v5"/>
-            <path d="M7 9v3"/>
-            <path d="M19 4v8"/>
-            <path d="M19 4c-1.5 1.5-2 3-2 5"/>
-          </svg>
-
-        </div>
+        <div class="feature-icon" aria-hidden="true"><span class="feature-emoji">🍽️</span></div>
 
         <h3>
           Питание
@@ -1253,19 +1213,7 @@ footer {
 
       <article class="feature-card">
 
-        <div class="feature-icon">
-
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M4 9v6"/>
-            <path d="M7 7v10"/>
-            <path d="M9 9h6"/>
-            <path d="M15 7v10"/>
-            <path d="M18 9v6"/>
-            <path d="M2 10v4"/>
-            <path d="M22 10v4"/>
-          </svg>
-
-        </div>
+        <div class="feature-icon" aria-hidden="true"><span class="feature-emoji">🏋️</span></div>
 
         <h3>
           Физическая активность
@@ -1283,15 +1231,7 @@ footer {
 
       <article class="feature-card">
 
-        <div class="feature-icon">
-
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M9 3h6"/>
-            <path d="M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4A2 2 0 0 0 19 18l-5-9V3"/>
-            <path d="M8 15h8"/>
-          </svg>
-
-        </div>
+        <div class="feature-icon" aria-hidden="true"><span class="feature-emoji">🧪</span></div>
 
         <h3>
           Лабораторные показатели
@@ -1309,14 +1249,7 @@ footer {
 
       <article class="feature-card">
 
-        <div class="feature-icon">
-
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 3l1.4 5.6L19 10l-5.6 1.4L12 17l-1.4-5.6L5 10l5.6-1.4L12 3Z"/>
-            <path d="M19 16l.7 2.3L22 19l-2.3.7L19 22l-.7-2.3L16 19l2.3-.7L19 16Z"/>
-          </svg>
-
-        </div>
+        <div class="feature-icon" aria-hidden="true"><span class="feature-emoji">✨</span></div>
 
         <h3>
           AI-помощник
@@ -1446,7 +1379,7 @@ footer {
       </h2>
 
       <p>
-        Основные экраны приложения — один за другим.
+        Основные экраны приложения — последовательно, один за другим.
       </p>
 
     </div>
@@ -1462,7 +1395,7 @@ footer {
         <div class="screen-image-wrap">
 
           <img
-            src="./registration.png"
+            src="./Screenshots/registration.png"
             alt="Экран регистрации приложения"
             loading="eager"
           >
@@ -1496,7 +1429,7 @@ footer {
         <div class="screen-image-wrap">
 
           <img
-            src="./main.png"
+            src="./Screenshots/main.png"
             alt="Главный экран приложения"
             loading="eager"
           >
@@ -1530,7 +1463,7 @@ footer {
         <div class="screen-image-wrap">
 
           <img
-            src="./pressure.png"
+            src="./Screenshots/pressure.png"
             alt="Дневник артериального давления"
             loading="eager"
           >
@@ -1565,7 +1498,7 @@ footer {
         <div class="screen-image-wrap">
 
           <img
-            src="./food.png"
+            src="./Screenshots/food.png"
             alt="Дневник питания"
             loading="eager"
           >
@@ -1599,7 +1532,7 @@ footer {
         <div class="screen-image-wrap">
 
           <img
-            src="./activity.png"
+            src="./Screenshots/activity.png"
             alt="Дневник физической активности"
             loading="eager"
           >
