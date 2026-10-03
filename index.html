@@ -1,2056 +1,1907 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Давление под контролем — цифровой помощник</title>
-
-  <meta
-    name="description"
-    content="Давление под контролем — приложение для ведения дневника давления, лекарств, питания, активности и лабораторных показателей."
-  >
-
-  <meta name="theme-color" content="#167C80">
-
-  <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BBV2YR5JQ4"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4EJ2DG55QZ"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
+    function gtag(){dataLayer.push(arguments);}
 
     gtag('js', new Date());
-    gtag('config', 'G-BBV2YR5JQ4');
+    gtag('config', 'G-4EJ2DG55QZ');
   </script>
 
-  <style>
-
-    :root {
-      --primary: #167C80;
-      --primary-dark: #116568;
-      --light: #EAF7F7;
-      --background: #F8FAFB;
-      --white: #FFFFFF;
-      --text: #172B2F;
-      --muted: #66777B;
-      --warning: #D95C5C;
-      --border: #E3ECEE;
-      --shadow: 0 20px 60px rgba(23,43,47,.08);
-      --radius: 24px;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family:
-        Inter,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        Arial,
-        sans-serif;
-      background: var(--background);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    img {
-      max-width: 100%;
-    }
-
-    .screen-image-wrap {
-      min-width: 0;
-    }
-
-    .screen-image-wrap img,
-    .hero-card img {
-      min-height: 1px;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button {
-      font: inherit;
-    }
-
-    .container {
-      width: min(1180px, calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-
-    /* =========================
-       HEADER
-    ========================= */
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(255,255,255,.94);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .header-inner {
-      min-height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 30px;
-    }
-
-    .logo {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      font-size: 17px;
-      white-space: nowrap;
-    }
-
-    .logo-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      overflow: hidden;
-      flex: 0 0 44px;
-      background: transparent;
-    }
-
-    .logo-icon img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-    }
-
-    nav a {
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 600;
-      transition: .2s ease;
-    }
-
-    nav a:hover {
-      color: var(--primary);
-    }
-
-    .header-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--primary);
-      color: white;
-      padding: 12px 20px;
-      border-radius: 12px;
-      font-size: 14px;
-      font-weight: 700;
-      transition: .2s ease;
-    }
-
-    .header-button:hover {
-      background: var(--primary-dark);
-      transform: translateY(-1px);
-    }
-
-    .menu-button {
-      display: none;
-      width: 44px;
-      height: 44px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: white;
-      cursor: pointer;
-      font-size: 22px;
-    }
-
-
-    /* =========================
-       HERO
-    ========================= */
-
-    .hero {
-      padding: 90px 0 100px;
-      background:
-        radial-gradient(
-          circle at 80% 20%,
-          rgba(22,124,128,.10),
-          transparent 35%
-        );
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.05fr .95fr;
-      align-items: center;
-      gap: 80px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 13px;
-      border-radius: 999px;
-      background: var(--light);
-      color: var(--primary-dark);
-      font-size: 13px;
-      font-weight: 800;
-      margin-bottom: 20px;
-    }
-
-    .hero h1 {
-      font-size: clamp(42px, 6vw, 72px);
-      line-height: 1.04;
-      letter-spacing: -2px;
-      margin-bottom: 24px;
-      max-width: 760px;
-    }
-
-    .hero h1 span {
-      color: var(--primary);
-    }
-
-    .hero-description {
-      max-width: 650px;
-      color: var(--muted);
-      font-size: 19px;
-      line-height: 1.7;
-      margin-bottom: 32px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 52px;
-      padding: 0 23px;
-      border-radius: 14px;
-      font-weight: 800;
-      font-size: 15px;
-      transition: .2s ease;
-    }
-
-    .button-primary {
-      color: white;
-      background: var(--primary);
-    }
-
-    .button-primary:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
-    }
-
-    .button-secondary {
-      color: var(--text);
-      background: white;
-      border: 1px solid var(--border);
-    }
-
-    .button-secondary:hover {
-      border-color: var(--primary);
-      color: var(--primary);
-    }
-
-    .hero-note {
-      margin-top: 20px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-
-    /* Hero image */
-
-    .hero-visual {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .hero-card {
-      width: min(100%, 430px);
-      background: white;
-      border-radius: 34px;
-      padding: 30px;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
-    }
-
-    .hero-card img {
-      display: block;
-      width: 100%;
-      height: auto;
-      border-radius: 26px;
-    }
-
-
-    /* =========================
-       SECTIONS
-    ========================= */
-
-    section {
-      padding: 100px 0;
-    }
-
-    .section-heading {
-      max-width: 720px;
-      margin: 0 auto 55px;
-      text-align: center;
-    }
-
-    .section-heading .eyebrow {
-      margin-bottom: 14px;
-    }
-
-    .section-heading h2 {
-      font-size: clamp(32px, 4vw, 50px);
-      line-height: 1.1;
-      letter-spacing: -1.3px;
-      margin-bottom: 18px;
-    }
-
-    .section-heading p {
-      color: var(--muted);
-      font-size: 17px;
-    }
-
-
-    /* =========================
-       ADVANTAGES
-    ========================= */
-
-    .advantages {
-      background: white;
-    }
-
-    .advantages-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .advantage-card {
-      padding: 30px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: white;
-    }
-
-    .advantage-number {
-      width: 44px;
-      height: 44px;
-      border-radius: 13px;
-      background: var(--light);
-      color: var(--primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 900;
-      margin-bottom: 22px;
-    }
-
-    .advantage-card h3 {
-      font-size: 20px;
-      margin-bottom: 10px;
-    }
-
-    .advantage-card p {
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-
-    /* =========================
-       FEATURES
-    ========================= */
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .feature-card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px;
-      box-shadow: 0 10px 35px rgba(23,43,47,.035);
-      transition: .2s ease;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow);
-    }
-
-    .feature-icon {
-      width: 54px;
-      height: 54px;
-      border-radius: 16px;
-      background: var(--light);
-      color: var(--primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-
-    .feature-emoji {
-      font-size: 29px;
-      line-height: 1;
-      display: block;
-    }
-
-    .feature-card h3 {
-      font-size: 20px;
-      margin-bottom: 9px;
-    }
-
-    .feature-card p {
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-
-    /* =========================
-       HOW IT WORKS
-    ========================= */
-
-    .how {
-      background: white;
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
-    }
-
-    .step {
-      text-align: center;
-      padding: 25px;
-    }
-
-    .step-number {
-      width: 58px;
-      height: 58px;
-      border-radius: 50%;
-      margin: 0 auto 20px;
-      background: var(--primary);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 900;
-      font-size: 19px;
-    }
-
-    .step h3 {
-      margin-bottom: 9px;
-      font-size: 20px;
-    }
-
-    .step p {
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-
-    /* =========================
-       SCREENSHOTS
-    ========================= */
-
-    .screenshots {
-      background: var(--background);
-    }
-
-    .screenshots-list {
-      display: flex;
-      flex-direction: column;
-      gap: 90px;
-    }
-
-    .screen-item {
-      display: grid;
-      grid-template-columns: minmax(340px, 650px) minmax(260px, 1fr);
-      align-items: center;
-      gap: 65px;
-      max-width: 1080px;
-      margin: 0 auto;
-    }
-
-    .screen-image-wrap {
-      min-width: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: transparent;
-      border: none;
-      box-shadow: none;
-    }
-
-    .screen-image-wrap img {
-      display: block;
-      min-width: 1px;
-      min-height: 1px;
-      width: min(100%, 620px);
-      height: auto;
-      max-height: none;
-      object-fit: contain;
-      border: none;
-      box-shadow: none;
-      background: transparent;
-    }
-
-    .screen-caption {
-      padding: 10px 0;
-    }
-
-    .screen-caption .screen-label {
-      display: inline-block;
-      padding: 7px 11px;
-      border-radius: 999px;
-      background: var(--light);
-      color: var(--primary-dark);
-      font-size: 12px;
-      font-weight: 800;
-      margin-bottom: 16px;
-    }
-
-    .screen-caption h3 {
-      font-size: 31px;
-      line-height: 1.15;
-      margin-bottom: 14px;
-    }
-
-    .screen-caption p {
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.7;
-    }
-
-
-    /* =========================
-       DOWNLOAD
-    ========================= */
-
-    .download {
-      background: var(--primary);
-      color: white;
-    }
-
-    .download-grid {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      gap: 60px;
-    }
-
-    .download .eyebrow {
-      background: rgba(255,255,255,.14);
-      color: white;
-    }
-
-    .download h2 {
-      font-size: clamp(34px, 5vw, 56px);
-      line-height: 1.08;
-      margin-bottom: 20px;
-      letter-spacing: -1.5px;
-    }
-
-    .download p {
-      max-width: 650px;
-      color: rgba(255,255,255,.82);
-      font-size: 17px;
-      margin-bottom: 26px;
-    }
-
-    .download-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .download .button-primary {
-      background: white;
-      color: var(--primary-dark);
-    }
-
-    .download .button-primary:hover {
-      background: #f2ffff;
-    }
-
-    .download .button-secondary {
-      background: transparent;
-      color: white;
-      border-color: rgba(255,255,255,.35);
-    }
-
-    .qr {
-      background: white;
-      padding: 16px;
-      border-radius: 22px;
-      width: 190px;
-    }
-
-    .qr img {
-      width: 100%;
-      display: block;
-      border-radius: 10px;
-    }
-
-    .version {
-      margin-top: 16px;
-      font-size: 13px;
-      color: rgba(255,255,255,.68);
-    }
-
-
-    /* =========================
-       INSTRUCTION
-    ========================= */
-
-    .instruction {
-      background: var(--background);
-    }
-
-    .instruction-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 22px;
-    }
-
-    .instruction-card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 28px;
-    }
-
-    .instruction-card h3 {
-      margin-bottom: 12px;
-      font-size: 20px;
-    }
-
-    .instruction-card p {
-      color: var(--muted);
-    }
-
-
-    /* =========================
-       PRIVACY
-    ========================= */
-
-    .privacy {
-      background: white;
-    }
-
-    .privacy-box {
-      max-width: 850px;
-      margin: 0 auto;
-    }
-
-    .privacy-box h2 {
-      font-size: 34px;
-      margin-bottom: 20px;
-    }
-
-    .privacy-box p {
-      color: var(--muted);
-      margin-bottom: 15px;
-    }
-
-
-    /* =========================
-       FOOTER
-    ========================= */
-
-    footer {
-      background: #10282B;
-      color: white;
-      padding: 45px 0;
-    }
-
-    .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 30px;
-    }
-
-    .footer-logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 800;
-    }
-
-    .footer-logo .logo-icon {
-      width: 42px;
-      height: 42px;
-      flex-basis: 42px;
-    }
-
-    .footer-copy {
-      color: rgba(255,255,255,.6);
-      font-size: 13px;
-    }
-
-
-    /* =========================
-       MOBILE
-    ========================= */
-
-    @media (max-width: 1000px) {
-
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 50px;
-      }
-
-      .hero-content {
-        text-align: center;
-      }
-
-      .hero-description {
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .hero-buttons {
-        justify-content: center;
-      }
-
-      .hero-visual {
-        order: -1;
-      }
-
-      .advantages-grid,
-      .features-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .screen-item {
-        grid-template-columns: 1fr;
-        gap: 35px;
-        text-align: center;
-      }
-
-      .screen-image-wrap img {
-        width: min(100%, 620px);
-      }
-
-      .download-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-
-      .download p {
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .download-buttons {
-        justify-content: center;
-      }
-
-      .qr {
-        margin: 0 auto;
-      }
-    }
-
-
-    @media (max-width: 760px) {
-
-      .container {
-        width: min(100% - 28px, 1180px);
-      }
-
-      header {
-        position: relative;
-      }
-
-      .header-inner {
-        min-height: 68px;
-      }
-
-      .menu-button {
-        display: block;
-      }
-
-      nav {
-        display: none;
-        position: absolute;
-        top: 68px;
-        left: 0;
-        right: 0;
-        background: white;
-        padding: 20px;
-        border-bottom: 1px solid var(--border);
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0;
-      }
-
-      nav a {
-        padding: 13px 5px;
-      }
-
-      .header-button {
-        display: none;
-      }
-
-      .logo {
-        font-size: 15px;
-      }
-
-      .logo-icon {
-        width: 40px;
-        height: 40px;
-        flex-basis: 40px;
-      }
-
-      section {
-        padding: 70px 0;
-      }
-
-      .hero {
-        padding: 65px 0 75px;
-      }
-
-      .hero h1 {
-        font-size: clamp(38px, 12vw, 58px);
-        letter-spacing: -1.5px;
-      }
-
-      .hero-description {
-        font-size: 17px;
-      }
-
-      .advantages-grid,
-      .features-grid,
-      .steps,
-      .instruction-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .section-heading {
-        margin-bottom: 40px;
-      }
-
-      .section-heading h2 {
-        font-size: 35px;
-      }
-
-      .screenshots-list {
-        gap: 65px;
-      }
-
-      .screen-image-wrap img {
-        width: min(100%, 560px);
-      }
-
-      .screen-caption h3 {
-        font-size: 28px;
-      }
-
-      .footer-inner {
-        flex-direction: column;
-        text-align: center;
-      }
-    }
-
-
-    @media (max-width: 480px) {
-
-      .hero-buttons,
-      .download-buttons {
-        flex-direction: column;
-      }
-
-      .hero-buttons .button,
-      .download-buttons .button {
-        width: 100%;
-      }
-
-      .hero-card {
-        padding: 18px;
-        border-radius: 25px;
-      }
-
-      .feature-card,
-      .advantage-card,
-      .instruction-card {
-        padding: 23px;
-      }
-
-      .screen-image-wrap img {
-        width: 100%;
-      }
-    }
-
-  </style>
-
 </head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Давление под контролем — цифровой помощник</title>
+
+<meta
+  name="description"
+  content="Давление под контролем — приложение для ведения дневника давления, лекарств, питания, активности и лабораторных показателей."
+>
+
+<meta name="theme-color" content="#167C80">
+
+<style>
+:root {
+  --primary: #167C80;
+  --primary-dark: #116568;
+  --light: #EAF7F7;
+  --background: #F8FAFB;
+  --white: #FFFFFF;
+  --text: #172B2F;
+  --muted: #66777B;
+  --warning: #D95C5C;
+  --border: #E3ECEE;
+  --shadow: 0 20px 60px rgba(23,43,47,.08);
+  --radius: 24px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
+  background: var(--background);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+}
+
+.screen-image-wrap {
+  min-width: 0;
+}
+
+.screen-image-wrap img,
+.hero-card img {
+  min-height: 1px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+.container {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255,255,255,.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 800;
+  font-size: 17px;
+  white-space: nowrap;
+}
+
+.logo-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  overflow: hidden;
+  flex: 0 0 44px;
+  background: transparent;
+}
+
+.logo-icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+nav a {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+  transition: .2s ease;
+}
+
+nav a:hover {
+  color: var(--primary);
+}
+
+.header-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  transition: .2s ease;
+}
+
+.header-button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+.menu-button {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: white;
+  cursor: pointer;
+  font-size: 22px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+  padding: 90px 0 100px;
+  background:
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(22,124,128,.10),
+      transparent 35%
+    );
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  align-items: center;
+  gap: 80px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 13px;
+  border-radius: 999px;
+  background: var(--light);
+  color: var(--primary-dark);
+  font-size: 13px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: clamp(42px, 6vw, 72px);
+  line-height: 1.04;
+  letter-spacing: -2px;
+  margin-bottom: 24px;
+  max-width: 760px;
+}
+
+.hero h1 span {
+  color: var(--primary);
+}
+
+.hero-description {
+  max-width: 650px;
+  color: var(--muted);
+  font-size: 19px;
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 23px;
+  border-radius: 14px;
+  font-weight: 800;
+  font-size: 15px;
+  transition: .2s ease;
+}
+
+.button-primary {
+  color: white;
+  background: var(--primary);
+}
+
+.button-primary:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.button-secondary {
+  color: var(--text);
+  background: white;
+  border: 1px solid var(--border);
+}
+
+.button-secondary:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.hero-note {
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Hero image */
+
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-card {
+  width: min(100%, 430px);
+  background: white;
+  border-radius: 34px;
+  padding: 30px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.hero-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 26px;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+section {
+  padding: 100px 0;
+}
+
+.section-heading {
+  max-width: 720px;
+  margin: 0 auto 55px;
+  text-align: center;
+}
+
+.section-heading .eyebrow {
+  margin-bottom: 14px;
+}
+
+.section-heading h2 {
+  font-size: clamp(32px, 4vw, 50px);
+  line-height: 1.1;
+  letter-spacing: -1.3px;
+  margin-bottom: 18px;
+}
+
+.section-heading p {
+  color: var(--muted);
+  font-size: 17px;
+}
+
+/* =========================
+   ADVANTAGES
+========================= */
+
+.advantages {
+  background: white;
+}
+
+.advantages-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.advantage-card {
+  padding: 30px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: white;
+}
+
+.advantage-number {
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
+  background: var(--light);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  margin-bottom: 22px;
+}
+
+.advantage-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.advantage-card p {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+/* =========================
+   FEATURES
+========================= */
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.feature-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: 0 10px 35px rgba(23,43,47,.035);
+  transition: .2s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.feature-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  background: var(--light);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.feature-emoji {
+  font-size: 29px;
+  line-height: 1;
+  display: block;
+}
+
+.feature-card h3 {
+  font-size: 20px;
+  margin-bottom: 9px;
+}
+
+.feature-card p {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+/* =========================
+   HOW IT WORKS
+========================= */
+
+.how {
+  background: white;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.step {
+  text-align: center;
+  padding: 25px;
+}
+
+.step-number {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  background: var(--primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 19px;
+}
+
+.step h3 {
+  margin-bottom: 9px;
+  font-size: 20px;
+}
+
+.step p {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+/* =========================
+   SCREENSHOTS
+========================= */
+
+.screenshots {
+  background: var(--background);
+}
+
+.screenshots-list {
+  display: flex;
+  flex-direction: column;
+  gap: 90px;
+}
+
+.screen-item {
+  display: grid;
+  grid-template-columns: minmax(340px, 650px) minmax(260px, 1fr);
+  align-items: center;
+  gap: 65px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+
+.screen-image-wrap {
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.screen-image-wrap img {
+  display: block;
+  min-width: 1px;
+  min-height: 1px;
+  width: min(100%, 620px);
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+.screen-caption {
+  padding: 10px 0;
+}
+
+.screen-caption .screen-label {
+  display: inline-block;
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: var(--light);
+  color: var(--primary-dark);
+  font-size: 12px;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.screen-caption h3 {
+  font-size: 31px;
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+
+.screen-caption p {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* =========================
+   DOWNLOAD
+========================= */
+
+.download {
+  background: var(--primary);
+  color: white;
+}
+
+.download-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 60px;
+}
+
+.download .eyebrow {
+  background: rgba(255,255,255,.14);
+  color: white;
+}
+
+.download h2 {
+  font-size: clamp(34px, 5vw, 56px);
+  line-height: 1.08;
+  margin-bottom: 20px;
+  letter-spacing: -1.5px;
+}
+
+.download p {
+  max-width: 650px;
+  color: rgba(255,255,255,.82);
+  font-size: 17px;
+  margin-bottom: 26px;
+}
+
+.download-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.download .button-primary {
+  background: white;
+  color: var(--primary-dark);
+}
+
+.download .button-primary:hover {
+  background: #f2ffff;
+}
+
+.download .button-secondary {
+  background: transparent;
+  color: white;
+  border-color: rgba(255,255,255,.35);
+}
+
+.qr {
+  background: white;
+  padding: 16px;
+  border-radius: 22px;
+  width: 190px;
+}
+
+.qr img {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+}
+
+.version {
+  margin-top: 16px;
+  font-size: 13px;
+  color: rgba(255,255,255,.68);
+}
+
+/* =========================
+   EMULATOR
+========================= */
+
+.emulator {
+  background: white;
+}
+
+.emulator-box {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 40px;
+  padding: 45px;
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  background: var(--background);
+}
+
+.emulator-box h2 {
+  font-size: 34px;
+  margin-bottom: 12px;
+}
+
+.emulator-box p {
+  color: var(--muted);
+  max-width: 680px;
+}
+
+/* =========================
+   INSTRUCTION
+========================= */
+
+.instruction {
+  background: var(--background);
+}
+
+.instruction-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+.instruction-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 28px;
+}
+
+.instruction-card h3 {
+  margin-bottom: 12px;
+  font-size: 20px;
+}
+
+.instruction-card p {
+  color: var(--muted);
+}
+
+/* =========================
+   PRIVACY
+========================= */
+
+.privacy {
+  background: white;
+}
+
+.privacy-box {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.privacy-box h2 {
+  font-size: 34px;
+  margin-bottom: 20px;
+}
+
+.privacy-box p {
+  color: var(--muted);
+  margin-bottom: 15px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+  background: #10282B;
+  color: white;
+  padding: 45px 0;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 800;
+}
+
+.footer-logo .logo-icon {
+  width: 42px;
+  height: 42px;
+  flex-basis: 42px;
+}
+
+.footer-copy {
+  color: rgba(255,255,255,.6);
+  font-size: 13px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 1000px) {
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .hero-content {
+    text-align: center;
+  }
+
+  .hero-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-visual {
+    order: -1;
+  }
+
+  .advantages-grid,
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .screen-item {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    text-align: center;
+  }
+
+  .screen-image-wrap img {
+    width: min(100%, 620px);
+  }
+
+  .download-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .download p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .download-buttons {
+    justify-content: center;
+  }
+
+  .qr {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 760px) {
+
+  .container {
+    width: min(100% - 28px, 1180px);
+  }
+
+  header {
+    position: relative;
+  }
+
+  .header-inner {
+    min-height: 68px;
+  }
+
+  .menu-button {
+    display: block;
+  }
+
+  nav {
+    display: none;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  nav a {
+    padding: 13px 5px;
+  }
+
+  .header-button {
+    display: none;
+  }
+
+  .logo {
+    font-size: 15px;
+  }
+
+  .logo-icon {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+  }
+
+  section {
+    padding: 70px 0;
+  }
+
+  .hero {
+    padding: 65px 0 75px;
+  }
+
+  .hero h1 {
+    font-size: clamp(38px, 12vw, 58px);
+    letter-spacing: -1.5px;
+  }
+
+  .hero-description {
+    font-size: 17px;
+  }
+
+  .advantages-grid,
+  .features-grid,
+  .steps,
+  .instruction-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading {
+    margin-bottom: 40px;
+  }
+
+  .section-heading h2 {
+    font-size: 35px;
+  }
+
+  .screenshots-list {
+    gap: 65px;
+  }
+
+  .screen-image-wrap img {
+    width: min(100%, 560px);
+  }
+
+  .screen-caption h3 {
+    font-size: 28px;
+  }
+
+  .emulator-box {
+    grid-template-columns: 1fr;
+    padding: 30px 24px;
+    text-align: center;
+  }
+
+  .emulator-box .button {
+    width: 100%;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .hero-buttons,
+  .download-buttons {
+    flex-direction: column;
+  }
+
+  .hero-buttons .button,
+  .download-buttons .button {
+    width: 100%;
+  }
+
+  .hero-card {
+    padding: 18px;
+    border-radius: 25px;
+  }
+
+  .feature-card,
+  .advantage-card,
+  .instruction-card {
+    padding: 23px;
+  }
+
+  .screen-image-wrap img {
+    width: 100%;
+  }
+}
+</style>
+</head>
 
 <body>
 
+<!-- =========================
+     HEADER
+========================= -->
 
-  <!-- =========================
-       HEADER
-  ========================= -->
+<header>
+  <div class="container header-inner">
 
-  <header>
+    <a href="#top" class="logo">
+      <span class="logo-icon">
+        <img src="./app-icon.png" alt="Иконка приложения">
+      </span>
 
-    <div class="container header-inner">
+      <span>Давление под контролем</span>
+    </a>
 
-      <a href="#top" class="logo">
+    <nav id="mainNav">
+      <a href="#advantages">Преимущества</a>
+      <a href="#features">Возможности</a>
+      <a href="#screenshots">Интерфейс</a>
+      <a href="#download">Скачать</a>
+    </nav>
 
-        <span class="logo-icon">
+    <a href="#download" class="header-button">
+      Скачать приложение
+    </a>
+
+    <button
+      class="menu-button"
+      type="button"
+      onclick="toggleMenu()"
+      aria-label="Открыть меню"
+    >
+      ☰
+    </button>
+
+  </div>
+</header>
+
+
+<main id="top">
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+  <div class="container hero-grid">
+
+    <div class="hero-content">
+
+      <div class="eyebrow">
+        Цифровой помощник
+      </div>
+
+      <h1>
+        Давление
+        <span>под контролем</span>
+      </h1>
+
+      <p class="hero-description">
+        Удобное приложение для ежедневного контроля давления,
+        пульса, лекарств, питания, физической активности
+        и других важных показателей здоровья.
+      </p>
+
+      <div class="hero-buttons">
+
+        <a href="#download" class="button button-primary">
+          Скачать приложение
+        </a>
+
+        <a href="#screenshots" class="button button-secondary">
+          Посмотреть интерфейс
+        </a>
+
+      </div>
+
+      <p class="hero-note">
+        Для Android • APK
+      </p>
+
+    </div>
+
+
+    <div class="hero-visual">
+
+      <div class="hero-card">
+
+        <img
+          src="./Screenshots/main.png"
+          alt="Главный экран приложения «Давление под контролем»"
+        >
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     ADVANTAGES
+========================= -->
+
+<section class="advantages" id="advantages">
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <div class="eyebrow">
+        Почему приложение
+      </div>
+
+      <h2>
+        Всё важное — в одном месте
+      </h2>
+
+      <p>
+        Приложение помогает системно фиксировать
+        показатели и события, связанные с вашим здоровьем.
+      </p>
+
+    </div>
+
+
+    <div class="advantages-grid">
+
+      <article class="advantage-card">
+
+        <div class="advantage-number">
+          01
+        </div>
+
+        <h3>
+          Удобный дневник
+        </h3>
+
+        <p>
+          Записывайте измерения давления и пульса,
+          чтобы сохранять историю наблюдений.
+        </p>
+
+      </article>
+
+
+      <article class="advantage-card">
+
+        <div class="advantage-number">
+          02
+        </div>
+
+        <h3>
+          Полная картина
+        </h3>
+
+        <p>
+          В одном приложении можно вести записи
+          о лекарствах, питании, активности
+          и лабораторных показателях.
+        </p>
+
+      </article>
+
+
+      <article class="advantage-card">
+
+        <div class="advantage-number">
+          03
+        </div>
+
+        <h3>
+          Всё под рукой
+        </h3>
+
+        <p>
+          Информация организована так, чтобы
+          нужные данные было удобно найти
+          в любой момент.
+        </p>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     FEATURES
+========================= -->
+
+<section class="features" id="features">
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <div class="eyebrow">
+        Возможности
+      </div>
+
+      <h2>
+        Что можно контролировать
+      </h2>
+
+      <p>
+        Основные разделы приложения для ежедневного
+        наблюдения и ведения записей.
+      </p>
+
+    </div>
+
+
+    <div class="features-grid">
+
+
+      <!-- Давление -->
+
+      <article class="feature-card">
+
+        <div class="feature-icon" aria-hidden="true"><span class="feature-emoji">💓</span></div>
+
+        <h3>
+          Давление и пульс
+        </h3>
+
+        <p>
+          Фиксируйте показатели артериального давления
+          и пульса и сохраняйте историю измерений.
+        </p>
+
+      </article>
+
+
+      <!-- Лекарства -->
+
+      <article class="feature-card">
+
+        <div class="feature-icon" aria-hidden="true"><span class="feature-emoji">💊</span></div>
+
+        <h3>
+          Лекарства
+        </h3>
+
+        <p>
+          Ведите список принимаемых препаратов
+          и фиксируйте необходимую информацию.
+        </p>
+
+      </article>
+
+
+      <!-- Питание -->
+
+      <article class="feature-card">
+
+        <div class="feature-icon" aria-hidden="true"><span class="feature-emoji">🍽️</span></div>
+
+        <h3>
+          Питание
+        </h3>
+
+        <p>
+          Записывайте информацию о питании
+          и формируйте собственный дневник.
+        </p>
+
+      </article>
+
+
+      <!-- Физическая активность -->
+
+      <article class="feature-card">
+
+        <div class="feature-icon" aria-hidden="true"><span class="feature-emoji">🏋️</span></div>
+
+        <h3>
+          Физическая активность
+        </h3>
+
+        <p>
+          Фиксируйте физическую активность
+          и следите за регулярностью занятий.
+        </p>
+
+      </article>
+
+
+      <!-- Лабораторные показатели -->
+
+      <article class="feature-card">
+
+        <div class="feature-icon" aria-hidden="true"><span class="feature-emoji">🧪</span></div>
+
+        <h3>
+          Лабораторные показатели
+        </h3>
+
+        <p>
+          Храните результаты лабораторных исследований
+          и другую важную информацию.
+        </p>
+
+      </article>
+
+
+      <!-- AI -->
+
+      <article class="feature-card">
+
+        <div class="feature-icon" aria-hidden="true"><span class="feature-emoji">✨</span></div>
+
+        <h3>
+          AI-помощник
+        </h3>
+
+        <p>
+          Используйте интеллектуальные возможности
+          приложения для работы с информацией.
+        </p>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     HOW IT WORKS
+========================= -->
+
+<section class="how">
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <div class="eyebrow">
+        Как это работает
+      </div>
+
+      <h2>
+        Начать пользоваться просто
+      </h2>
+
+      <p>
+        Несколько простых шагов — и основные
+        показатели будут собраны в одном месте.
+      </p>
+
+    </div>
+
+
+    <div class="steps">
+
+
+      <article class="step">
+
+        <div class="step-number">
+          1
+        </div>
+
+        <h3>
+          Установите приложение
+        </h3>
+
+        <p>
+          Скачайте APK-файл и установите
+          приложение на Android-устройство.
+        </p>
+
+      </article>
+
+
+      <article class="step">
+
+        <div class="step-number">
+          2
+        </div>
+
+        <h3>
+          Вносите данные
+        </h3>
+
+        <p>
+          Добавляйте измерения давления,
+          питание, активность, лекарства
+          и другие записи.
+        </p>
+
+      </article>
+
+
+      <article class="step">
+
+        <div class="step-number">
+          3
+        </div>
+
+        <h3>
+          Следите за историей
+        </h3>
+
+        <p>
+          Используйте накопленные записи
+          для наблюдения за изменениями
+          показателей.
+        </p>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     SCREENSHOTS
+========================= -->
+
+<section class="screenshots" id="screenshots">
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <div class="eyebrow">
+        Интерфейс
+      </div>
+
+      <h2>
+        Посмотрите приложение изнутри
+      </h2>
+
+      <p>
+        Основные экраны приложения — последовательно, один за другим.
+      </p>
+
+    </div>
+
+
+    <div class="screenshots-list">
+
+
+      <!-- 1. Регистрация -->
+
+      <article class="screen-item">
+
+        <div class="screen-image-wrap">
 
           <img
-            src="./app-icon.png"
-            alt="Иконка приложения"
+            src="./Screenshots/registration.png"
+            alt="Экран регистрации приложения"
+            loading="eager"
           >
 
-        </span>
+        </div>
 
-        <span>Давление под контролем</span>
+        <div class="screen-caption">
 
-      </a>
+          <div class="screen-label">
+            Начало работы
+          </div>
 
+          <h3>
+            Экран регистрации
+          </h3>
 
-      <nav id="mainNav">
+          <p>
+            Первый экран приложения для регистрации
+            и начала работы.
+          </p>
 
-        <a href="#advantages">
-          Преимущества
-        </a>
+        </div>
 
-        <a href="#features">
-          Возможности
-        </a>
-
-        <a href="#screenshots">
-          Интерфейс
-        </a>
-
-        <a href="#download">
-          Скачать
-        </a>
-
-      </nav>
+      </article>
 
 
-      <a
-        href="#download"
-        class="header-button"
-      >
+      <!-- 2. Главный экран -->
+
+      <article class="screen-item">
+
+        <div class="screen-image-wrap">
+
+          <img
+            src="./Screenshots/main.png"
+            alt="Главный экран приложения"
+            loading="eager"
+          >
+
+        </div>
+
+        <div class="screen-caption">
+
+          <div class="screen-label">
+            Главный экран
+          </div>
+
+          <h3>
+            Главный экран
+          </h3>
+
+          <p>
+            Основная информация и быстрый доступ
+            к ключевым разделам приложения.
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <!-- 3. Давление -->
+
+      <article class="screen-item">
+
+        <div class="screen-image-wrap">
+
+          <img
+            src="./Screenshots/pressure.png"
+            alt="Дневник артериального давления"
+            loading="eager"
+          >
+
+        </div>
+
+        <div class="screen-caption">
+
+          <div class="screen-label">
+            Дневник
+          </div>
+
+          <h3>
+            Дневник давления
+          </h3>
+
+          <p>
+            Экран для внесения и просмотра
+            показателей артериального давления
+            и пульса.
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <!-- 4. Питание -->
+
+      <article class="screen-item">
+
+        <div class="screen-image-wrap">
+
+          <img
+            src="./Screenshots/food.png"
+            alt="Дневник питания"
+            loading="eager"
+          >
+
+        </div>
+
+        <div class="screen-caption">
+
+          <div class="screen-label">
+            Питание
+          </div>
+
+          <h3>
+            Дневник питания
+          </h3>
+
+          <p>
+            Раздел для ведения записей
+            о питании в течение дня.
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <!-- 5. Активность -->
+
+      <article class="screen-item">
+
+        <div class="screen-image-wrap">
+
+          <img
+            src="./Screenshots/activity.png"
+            alt="Дневник физической активности"
+            loading="eager"
+          >
+
+        </div>
+
+        <div class="screen-caption">
+
+          <div class="screen-label">
+            Активность
+          </div>
+
+          <h3>
+            Дневник активности
+          </h3>
+
+          <p>
+            Раздел для фиксации физической
+            активности и занятий.
+          </p>
+
+        </div>
+
+      </article>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     DOWNLOAD
+========================= -->
+
+<section class="download" id="download">
+
+  <div class="container download-grid">
+
+    <div>
+
+      <div class="eyebrow">
         Скачать приложение
-      </a>
+      </div>
+
+      <h2>
+        Давление под контролем
+      </h2>
+
+      <p>
+        Установите приложение на Android
+        и начните вести собственный дневник
+        показателей и наблюдений.
+      </p>
+
+      <div class="download-buttons">
+
+        <a
+          href="./app.apk"
+          class="button button-primary"
+          download
+        >
+          Скачать APK
+        </a>
+
+      </div>
+
+      <div class="version">
+        Версия приложения доступна в формате APK
+      </div>
+
+    </div>
 
 
-      <button
-        class="menu-button"
-        type="button"
-        onclick="toggleMenu()"
-        aria-label="Открыть меню"
+    <div class="qr">
+
+      <img
+        src="./qr.png"
+        alt="QR-код для скачивания приложения"
       >
-        ☰
-      </button>
 
     </div>
 
-  </header>
+  </div>
+
+</section>
 
 
+<!-- =========================
+     EMULATOR
+========================= -->
 
-  <main id="top">
+<section class="emulator">
 
+  <div class="container">
 
-    <!-- =========================
-         HERO
-    ========================= -->
+    <div class="emulator-box">
 
-    <section class="hero">
+      <div>
 
-      <div class="container hero-grid">
+        <h2>
+          Версия для компьютера
+        </h2>
 
-
-        <div class="hero-content">
-
-          <div class="eyebrow">
-            Цифровой помощник
-          </div>
-
-
-          <h1>
-            Давление
-            <span>под контролем</span>
-          </h1>
-
-
-          <p class="hero-description">
-            Удобное приложение для ежедневного контроля давления,
-            пульса, лекарств, питания, физической активности
-            и других важных показателей здоровья.
-          </p>
-
-
-          <div class="hero-buttons">
-
-            <a
-              href="#download"
-              class="button button-primary"
-            >
-              Скачать приложение
-            </a>
-
-
-            <a
-              href="#screenshots"
-              class="button button-secondary"
-            >
-              Посмотреть интерфейс
-            </a>
-
-          </div>
-
-
-          <p class="hero-note">
-            Для Android • APK
-          </p>
-
-        </div>
-
-
-
-        <div class="hero-visual">
-
-          <div class="hero-card">
-
-            <img
-              src="./Screenshots/main.png"
-              alt="Главный экран приложения «Давление под контролем»"
-            >
-
-          </div>
-
-        </div>
+        <p>
+          Если вам необходимо использовать приложение
+          на компьютере, можно воспользоваться
+          подготовленной версией.
+        </p>
 
       </div>
 
-    </section>
+      <div>
 
-
-
-    <!-- =========================
-         ADVANTAGES
-    ========================= -->
-
-    <section
-      class="advantages"
-      id="advantages"
-    >
-
-      <div class="container">
-
-
-        <div class="section-heading">
-
-          <div class="eyebrow">
-            Почему приложение
-          </div>
-
-
-          <h2>
-            Всё важное — в одном месте
-          </h2>
-
-
-          <p>
-            Приложение помогает системно фиксировать
-            показатели и события, связанные с вашим здоровьем.
-          </p>
-
-        </div>
-
-
-
-        <div class="advantages-grid">
-
-
-          <article class="advantage-card">
-
-            <div class="advantage-number">
-              01
-            </div>
-
-
-            <h3>
-              Удобный дневник
-            </h3>
-
-
-            <p>
-              Записывайте измерения давления и пульса,
-              чтобы сохранять историю наблюдений.
-            </p>
-
-          </article>
-
-
-
-          <article class="advantage-card">
-
-            <div class="advantage-number">
-              02
-            </div>
-
-
-            <h3>
-              Полная картина
-            </h3>
-
-
-            <p>
-              В одном приложении можно вести записи
-              о лекарствах, питании, активности
-              и лабораторных показателях.
-            </p>
-
-          </article>
-
-
-
-          <article class="advantage-card">
-
-            <div class="advantage-number">
-              03
-            </div>
-
-
-            <h3>
-              Всё под рукой
-            </h3>
-
-
-            <p>
-              Информация организована так, чтобы
-              нужные данные было удобно найти
-              в любой момент.
-            </p>
-
-          </article>
-
-
-        </div>
+        <a
+          href="./computer-file.exe"
+          class="button button-primary"
+          download
+        >
+          Скачать для компьютера
+        </a>
 
       </div>
 
-    </section>
+    </div>
 
+  </div>
 
+</section>
 
-    <!-- =========================
-         FEATURES
-    ========================= -->
 
-    <section
-      class="features"
-      id="features"
-    >
+<!-- =========================
+     INSTRUCTION
+========================= -->
 
-      <div class="container">
+<section class="instruction">
 
+  <div class="container">
 
-        <div class="section-heading">
+    <div class="section-heading">
 
-          <div class="eyebrow">
-            Возможности
-          </div>
-
-
-          <h2>
-            Что можно контролировать
-          </h2>
-
-
-          <p>
-            Основные разделы приложения для ежедневного
-            наблюдения и ведения записей.
-          </p>
-
-        </div>
-
-
-
-        <div class="features-grid">
-
-
-          <!-- Давление -->
-
-          <article class="feature-card">
-
-            <div
-              class="feature-icon"
-              aria-hidden="true"
-            >
-              <span class="feature-emoji">
-                💓
-              </span>
-            </div>
-
-
-            <h3>
-              Давление и пульс
-            </h3>
-
-
-            <p>
-              Фиксируйте показатели артериального давления
-              и пульса и сохраняйте историю измерений.
-            </p>
-
-          </article>
-
-
-
-          <!-- Лекарства -->
-
-          <article class="feature-card">
-
-            <div
-              class="feature-icon"
-              aria-hidden="true"
-            >
-              <span class="feature-emoji">
-                💊
-              </span>
-            </div>
-
-
-            <h3>
-              Лекарства
-            </h3>
-
-
-            <p>
-              Ведите список принимаемых препаратов
-              и фиксируйте необходимую информацию.
-            </p>
-
-          </article>
-
-
-
-          <!-- Питание -->
-
-          <article class="feature-card">
-
-            <div
-              class="feature-icon"
-              aria-hidden="true"
-            >
-              <span class="feature-emoji">
-                🍽️
-              </span>
-            </div>
-
-
-            <h3>
-              Питание
-            </h3>
-
-
-            <p>
-              Записывайте информацию о питании
-              и формируйте собственный дневник.
-            </p>
-
-          </article>
-
-
-
-          <!-- Физическая активность -->
-
-          <article class="feature-card">
-
-            <div
-              class="feature-icon"
-              aria-hidden="true"
-            >
-              <span class="feature-emoji">
-                🏋️
-              </span>
-            </div>
-
-
-            <h3>
-              Физическая активность
-            </h3>
-
-
-            <p>
-              Фиксируйте физическую активность
-              и следите за регулярностью занятий.
-            </p>
-
-          </article>
-
-
-
-          <!-- Лабораторные показатели -->
-
-          <article class="feature-card">
-
-            <div
-              class="feature-icon"
-              aria-hidden="true"
-            >
-              <span class="feature-emoji">
-                🧪
-              </span>
-            </div>
-
-
-            <h3>
-              Лабораторные показатели
-            </h3>
-
-
-            <p>
-              Храните результаты лабораторных исследований
-              и другую важную информацию.
-            </p>
-
-          </article>
-
-
-
-          <!-- AI -->
-
-          <article class="feature-card">
-
-            <div
-              class="feature-icon"
-              aria-hidden="true"
-            >
-              <span class="feature-emoji">
-                ✨
-              </span>
-            </div>
-
-
-            <h3>
-              AI-помощник
-            </h3>
-
-
-            <p>
-              Используйте интеллектуальные возможности
-              приложения для работы с информацией.
-            </p>
-
-          </article>
-
-
-        </div>
-
+      <div class="eyebrow">
+        Инструкция
       </div>
 
-    </section>
+      <h2>
+        Как начать работу
+      </h2>
 
+      <p>
+        Основные шаги для установки и использования приложения.
+      </p>
 
+    </div>
 
-    <!-- =========================
-         HOW IT WORKS
-    ========================= -->
 
-    <section class="how">
+    <div class="instruction-grid">
 
-      <div class="container">
 
+      <article class="instruction-card">
 
-        <div class="section-heading">
+        <h3>
+          Установка APK
+        </h3>
 
-          <div class="eyebrow">
-            Как это работает
-          </div>
+        <p>
+          Скачайте файл приложения, откройте его
+          на Android-устройстве и выполните установку.
+          Если система запросит разрешение,
+          разрешите установку приложения из используемого
+          источника.
+        </p>
 
+      </article>
 
-          <h2>
-            Начать пользоваться просто
-          </h2>
 
+      <article class="instruction-card">
 
-          <p>
-            Несколько простых шагов — и основные
-            показатели будут собраны в одном месте.
-          </p>
+        <h3>
+          Первый запуск
+        </h3>
 
-        </div>
+        <p>
+          Откройте приложение и пройдите регистрацию.
+          После этого вы сможете перейти к основным
+          разделам и добавлять необходимые данные.
+        </p>
 
+      </article>
 
 
-        <div class="steps">
+      <article class="instruction-card">
 
+        <h3>
+          Ведение дневника
+        </h3>
 
-          <article class="step">
+        <p>
+          Регулярно добавляйте новые измерения,
+          записи о питании, активности и лекарствах,
+          чтобы история оставалась актуальной.
+        </p>
 
-            <div class="step-number">
-              1
-            </div>
+      </article>
 
 
-            <h3>
-              Установите приложение
-            </h3>
+      <article class="instruction-card">
 
+        <h3>
+          Работа с данными
+        </h3>
 
-            <p>
-              Скачайте APK-файл и установите
-              приложение на Android-устройство.
-            </p>
+        <p>
+          Используйте сохранённую информацию
+          для наблюдения за динамикой показателей
+          и подготовки данных к обсуждению
+          со специалистом.
+        </p>
 
-          </article>
-
-
-
-          <article class="step">
-
-            <div class="step-number">
-              2
-            </div>
-
-
-            <h3>
-              Вносите данные
-            </h3>
-
-
-            <p>
-              Добавляйте измерения давления,
-              питание, активность, лекарства
-              и другие записи.
-            </p>
-
-          </article>
-
-
-
-          <article class="step">
-
-            <div class="step-number">
-              3
-            </div>
-
-
-            <h3>
-              Следите за историей
-            </h3>
-
-
-            <p>
-              Используйте накопленные записи
-              для наблюдения за изменениями
-              показателей.
-            </p>
-
-          </article>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         SCREENSHOTS
-    ========================= -->
-
-    <section
-      class="screenshots"
-      id="screenshots"
-    >
-
-      <div class="container">
-
-
-        <div class="section-heading">
-
-          <div class="eyebrow">
-            Интерфейс
-          </div>
-
-
-          <h2>
-            Посмотрите приложение изнутри
-          </h2>
-
-
-          <p>
-            Основные экраны приложения — последовательно,
-            один за другим.
-          </p>
-
-        </div>
-
-
-
-        <div class="screenshots-list">
-
-
-          <!-- 1. Регистрация -->
-
-          <article class="screen-item">
-
-            <div class="screen-image-wrap">
-
-              <img
-                src="./Screenshots/registration.png"
-                alt="Экран регистрации приложения"
-                loading="eager"
-              >
-
-            </div>
-
-
-            <div class="screen-caption">
-
-              <div class="screen-label">
-                Начало работы
-              </div>
-
-
-              <h3>
-                Экран регистрации
-              </h3>
-
-
-              <p>
-                Первый экран приложения для регистрации
-                и начала работы.
-              </p>
-
-            </div>
-
-          </article>
-
-
-
-          <!-- 2. Главный экран -->
-
-          <article class="screen-item">
-
-            <div class="screen-image-wrap">
-
-              <img
-                src="./Screenshots/main.png"
-                alt="Главный экран приложения"
-                loading="eager"
-              >
-
-            </div>
-
-
-            <div class="screen-caption">
-
-              <div class="screen-label">
-                Главный экран
-              </div>
-
-
-              <h3>
-                Главный экран
-              </h3>
-
-
-              <p>
-                Основная информация и быстрый доступ
-                к ключевым разделам приложения.
-              </p>
-
-            </div>
-
-          </article>
-
-
-
-          <!-- 3. Давление -->
-
-          <article class="screen-item">
-
-            <div class="screen-image-wrap">
-
-              <img
-                src="./Screenshots/pressure.png"
-                alt="Дневник артериального давления"
-                loading="eager"
-              >
-
-            </div>
-
-
-            <div class="screen-caption">
-
-              <div class="screen-label">
-                Дневник
-              </div>
-
-
-              <h3>
-                Дневник давления
-              </h3>
-
-
-              <p>
-                Экран для внесения и просмотра
-                показателей артериального давления
-                и пульса.
-              </p>
-
-            </div>
-
-          </article>
-
-
-
-          <!-- 4. Питание -->
-
-          <article class="screen-item">
-
-            <div class="screen-image-wrap">
-
-              <img
-                src="./Screenshots/food.png"
-                alt="Дневник питания"
-                loading="eager"
-              >
-
-            </div>
-
-
-            <div class="screen-caption">
-
-              <div class="screen-label">
-                Питание
-              </div>
-
-
-              <h3>
-                Дневник питания
-              </h3>
-
-
-              <p>
-                Раздел для ведения записей
-                о питании в течение дня.
-              </p>
-
-            </div>
-
-          </article>
-
-
-
-          <!-- 5. Активность -->
-
-          <article class="screen-item">
-
-            <div class="screen-image-wrap">
-
-              <img
-                src="./Screenshots/activity.png"
-                alt="Дневник физической активности"
-                loading="eager"
-              >
-
-            </div>
-
-
-            <div class="screen-caption">
-
-              <div class="screen-label">
-                Активность
-              </div>
-
-
-              <h3>
-                Дневник активности
-              </h3>
-
-
-              <p>
-                Раздел для фиксации физической
-                активности и занятий.
-              </p>
-
-            </div>
-
-          </article>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         DOWNLOAD
-    ========================= -->
-
-    <section
-      class="download"
-      id="download"
-    >
-
-      <div class="container download-grid">
-
-
-        <div>
-
-          <div class="eyebrow">
-            Скачать приложение
-          </div>
-
-
-          <h2>
-            Давление под контролем
-          </h2>
-
-
-          <p>
-            Установите приложение на Android
-            и начните вести собственный дневник
-            показателей и наблюдений.
-          </p>
-
-
-          <div class="download-buttons">
-
-            <a
-              href="./app.apk"
-              class="button button-primary"
-              download
-            >
-              Скачать APK
-            </a>
-
-          </div>
-
-
-          <div class="version">
-            Версия приложения доступна в формате APK
-          </div>
-
-        </div>
-
-
-
-        <div class="qr">
-
-          <img
-            src="./qr.png"
-            alt="QR-код для скачивания приложения"
-          >
-
-        </div>
-
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         INSTRUCTION
-    ========================= -->
-
-    <section class="instruction">
-
-      <div class="container">
-
-
-        <div class="section-heading">
-
-          <div class="eyebrow">
-            Инструкция
-          </div>
-
-
-          <h2>
-            Как начать работу
-          </h2>
-
-
-          <p>
-            Основные шаги для установки и использования приложения.
-          </p>
-
-        </div>
-
-
-
-        <div class="instruction-grid">
-
-
-          <article class="instruction-card">
-
-            <h3>
-              Установка APK
-            </h3>
-
-
-            <p>
-              Скачайте файл приложения, откройте его
-              на Android-устройстве и выполните установку.
-              Если система запросит разрешение,
-              разрешите установку приложения из используемого
-              источника.
-            </p>
-
-          </article>
-
-
-
-          <article class="instruction-card">
-
-            <h3>
-              Первый запуск
-            </h3>
-
-
-            <p>
-              Откройте приложение и пройдите регистрацию.
-              После этого вы сможете перейти к основным
-              разделам и добавлять необходимые данные.
-            </p>
-
-          </article>
-
-
-
-          <article class="instruction-card">
-
-            <h3>
-              Ведение дневника
-            </h3>
-
-
-            <p>
-              Регулярно добавляйте новые измерения,
-              записи о питании, активности и лекарствах,
-              чтобы история оставалась актуальной.
-            </p>
-
-          </article>
-
-
-
-          <article class="instruction-card">
-
-            <h3>
-              Работа с данными
-            </h3>
-
-
-            <p>
-              Используйте сохранённую информацию
-              для наблюдения за динамикой показателей
-              и подготовки данных к обсуждению
-              со специалистом.
-            </p>
-
-          </article>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         PRIVACY
-    ========================= -->
-
-    <section class="privacy">
-
-      <div class="container">
-
-
-        <div class="privacy-box">
-
-          <h2>
-            Важная информация
-          </h2>
-
-
-          <p>
-            Приложение предназначено для ведения записей
-            и наблюдения за показателями здоровья.
-          </p>
-
-
-          <p>
-            Информация в приложении не заменяет консультацию
-            врача, медицинское обследование или назначенное
-            специалистом лечение.
-          </p>
-
-
-          <p>
-            При наличии вопросов о состоянии здоровья,
-            результатах измерений или при ухудшении самочувствия
-            необходимо обратиться к медицинскому специалисту.
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-  </main>
-
-
-
-  <!-- =========================
-       FOOTER
-  ========================= -->
-
-  <footer>
-
-    <div class="container footer-inner">
-
-
-      <div class="footer-logo">
-
-        <span class="logo-icon">
-
-          <img
-            src="./app-icon.png"
-            alt="Иконка приложения"
-          >
-
-        </span>
-
-
-        <span>
-          Давление под контролем
-        </span>
-
-      </div>
-
-
-      <div class="footer-copy">
-        © 2026 Давление под контролем
-      </div>
+      </article>
 
 
     </div>
 
-  </footer>
+  </div>
+
+</section>
 
 
+<!-- =========================
+     PRIVACY
+========================= -->
 
-  <script>
+<section class="privacy">
 
-    function toggleMenu() {
+  <div class="container">
 
-      const nav = document.getElementById("mainNav");
+    <div class="privacy-box">
 
-      if (nav.style.display === "flex") {
+      <h2>
+        Важная информация
+      </h2>
 
-        nav.style.display = "none";
+      <p>
+        Приложение предназначено для ведения записей
+        и наблюдения за показателями здоровья.
+      </p>
 
-      } else {
+      <p>
+        Информация в приложении не заменяет консультацию
+        врача, медицинское обследование или назначенное
+        специалистом лечение.
+      </p>
 
-        nav.style.display = "flex";
+      <p>
+        При наличии вопросов о состоянии здоровья,
+        результатах измерений или при ухудшении самочувствия
+        необходимо обратиться к медицинскому специалисту.
+      </p>
 
-      }
+    </div>
 
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+  <div class="container footer-inner">
+
+    <div class="footer-logo">
+
+      <span class="logo-icon">
+
+        <img
+          src="./app-icon.png"
+          alt="Иконка приложения"
+        >
+
+      </span>
+
+      <span>
+        Давление под контролем
+      </span>
+
+    </div>
+
+
+    <div class="footer-copy">
+      © 2026 Давление под контролем
+    </div>
+
+  </div>
+
+</footer>
+
+
+<script>
+
+function toggleMenu() {
+
+  const nav = document.getElementById("mainNav");
+
+  if (nav.style.display === "flex") {
+
+    nav.style.display = "none";
+
+  } else {
+
+    nav.style.display = "flex";
+
+  }
+
+}
+
+
+/* Закрываем мобильное меню после перехода по ссылке */
+
+document.querySelectorAll("#mainNav a").forEach(function(link) {
+
+  link.addEventListener("click", function() {
+
+    if (window.innerWidth <= 760) {
+      document.getElementById("mainNav").style.display = "none";
     }
 
+  });
 
-    /* Закрываем мобильное меню после перехода по ссылке */
-
-    document.querySelectorAll("#mainNav a").forEach(function(link) {
-
-      link.addEventListener("click", function() {
-
-        if (window.innerWidth <= 760) {
-
-          document.getElementById("mainNav").style.display = "none";
-
-        }
-
-      });
-
-    });
+});
 
 
-    /* Возвращаем обычное состояние меню при увеличении окна */
+/* Возвращаем обычное состояние меню при увеличении окна */
 
-    window.addEventListener("resize", function() {
+window.addEventListener("resize", function() {
 
-      const nav = document.getElementById("mainNav");
+  const nav = document.getElementById("mainNav");
 
-      if (window.innerWidth > 760) {
+  if (window.innerWidth > 760) {
 
-        nav.style.display = "flex";
+    nav.style.display = "flex";
 
-      } else {
+  } else {
 
-        nav.style.display = "none";
+    nav.style.display = "none";
 
-      }
+  }
 
-    });
+});
 
-  </script>
-
+</script>
 
 </body>
 </html>
